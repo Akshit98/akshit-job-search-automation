@@ -1,8 +1,30 @@
 {
-  "generated_at": "2026-08-09T14:28:38+00:00",
-  "count": 33,
+  "generated_at": "2026-08-09T14:34:33+00:00",
+  "count": 43,
   "errors": [],
   "jobs": [
+    {
+      "id": "adzuna:5819623328",
+      "source": "Adzuna",
+      "company": "Artech Infosystem Private Limited",
+      "title": "Sales Support Administrator",
+      "location": "India",
+      "workplace": "Remote",
+      "description": "We're Hiring | Sales Support Administrator (Remote) Are you passionate about Sales Operations and have experience supporting global sales teams? We're looking for a Sales Support Administrator with a strong background in Salesforce CRM and Advanced Excel to join our remote team. Location: Remote (India) Experience: 3–6 Years Key Responsibilities: Support international Sales teams with quote processing, pricing, and discount approvals. Manage opportunities, accounts, and pipeline in Salesforc…",
+      "url": "https://www.adzuna.in/land/ad/5819623328?se=zJg8bv-T8RGp_rap8EwByw&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089",
+      "employment_type": "",
+      "compensation": "",
+      "published_at": "2026-07-29T15:21:28Z",
+      "location_tier": "remote_india",
+      "score": 60,
+      "score_reasons": [
+        "role: sales operations, sales support",
+        "skills: salesforce, crm, excel",
+        "location: remote_india"
+      ],
+      "monthly_inr": null,
+      "is_new": true
+    },
     {
       "id": "lever:cprime:25646fca-f794-4335-b594-52f15a1ae70d",
       "source": "lever",
@@ -67,7 +89,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/steno/jobs/revenue-operations-coordinator",
@@ -89,7 +111,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/drawbridge/jobs/senior-revenue-operations-analyst",
@@ -111,7 +133,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/cielo/jobs/manager-revenue-analytics-planning-3180042143",
@@ -133,7 +155,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/disher-talent/jobs/revenue-operations-specialist",
@@ -155,7 +177,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/rhapsody/jobs/sales-operations-manager",
@@ -177,7 +199,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/dwelly/jobs/data-quality-analyst",
@@ -199,7 +221,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/fortive/jobs/sr-ops-analyst-revenue-operations",
@@ -221,7 +243,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/jobs-for-humanity/jobs/data-verification-specialist",
@@ -243,7 +265,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/logistics-management-institute/jobs/logistics-operations-analyst-clearance-required",
@@ -265,7 +287,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/marketstar/jobs/sales-operations-specialist",
@@ -287,7 +309,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/instacart/jobs/senior-revenue-operations-manager-eversight",
@@ -309,7 +331,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/servicenow/jobs/sales-operations-mgr-armis",
@@ -331,7 +353,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/virtru/jobs/operations-analyst",
@@ -353,7 +375,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/globalization-partners/jobs/revenue-operations-specialist-9601950328",
@@ -375,7 +397,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/newsela/jobs/data-engineer-1691600252",
@@ -397,7 +419,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/surgo-pty-ltd/jobs/german-operations-sales-excellence-manager-9342146200",
@@ -419,7 +441,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/tahche-outsourcing-services-inc/jobs/quality-assurance-associate",
@@ -441,7 +463,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/zealogics/jobs/ai-operations-reporting-analytics-analyst-fully-remote-opportunity",
@@ -463,7 +485,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/abi-research/jobs/research-analyst-automotive-technologies-7638648008",
@@ -485,7 +507,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/akamai-technologies/jobs/strategy-operations-analyst-ii-opex-hc-mgmt",
@@ -507,7 +529,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/antenna-group/jobs/commercial-operations-analyst",
@@ -529,7 +551,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/icf/jobs/data-operator-curator",
@@ -551,7 +573,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/precision-medicine-group/jobs/content-analyst-data-steward",
@@ -573,7 +595,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/vizx-global/jobs/sales-operator",
@@ -595,7 +617,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/ahead/jobs/data-governance-lead",
@@ -617,7 +639,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/blend360/jobs/data-quality-engineer-2245973535",
@@ -639,7 +661,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "remotive:1680495",
@@ -661,7 +683,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/exl/jobs/data-steward",
@@ -683,7 +705,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/logistics-management-institute/jobs/data-governance-specialist-clearance-required",
@@ -705,7 +727,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "himalayas:https://himalayas.app/companies/rws-group/jobs/ai-quality-coordinator-8107591972",
@@ -725,6 +747,204 @@
         "role: data quality",
         "skills: data quality, excel, power bi",
         "location: global_work_from_anywhere"
+      ],
+      "monthly_inr": null,
+      "is_new": false
+    },
+    {
+      "id": "adzuna:5746718236",
+      "source": "Adzuna",
+      "company": "Nextpower",
+      "title": "Sales operations Analyst",
+      "location": "India",
+      "workplace": "",
+      "description": "Job Description: The Sales Operations Analyst – This role is based in Hyderabad and reports to the Sales Operations Manager. This position plays a critical role in ensuring tax accuracy and sales order integrity across all regions. The analyst will be responsible for: End-to-end tax verification on sales orders (US Sales Tax, VAT, GST) Validating sales orders as part of project closeouts and reconciliation processes Leveraging CRM and ERP (NetSuite) systems to provide a consistent, accurate, an…",
+      "url": "https://www.adzuna.in/details/5746718236?utm_medium=api&utm_source=86a70844",
+      "employment_type": "",
+      "compensation": "",
+      "published_at": "2026-06-01T02:18:41Z",
+      "location_tier": "hyderabad",
+      "score": 45,
+      "score_reasons": [
+        "role: operations analyst, sales operations",
+        "skills: crm",
+        "location: hyderabad"
+      ],
+      "monthly_inr": null,
+      "is_new": true
+    },
+    {
+      "id": "adzuna:5815814437",
+      "source": "Adzuna",
+      "company": "CSC",
+      "title": "Associate Data Quality Specialist",
+      "location": "India",
+      "workplace": "",
+      "description": "Description Role: Associate Data Quality Specialist Location: Bangalore/ Chennai Schedule: 12:00pm -9:00pm Working model: Hybrid Introduction: We are looking for a detail-oriented and enthusiastic Data Operations Associate to support data management and operational activities. This role is ideal for fresh graduates or early-career professionals who are eager to build their skills in data processing, quality assurance, and business operations. The associate will be responsible for maintaining da…",
+      "url": "https://www.adzuna.in/details/5815814437?utm_medium=api&utm_source=86a70844",
+      "employment_type": "",
+      "compensation": "",
+      "published_at": "2026-07-26T03:23:55Z",
+      "location_tier": "bengaluru",
+      "score": 57,
+      "score_reasons": [
+        "role: business operations, data operations, data quality",
+        "skills: data quality",
+        "location: bengaluru"
+      ],
+      "monthly_inr": null,
+      "is_new": true
+    },
+    {
+      "id": "adzuna:5658374641",
+      "source": "Adzuna",
+      "company": "Talent Pro",
+      "title": "Revenue Operations Lead, saas",
+      "location": "Bangalore, Karnataka",
+      "workplace": "",
+      "description": "Strong RevOps / Revenue Operations Lead Profiles (B2B SaaS Only). Mandatory (Experience 1) – Must have minimum 3 years experience in RevOps / Sales Operations / Revenue Operations roles. Mandatory (Experience 2) – Must have minimum 2 years of hands-on CRM experience, including at least 6 months of active HubSpot CRM usage (workflow automation, reporting, integrations, data hygiene). Mandatory (Experience 3) – Must have strong analytics and data management experience, including hands-on work wit…",
+      "url": "https://www.adzuna.in/details/5658374641?utm_medium=api&utm_source=86a70844",
+      "employment_type": "",
+      "compensation": "INR 2000000-2700000 per year",
+      "published_at": "2026-03-08T11:32:36Z",
+      "location_tier": "bengaluru",
+      "score": 57,
+      "score_reasons": [
+        "role: sales operations, revenue operations",
+        "skills: hubspot, crm, reporting, automation",
+        "location: bengaluru"
+      ],
+      "monthly_inr": null,
+      "is_new": true
+    },
+    {
+      "id": "adzuna:5778430833",
+      "source": "Adzuna",
+      "company": "Saxon Global INC",
+      "title": "Data Quality Developer",
+      "location": "Bangalore, Karnataka",
+      "workplace": "",
+      "description": "Job description Should have Experience Back-end data validation, data quality assurance. Snowflake with SQL, data modeling, and ETL processes. Data validation, regular expressions, data profiling and data cleansing. Proficiency in scripting or programming languages. Skills: Data Modeling, Etl, Sql, Data Validation Experience: 4.00-9.00 Years",
+      "url": "https://www.adzuna.in/details/5778430833?utm_medium=api&utm_source=86a70844",
+      "employment_type": "",
+      "compensation": "",
+      "published_at": "2026-06-27T07:12:42Z",
+      "location_tier": "bengaluru",
+      "score": 52,
+      "score_reasons": [
+        "role: data quality, quality assurance",
+        "skills: data quality, data cleansing, sql",
+        "location: bengaluru"
+      ],
+      "monthly_inr": null,
+      "is_new": true
+    },
+    {
+      "id": "adzuna:5684977517",
+      "source": "Adzuna",
+      "company": "Frequencycx",
+      "title": "Revenue Operations Specialist",
+      "location": "Bangalore, Karnataka",
+      "workplace": "",
+      "description": "The Role We’re hiring a Revenue Operations Specialist who will act as the backbone of our go-to-market engine. This is a builder role — not a maintenance role. You’ll design systems, automate workflows, and implement AI-driven processes across Sales, BD, and Marketing. What You’ll Do • Build AI agents and automation workflows across the revenue stack • Use tools like Zapier, Make, n8n, Clay, and LLM-based workflows • Own CRM (HubSpot/Salesforce) including structure, hygiene, and reporting • B…",
+      "url": "https://www.adzuna.in/details/5684977517?utm_medium=api&utm_source=86a70844",
+      "employment_type": "",
+      "compensation": "INR 800000-1200000 per year",
+      "published_at": "2026-04-01T11:39:35Z",
+      "location_tier": "bengaluru",
+      "score": 47,
+      "score_reasons": [
+        "role: revenue operations",
+        "skills: salesforce, hubspot, crm, reporting, automation",
+        "location: bengaluru"
+      ],
+      "monthly_inr": null,
+      "is_new": true
+    },
+    {
+      "id": "adzuna:3914011894",
+      "source": "Adzuna",
+      "company": "Quicken Inc",
+      "title": "Senior Data Quality Engineer",
+      "location": "Bangalore, Karnataka",
+      "workplace": "",
+      "description": "Graduate in Mathematics, Statistics, Computer Science, Economics, Business, Engineering or equivalent work experience. Total experience of 5 years with at least 2 years in managing data quality for high scale data platforms. Good knowledge of SQL querying. Strong skill in analysing data and uncovering patterns using SQL or Python. Excellent understanding of data warehouse/big data concepts such data extraction, data transformation, data loading (ETL process). Strong background in automation and…",
+      "url": "https://www.adzuna.in/details/3914011894?utm_medium=api&utm_source=86a70844",
+      "employment_type": "",
+      "compensation": "",
+      "published_at": "2023-02-09T06:29:25Z",
+      "location_tier": "bengaluru",
+      "score": 47,
+      "score_reasons": [
+        "role: data quality",
+        "skills: data quality, excel, python, sql, automation",
+        "location: bengaluru"
+      ],
+      "monthly_inr": null,
+      "is_new": true
+    },
+    {
+      "id": "adzuna:5796411183",
+      "source": "Adzuna",
+      "company": "Sprinklr",
+      "title": "Data Quality Analyst",
+      "location": "Bangalore, Karnataka",
+      "workplace": "",
+      "description": "Role Responsibilities: Maintain and update Salesforce data, including deduplication and hierarchy setup. Support data quality, accuracy, and integrity across platforms. Assist in reporting and data analysis using Excel and Salesforce. Cross-reference data with tools like ZoomInfo and Lusha for enrichment. Key Deliverables: Accurate Salesforce records with structured account hierarchies. Clean, validated, and enriched datasets across business systems. Timely reports and dashboards for performanc…",
+      "url": "https://www.adzuna.in/details/5796411183?utm_medium=api&utm_source=86a70844",
+      "employment_type": "",
+      "compensation": "",
+      "published_at": "2026-07-11T07:19:28Z",
+      "location_tier": "bengaluru",
+      "score": 47,
+      "score_reasons": [
+        "role: data quality",
+        "skills: salesforce, data quality, excel, zoominfo, reporting",
+        "location: bengaluru"
+      ],
+      "monthly_inr": null,
+      "is_new": true
+    },
+    {
+      "id": "adzuna:5785771371",
+      "source": "Adzuna",
+      "company": "MSCI",
+      "title": "Geospatial Physical Risk - AI Data Operations Analyst",
+      "location": "Mumbai, Maharashtra",
+      "workplace": "",
+      "description": "This job is with MSCI, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Your Team Responsibilities: The Geospatial Data Team manages collection operations, data quality, and best practices for Climate and ESG geospatial data. The team drives data acquisition, vendor coordination, QA engineering, process automation, and research enablement-serving as the operational backbone for MSCI's geos…",
+      "url": "https://www.adzuna.in/land/ad/5785771371?se=8K8rbP-T8RGFxo5UmLCcLw&utm_medium=api&utm_source=86a70844&v=1F85CC85D5C3FFE81DA9A3C55D962E4EB9D0A2EB",
+      "employment_type": "",
+      "compensation": "",
+      "published_at": "2026-07-03T00:54:15Z",
+      "location_tier": "other_india",
+      "score": 58,
+      "score_reasons": [
+        "role: operations analyst, data operations, data quality",
+        "skills: data quality, automation",
+        "location: other_india"
+      ],
+      "monthly_inr": null,
+      "is_new": true
+    },
+    {
+      "id": "adzuna:5710605357",
+      "source": "Adzuna",
+      "company": "FNZ",
+      "title": "Sales Operations Analyst",
+      "location": "India",
+      "workplace": "",
+      "description": "Job Title Sales Operations Analyst Location Gurgaon, India Role Description We are building out our Sales Operations function and are looking for a high-performing Sales Operations Analyst to support our frontline sales teams. This role will play a critical part in driving sales process excellence, CRM governance, reporting accuracy, and deal compliance. With a major CRM transformation agenda underway, this is an exciting opportunity to contribute to change initiatives while supporting day-to-d…",
+      "url": "https://www.adzuna.in/details/5710605357?utm_medium=api&utm_source=86a70844",
+      "employment_type": "",
+      "compensation": "",
+      "published_at": "2026-04-26T02:17:25Z",
+      "location_tier": "other_india",
+      "score": 48,
+      "score_reasons": [
+        "role: operations analyst, sales operations",
+        "skills: crm, excel, reporting",
+        "location: other_india"
       ],
       "monthly_inr": null,
       "is_new": true
