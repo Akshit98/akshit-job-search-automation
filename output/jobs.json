@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-08-09T13:31:30+00:00",
+  "count": 2,
+  "errors": [],
+  "jobs": [
+    {
+      "id": "lever:cprime:25646fca-f794-4335-b594-52f15a1ae70d",
+      "source": "lever",
+      "company": "cprime",
+      "title": "Salesforce Operations & Data Quality Specialist",
+      "location": "Hyderabad, India",
+      "workplace": "remote",
+      "description": "Cprime is an AI-first, human-centered partner, combining strategic consulting with industry-leading platforms to drive innovation, enhance efficiency, and shift enterprise toward AI native thinking. Founded in 2003 and headquartered in the US, our clients span the globe and include more than 300 of the Fortune 500 companies. We bring deep expertise across Atlassian, IBM Apptio, ServiceNow, cloud, data, and enterprise agility to enable intelligent enterprises where people and AI orchestrate as one. What We Believe In At Cprime we believe in facilitating social justice action internally, in industry, and within our communities. We believe part of our mission is to expand the minds, hearts, and opportunities of our Cprime teammates and within the broader community to include those who have been historically marginalized. Equal Employment Opportunity Statement Cprime is an equal-opportunity employer that is committed to diversity and inclusion in the workplace. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, national origin, disability status, protected veteran status, or any other characteristic protected by federal, state, or local laws.",
+      "url": "https://jobs.lever.co/cprime/25646fca-f794-4335-b594-52f15a1ae70d",
+      "employment_type": "Full-time",
+      "compensation": "",
+      "published_at": "1784820546689",
+      "location_tier": "remote_india",
+      "score": 55,
+      "score_reasons": [
+        "role: data quality, salesforce operations",
+        "skills: salesforce, data quality",
+        "location: remote_india"
+      ],
+      "monthly_inr": null
+    },
+    {
+      "id": "lever:Sprinto:f191e1f6-cfd3-476f-a43f-943ed52348cf",
+      "source": "lever",
+      "company": "Sprinto",
+      "title": "Market Research Executive",
+      "location": "Bengaluru",
+      "workplace": "remote",
+      "description": "Sprinto is an Autonomous Trust Platform that centralizes trust requirements across security frameworks, vendors, and customers. Sprinto autonomously executes tasks needed to maintain trust across compliance, audits, risk management, vendor risk, privacy, and AI governance, enabling organizations to maintain a strong, reliable trust posture without draining operational bandwidth and resources on repetitive tasks. Backed by top-tier investors such as Accel, Elevation, and Blume Ventures, we’ve raised$31.8M in funding to fuel our mission. Trusted by over 4,000 organizations across 75 countries, Sprinto helps organizations stay audit-ready, manage real-time risks, and scale fearlessly. With 300+ native integrations and AI-driven automation, Sprinto supports 200+ global security standards natively, including SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS, and more. Sprinto's extensible architecture enables organizations to build and support an infinite number of custom integrations and frameworks. Founded in 2020 by second-time founders Girish Redekar and Raghuveer Kancherla, Sprinto powers compliance for organizations like Whatfix, Encora, Anaconda, Whatnot, Ultrahuman, WeWork, Everstage, AI Foundation, HackerRank, and many more. Life as a Sprinter - Nobody succeeds at Sprinto by staying in their lane. We are organized around problems, not job titles. Sprinters take ownership beyond their role, solve hard problems, and care deeply about the impact they create. If something can be improved, fixed, or built, we don't wait for permission; we step in. Being remote means we rely less on proximity and more on trust. We write things down, communicate openly, and move quickly because great teams aren't built by sitting together, they're built by pulling in the same direction. We believe progress beats perfection, feedback is a gift, and doing the right thing matters, even when nobody is watching. And while we move with urgency, we never move alone. The mission - We are looking for a proactive and detail-oriented Market Research Executive – Outbound to support and scale Sprinto’s outbound pipeline through high-quality data research, enrichment, and CRM management. This role will be responsible for identifying ICP-fit accounts, building and enriching outbound databases, maintaining CRM hygiene, and enabling structured lead distribution for SDRs and AEs. The ideal candidate combines strong research skills with hands-on experience in outbound data tools and CRM systems. They should be comfortable working with enrichment platforms, automation workflows, and data governance practices to ensure accurate, reliable, and campaign-ready outbound data. How we care for our Sprinters? Work wherever you are: We are 100% remote, so you get to choose if you want to work from home, a cafe, the hills, or the beach. Co-working, on the house: If co-working is your jam, we offer a generous annual allowance. We care about your learning: We are invested in seeing you grow and commit USD 1,000 annually to help you level up your skills. We count your spark, not your leaves: Unlimited leave so you can reset when you need to. Your Safety Net, Woven In: Health insurance with coverage up to INR 10 lakh for you and your family, accident protection of an additional INR 10 lakh, and life insurance worth 3x your annual salary. Workspace setup of your dreams: We chip in INR 35,000 to help you build a setup that works for you. Inclusion & Diversity - At Sprinto, talent, curiosity, and ownership matter more than where you come from. We hire people for the problems they can solve, the impact they create, and the way they help others succeed—not their background, identity, or personal circumstances. We believe the best teams are built when people with different perspectives come together around a shared ambition to build something meaningful. We're proud to be an equal opportunity employer and are committed to creating a fair, inclusive, and accessible hiring process for everyone.",
+      "url": "https://jobs.lever.co/Sprinto/f191e1f6-cfd3-476f-a43f-943ed52348cf",
+      "employment_type": "Remote",
+      "compensation": "",
+      "published_at": "1784884970858",
+      "location_tier": "remote_india",
+      "score": 45,
+      "score_reasons": [
+        "role: market research",
+        "skills: crm, market research, automation",
+        "location: remote_india"
+      ],
+      "monthly_inr": null
+    }
+  ]
+}

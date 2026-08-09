@@ -1,0 +1,24 @@
+{
+  "candidate": "Akshit Didla",
+  "minimum_fit_score": 45,
+  "internship_min_monthly_inr": 40000,
+  "role_terms": [
+    "business operations", "operations analyst", "sales operations",
+    "revenue operations", "crm operations", "data operations",
+    "data quality", "salesforce operations", "market research",
+    "research analyst", "research operations", "lead generation",
+    "data verification", "quality assurance", "sales support"
+  ],
+  "skills": [
+    "salesforce", "hubspot", "crm", "data quality", "data cleansing",
+    "duplicate resolution", "market research", "company research",
+    "executive research", "lead generation", "excel", "google sheets",
+    "apollo", "zoominfo", "sales navigator", "reporting", "python",
+    "sql", "power bi", "automation", "healthcare", "credential verification"
+  ],
+  "location_priority": [
+    "remote_india", "global_work_from_anywhere", "hyderabad",
+    "bengaluru", "other_india"
+  ],
+  "excluded_titles": ["director", "vice president", "vp ", "head of", "principal", "staff engineer"]
+}
