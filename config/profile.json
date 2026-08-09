@@ -20,5 +20,5 @@
     "remote_india", "global_work_from_anywhere", "hyderabad",
     "bengaluru", "other_india"
   ],
-  "excluded_titles": ["director", "vice president", "vp ", "head of", "principal", "staff engineer"]
+  "excluded_titles": ["director", "vice president", "vp ", "head of", "principal", "chief ", "staff engineer"]
 }

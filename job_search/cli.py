@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
-from .core import evaluate, sort_jobs
+from .core import evaluate, job_fingerprint, sort_jobs
 from .report import write_reports
 from .sources import collect
 
@@ -16,7 +16,7 @@ def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def run(include_seen: bool = False) -> int:
+def run(new_only: bool = False) -> int:
     profile = load_json(ROOT / "config" / "profile.json")
     sources = load_json(ROOT / "config" / "sources.json")
     seen_path = ROOT / "data" / "seen_jobs.json"
@@ -24,15 +24,22 @@ def run(include_seen: bool = False) -> int:
     collected, errors = collect(sources)
     unique = {job.id: job for job in collected}
     accepted = []
+    fingerprints = set()
     for job in unique.values():
         match = evaluate(job, profile)
-        if match and (include_seen or match.id not in seen):
+        if match and job_fingerprint(match) in fingerprints:
+            continue
+        if match:
+            fingerprints.add(job_fingerprint(match))
+            match.is_new = match.id not in seen
+        if match and (not new_only or match.is_new):
             accepted.append(match)
     accepted = sort_jobs(accepted, profile["location_priority"])
     write_reports(accepted, errors, ROOT / "output")
     seen.update(job.id for job in accepted)
     seen_path.write_text(json.dumps(sorted(seen), indent=2), encoding="utf-8")
-    print(f"Collected {len(collected)} jobs; wrote {len(accepted)} new matches; {len(errors)} source warnings.")
+    new_count = sum(job.is_new for job in accepted)
+    print(f"Collected {len(collected)} jobs; wrote {len(accepted)} active matches ({new_count} new); {len(errors)} source warnings.")
     return 0
 
 
@@ -40,6 +47,6 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Resume-tailored job search automation")
     sub = parser.add_subparsers(dest="command", required=True)
     run_parser = sub.add_parser("run", help="collect, filter, score, and report jobs")
-    run_parser.add_argument("--include-seen", action="store_true", help="include jobs already reported")
+    run_parser.add_argument("--new-only", action="store_true", help="report only jobs not seen in an earlier run")
     args = parser.parse_args(argv)
-    return run(args.include_seen)
+    return run(args.new_only)

@@ -36,6 +36,7 @@ class Job:
     score: int = 0
     score_reasons: list[str] | None = None
     monthly_inr: int | None = None
+    is_new: bool = False
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -121,11 +122,22 @@ def score_job(job: Job, profile: dict[str, Any]) -> tuple[int, list[str]]:
     return max(0, min(100, score)), reasons
 
 
+def job_fingerprint(job: Job) -> str:
+    """Cross-source deduplication key for the same advertised opening."""
+    def normalize(value: str) -> str:
+        return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+    location = normalize(job.location).replace("bangalore", "bengaluru")
+    return "|".join((normalize(job.company), normalize(job.title), location))
+
+
 def evaluate(job: Job, profile: dict[str, Any]) -> Job | None:
     job.location_tier = location_tier(job) or ""
     if not job.location_tier:
         return None
     internship = is_internship(job)
+    title = job.title.lower()
+    if any(term in title for term in profile.get("excluded_titles", [])):
+        return None
     employment_blob = f"{job.employment_type} {job.title} {job.description[:500]}".lower()
     if internship:
         job.monthly_inr = monthly_compensation_inr(f"{job.compensation} {job.description}")

@@ -1,5 +1,12 @@
 {
   "greenhouse": ["remotecom"],
   "lever": ["Sprinto", "cprime", "jumpcloud", "jobgether"],
-  "ashby": ["deel"]
+  "ashby": ["deel"],
+  "remoteok": ["public"],
+  "remotive": ["public"],
+  "arbeitnow": ["public"],
+  "himalayas": ["public"],
+  "themuse": ["public"],
+  "adzuna": ["optional"],
+  "jooble": ["optional"]
 }

@@ -1,6 +1,6 @@
 import unittest
 
-from job_search.core import Job, evaluate, location_tier, monthly_compensation_inr
+from job_search.core import Job, evaluate, job_fingerprint, location_tier, monthly_compensation_inr
 
 
 PROFILE = {
@@ -60,6 +60,14 @@ class FitTests(unittest.TestCase):
 
     def test_contract_rejected(self):
         self.assertIsNone(evaluate(job(employment_type="Contract"), PROFILE))
+
+    def test_director_title_rejected(self):
+        self.assertIsNone(evaluate(job(title="Director of Sales Operations"), PROFILE))
+
+    def test_cross_source_fingerprint_normalizes_bangalore(self):
+        first = job(company="Example, Inc.", location="Bangalore", title="Sales Operations Analyst")
+        second = job(company="Example Inc", location="Bengaluru", title="Sales Operations Analyst")
+        self.assertEqual(job_fingerprint(first), job_fingerprint(second))
 
 
 if __name__ == "__main__":
