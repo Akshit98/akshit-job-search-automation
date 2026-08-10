@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T14:34:33+00:00",
+  "generated_at": "2026-08-10T05:07:30+00:00",
   "count": 43,
   "errors": [],
   "jobs": [
@@ -11,7 +11,7 @@
       "location": "India",
       "workplace": "Remote",
       "description": "We're Hiring | Sales Support Administrator (Remote) Are you passionate about Sales Operations and have experience supporting global sales teams? We're looking for a Sales Support Administrator with a strong background in Salesforce CRM and Advanced Excel to join our remote team. Location: Remote (India) Experience: 3–6 Years Key Responsibilities: Support international Sales teams with quote processing, pricing, and discount approvals. Manage opportunities, accounts, and pipeline in Salesforc…",
-      "url": "https://www.adzuna.in/land/ad/5819623328?se=zJg8bv-T8RGp_rap8EwByw&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089",
+      "url": "https://www.adzuna.in/land/ad/5819623328?se=rKW1YHmU8RGRI-kHrEOjyQ&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089",
       "employment_type": "",
       "compensation": "",
       "published_at": "2026-07-29T15:21:28Z",
@@ -23,7 +23,7 @@
         "location: remote_india"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "lever:cprime:25646fca-f794-4335-b594-52f15a1ae70d",
@@ -752,17 +752,17 @@
       "is_new": false
     },
     {
-      "id": "adzuna:5746718236",
+      "id": "adzuna:5746731633",
       "source": "Adzuna",
       "company": "Nextpower",
-      "title": "Sales operations Analyst",
+      "title": "Sales Operations Analyst",
       "location": "India",
       "workplace": "",
-      "description": "Job Description: The Sales Operations Analyst – This role is based in Hyderabad and reports to the Sales Operations Manager. This position plays a critical role in ensuring tax accuracy and sales order integrity across all regions. The analyst will be responsible for: End-to-end tax verification on sales orders (US Sales Tax, VAT, GST) Validating sales orders as part of project closeouts and reconciliation processes Leveraging CRM and ERP (NetSuite) systems to provide a consistent, accurate, an…",
-      "url": "https://www.adzuna.in/details/5746718236?utm_medium=api&utm_source=86a70844",
+      "description": "Job Description: The Sales Operations Analyst will be based in Hyderabad. In this position, you will report to the Sales Operations Manager . This person will be responsible for Creating, maintaining & modifying the Sales orders across all the Regions. Position will utilize the CRM & ERP(NetSuite) tools to provide the team with a consistent and accurate view of global Sales activity. The Analyst will work closely with the Global Sales team, Project Engineering, Project Management, Logistics, Pl…",
+      "url": "https://www.adzuna.in/details/5746731633?utm_medium=api&utm_source=86a70844",
       "employment_type": "",
       "compensation": "",
-      "published_at": "2026-06-01T02:18:41Z",
+      "published_at": "2026-06-01T02:22:57Z",
       "location_tier": "hyderabad",
       "score": 45,
       "score_reasons": [
@@ -793,7 +793,7 @@
         "location: bengaluru"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "adzuna:5658374641",
@@ -815,7 +815,7 @@
         "location: bengaluru"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "adzuna:5778430833",
@@ -837,7 +837,7 @@
         "location: bengaluru"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "adzuna:5684977517",
@@ -859,7 +859,7 @@
         "location: bengaluru"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "adzuna:3914011894",
@@ -881,7 +881,7 @@
         "location: bengaluru"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "adzuna:5796411183",
@@ -903,7 +903,7 @@
         "location: bengaluru"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "adzuna:5785771371",
@@ -913,7 +913,7 @@
       "location": "Mumbai, Maharashtra",
       "workplace": "",
       "description": "This job is with MSCI, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Your Team Responsibilities: The Geospatial Data Team manages collection operations, data quality, and best practices for Climate and ESG geospatial data. The team drives data acquisition, vendor coordination, QA engineering, process automation, and research enablement-serving as the operational backbone for MSCI's geos…",
-      "url": "https://www.adzuna.in/land/ad/5785771371?se=8K8rbP-T8RGFxo5UmLCcLw&utm_medium=api&utm_source=86a70844&v=1F85CC85D5C3FFE81DA9A3C55D962E4EB9D0A2EB",
+      "url": "https://www.adzuna.in/land/ad/5785771371?se=4sKHXnmU8RGlDuOngCclFw&utm_medium=api&utm_source=86a70844&v=1F85CC85D5C3FFE81DA9A3C55D962E4EB9D0A2EB",
       "employment_type": "",
       "compensation": "",
       "published_at": "2026-07-03T00:54:15Z",
@@ -925,7 +925,7 @@
         "location: other_india"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     },
     {
       "id": "adzuna:5710605357",
@@ -947,7 +947,7 @@
         "location: other_india"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false
     }
   ]
 }

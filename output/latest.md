@@ -1,9 +1,9 @@
 # Latest matching jobs
 
-Generated: 2026-08-09T14:34:33+00:00
+Generated: 2026-08-10T05:07:30+00:00
 Matches: 43
 
-## NEW - [Sales Support Administrator](https://www.adzuna.in/land/ad/5819623328?se=zJg8bv-T8RGp_rap8EwByw&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089)
+## [Sales Support Administrator](https://www.adzuna.in/land/ad/5819623328?se=rKW1YHmU8RGRI-kHrEOjyQ&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089)
 
 Artech Infosystem Private Limited | Source: Adzuna | India | remote_india | Fit 60/100
 
@@ -207,55 +207,55 @@ RWS Group | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 45/1
 
 Why: role: data quality; skills: data quality, excel, power bi; location: global_work_from_anywhere
 
-## NEW - [Sales operations Analyst](https://www.adzuna.in/details/5746718236?utm_medium=api&utm_source=86a70844)
+## NEW - [Sales Operations Analyst](https://www.adzuna.in/details/5746731633?utm_medium=api&utm_source=86a70844)
 
 Nextpower | Source: Adzuna | India | hyderabad | Fit 45/100
 
 Why: role: operations analyst, sales operations; skills: crm; location: hyderabad
 
-## NEW - [Associate Data Quality Specialist](https://www.adzuna.in/details/5815814437?utm_medium=api&utm_source=86a70844)
+## [Associate Data Quality Specialist](https://www.adzuna.in/details/5815814437?utm_medium=api&utm_source=86a70844)
 
 CSC | Source: Adzuna | India | bengaluru | Fit 57/100
 
 Why: role: business operations, data operations, data quality; skills: data quality; location: bengaluru
 
-## NEW - [Revenue Operations Lead, saas](https://www.adzuna.in/details/5658374641?utm_medium=api&utm_source=86a70844)
+## [Revenue Operations Lead, saas](https://www.adzuna.in/details/5658374641?utm_medium=api&utm_source=86a70844)
 
 Talent Pro | Source: Adzuna | Bangalore, Karnataka | bengaluru | Fit 57/100 | INR 2000000-2700000 per year
 
 Why: role: sales operations, revenue operations; skills: hubspot, crm, reporting, automation; location: bengaluru
 
-## NEW - [Data Quality Developer](https://www.adzuna.in/details/5778430833?utm_medium=api&utm_source=86a70844)
+## [Data Quality Developer](https://www.adzuna.in/details/5778430833?utm_medium=api&utm_source=86a70844)
 
 Saxon Global INC | Source: Adzuna | Bangalore, Karnataka | bengaluru | Fit 52/100
 
 Why: role: data quality, quality assurance; skills: data quality, data cleansing, sql; location: bengaluru
 
-## NEW - [Revenue Operations Specialist](https://www.adzuna.in/details/5684977517?utm_medium=api&utm_source=86a70844)
+## [Revenue Operations Specialist](https://www.adzuna.in/details/5684977517?utm_medium=api&utm_source=86a70844)
 
 Frequencycx | Source: Adzuna | Bangalore, Karnataka | bengaluru | Fit 47/100 | INR 800000-1200000 per year
 
 Why: role: revenue operations; skills: salesforce, hubspot, crm, reporting, automation; location: bengaluru
 
-## NEW - [Senior Data Quality Engineer](https://www.adzuna.in/details/3914011894?utm_medium=api&utm_source=86a70844)
+## [Senior Data Quality Engineer](https://www.adzuna.in/details/3914011894?utm_medium=api&utm_source=86a70844)
 
 Quicken Inc | Source: Adzuna | Bangalore, Karnataka | bengaluru | Fit 47/100
 
 Why: role: data quality; skills: data quality, excel, python, sql, automation; location: bengaluru
 
-## NEW - [Data Quality Analyst](https://www.adzuna.in/details/5796411183?utm_medium=api&utm_source=86a70844)
+## [Data Quality Analyst](https://www.adzuna.in/details/5796411183?utm_medium=api&utm_source=86a70844)
 
 Sprinklr | Source: Adzuna | Bangalore, Karnataka | bengaluru | Fit 47/100
 
 Why: role: data quality; skills: salesforce, data quality, excel, zoominfo, reporting; location: bengaluru
 
-## NEW - [Geospatial Physical Risk - AI Data Operations Analyst](https://www.adzuna.in/land/ad/5785771371?se=8K8rbP-T8RGFxo5UmLCcLw&utm_medium=api&utm_source=86a70844&v=1F85CC85D5C3FFE81DA9A3C55D962E4EB9D0A2EB)
+## [Geospatial Physical Risk - AI Data Operations Analyst](https://www.adzuna.in/land/ad/5785771371?se=4sKHXnmU8RGlDuOngCclFw&utm_medium=api&utm_source=86a70844&v=1F85CC85D5C3FFE81DA9A3C55D962E4EB9D0A2EB)
 
 MSCI | Source: Adzuna | Mumbai, Maharashtra | other_india | Fit 58/100
 
 Why: role: operations analyst, data operations, data quality; skills: data quality, automation; location: other_india
 
-## NEW - [Sales Operations Analyst](https://www.adzuna.in/details/5710605357?utm_medium=api&utm_source=86a70844)
+## [Sales Operations Analyst](https://www.adzuna.in/details/5710605357?utm_medium=api&utm_source=86a70844)
 
 FNZ | Source: Adzuna | India | other_india | Fit 48/100
 
