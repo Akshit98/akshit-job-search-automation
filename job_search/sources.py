@@ -131,7 +131,18 @@ def himalayas(_: str) -> list[Job]:
         data = get_json("https://himalayas.app/jobs/api/search?" + urlencode({"q": query, "sort": "recent", "page": 1}))
         for item in data.get("jobs", []):
             restrictions = item.get("locationRestrictions") or []
-            location = ", ".join(clean_text(x.get("name")) for x in restrictions if isinstance(x, dict)) or "Worldwide"
+            location_parts = []
+            for restriction in restrictions:
+                if isinstance(restriction, dict):
+                    value = clean_text(restriction.get("name"))
+                else:
+                    value = clean_text(restriction)
+                if value:
+                    location_parts.append(value)
+            # Missing restrictions are unknown, not worldwide. The evaluator
+            # may still accept the role when its description explicitly says
+            # work from anywhere or otherwise confirms global eligibility.
+            location = ", ".join(location_parts)
             salary = ""
             if item.get("minSalary") is not None or item.get("maxSalary") is not None:
                 salary = f"{item.get('currency', '')} {item.get('minSalary', '')}-{item.get('maxSalary', '')} per {item.get('salaryPeriod', 'annual')}"

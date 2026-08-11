@@ -34,6 +34,12 @@ class LocationTests(unittest.TestCase):
     def test_rejects_emea_even_if_description_mentions_india(self):
         self.assertIsNone(location_tier(job(location="Remote-EMEA", description="Our company also has employees in India")))
 
+    def test_rejects_us_only_himalayas_role(self):
+        self.assertIsNone(location_tier(job(location="United States", workplace="Remote")))
+
+    def test_does_not_treat_indiana_as_india(self):
+        self.assertIsNone(location_tier(job(location="Indiana, United States", workplace="Remote")))
+
 
 class PayTests(unittest.TestCase):
     def test_monthly_rupees(self):

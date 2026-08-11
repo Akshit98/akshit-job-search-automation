@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime, timezone
 
-from job_search.active import classify_active_response, is_stale, published_datetime
+from job_search.active import classify_active_response, is_stale, published_datetime, redirected_to_listing_index
 from job_search.core import Job
 
 
@@ -36,3 +36,15 @@ class ActiveStatusTests(unittest.TestCase):
         job = Job("1", "test", "Example", "Analyst", "India", "", "", "https://example.test", published_at="2026-08-05T00:00:00Z")
         now = datetime(2026, 8, 11, tzinfo=timezone.utc)
         self.assertFalse(is_stale(job, 30, now))
+
+    def test_removed_job_redirect_to_listing_index_is_closed(self):
+        self.assertTrue(redirected_to_listing_index(
+            "https://himalayas.app/companies/steno/jobs/revenue-operations-coordinator",
+            "https://himalayas.app/jobs",
+        ))
+
+    def test_redirect_to_employer_application_is_not_closed(self):
+        self.assertFalse(redirected_to_listing_index(
+            "https://example.test/jobs/analyst",
+            "https://apply.example-ats.test/analyst",
+        ))
