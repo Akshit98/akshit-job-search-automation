@@ -126,8 +126,32 @@ def job_fingerprint(job: Job) -> str:
     """Cross-source deduplication key for the same advertised opening."""
     def normalize(value: str) -> str:
         return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
-    location = normalize(job.location).replace("bangalore", "bengaluru")
-    return "|".join((normalize(job.company), normalize(job.title), location))
+
+    company = normalize(job.company)
+    company = re.sub(
+        r"\b(?:private limited|pvt ltd|limited|ltd|incorporated|inc|corporation|corp|llc|plc)\b",
+        " ",
+        company,
+    )
+    company = re.sub(r"\s+", " ", company).strip()
+
+    title = f" {normalize(job.title)} "
+    title_aliases = {
+        " sr ": " senior ",
+        " jr ": " junior ",
+        " ops ": " operations ",
+        " revops ": " revenue operations ",
+        " assoc ": " associate ",
+        " coord ": " coordinator ",
+    }
+    for alias, canonical in title_aliases.items():
+        title = title.replace(alias, canonical)
+    title = re.sub(r"\s+", " ", title).strip()
+
+    # Boards frequently advertise the same remote opening as "Worldwide",
+    # "Remote", or a city. The evaluated tier is a safer cross-source key.
+    location = job.location_tier or normalize(job.location).replace("bangalore", "bengaluru")
+    return "|".join((company, title, location))
 
 
 def evaluate(job: Job, profile: dict[str, Any]) -> Job | None:

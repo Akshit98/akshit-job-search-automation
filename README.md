@@ -60,7 +60,7 @@ python -m unittest discover -s tests -v
 
 ## GitHub Actions
 
-The included workflow runs every weekday at 09:00 IST (03:30 UTC) and can also be started manually. It commits updated reports and deduplication state back to the repository. GitHub cron may start a few minutes late during busy periods.
+The included workflow is scheduled every weekday at 09:00 and 17:00 IST (03:30 and 11:30 UTC) and can also be started manually. It commits updated reports and deduplication state back to the repository. GitHub cron is best-effort and may start late during busy periods; use the `Generated` timestamp in `output/latest.md` to confirm the latest completed scan.
 
 ## Supported public ATS URLs
 
