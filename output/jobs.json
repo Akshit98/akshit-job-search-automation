@@ -1,7 +1,16 @@
 {
-  "generated_at": "2026-08-11T04:50:57+00:00",
-  "count": 49,
-  "errors": [],
+  "generated_at": "2026-08-11T18:30:53+00:00",
+  "count": 35,
+  "new_count": 3,
+  "source_counts": {
+    "Adzuna": 2,
+    "Himalayas": 31,
+    "lever": 2
+  },
+  "errors": [
+    "Removed 9 definitively closed or expired job posting(s).",
+    "Could not independently verify 33 application page(s); retained as unverified."
+  ],
   "jobs": [
     {
       "id": "adzuna:5819623328",
@@ -11,7 +20,7 @@
       "location": "India",
       "workplace": "Remote",
       "description": "We're Hiring | Sales Support Administrator (Remote) Are you passionate about Sales Operations and have experience supporting global sales teams? We're looking for a Sales Support Administrator with a strong background in Salesforce CRM and Advanced Excel to join our remote team. Location: Remote (India) Experience: 3–6 Years Key Responsibilities: Support international Sales teams with quote processing, pricing, and discount approvals. Manage opportunities, accounts, and pipeline in Salesforc…",
-      "url": "https://www.adzuna.in/land/ad/5819623328?se=SpbZO0CV8RGi4ovdpLalnw&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089",
+      "url": "https://www.adzuna.in/land/ad/5819623328?se=Xj1YxrKV8RGNV-2DpYqbCA&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089",
       "employment_type": "",
       "compensation": "",
       "published_at": "2026-07-29T15:21:28Z",
@@ -23,7 +32,8 @@
         "location: remote_india"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "lever:cprime:25646fca-f794-4335-b594-52f15a1ae70d",
@@ -45,7 +55,8 @@
         "location: remote_india"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "active"
     },
     {
       "id": "lever:Sprinto:f191e1f6-cfd3-476f-a43f-943ed52348cf",
@@ -67,7 +78,8 @@
         "location: remote_india"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "active"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/fortive/jobs/sales-analyst",
@@ -89,7 +101,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/steno/jobs/revenue-operations-coordinator",
@@ -111,7 +124,31 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
+    },
+    {
+      "id": "himalayas:https://himalayas.app/companies/wagepoint/jobs/senior-revenue-operations-analyst",
+      "source": "Himalayas",
+      "company": "Wagepoint",
+      "title": "Senior Revenue Operations Analyst",
+      "location": "Worldwide",
+      "workplace": "Remote",
+      "description": "Who we are: At Wagepoint , we're good people. It's easy to feel that way when you're surrounded by folks doing the best work of their careers, building great payroll software for small businesses across Canada. Our team brings together diverse backgrounds, perspectives, experiences, and ideas to make payroll the easiest part of running a business. We're remote-first, growing, and looking for passionate people who don't settle for the first solution or the way it's been done before. We care deeply about our customers and each other, and understand that when it comes to payroll, getting it right matters. Our values guide how we work and what we expect from one another: Cultivate Impact by focusing on what matters most and delivering meaningful outcomes for our customers. Unify as One Team by collaborating openly, communicating clearly, and rallying around shared goals. Stay Curious and Kind by challenging assumptions, learning quickly, and leading with empathy. If you want to build the future of payroll in a place where your ideas are welcomed and your contributions matter, look no further! The role at high level: We're looking for a Senior Revenue Operations Analyst who can take a messy business question and come back with an answer people can act on. You'll be the analytical engine of our Revenue Operations team, owning the reporting, models, and definitions that Marketing, Sales, and Customer Support rely on to decide where to spend their time. This isn't a report-request role. You'll connect data from across our GTM stack, dig into why the numbers moved, and bring recommendations to team leads before they ask. You'll work hands-on in those systems where configuration or troubleshooting is needed to keep the data accurate, and you'll use AI to get from question to answer faster. You'll report directly to the Director of Revenue Operations . What you'll be expected to own: Design, build, and maintain reporting and dashboards that provide meaningful insights across Marketing, Sales, and Customer Support. Analyze GTM performance, identify trends, and translate complex data into actionable recommendations for business leaders. Build and maintain spreadsheet models that support commission tracking, pipeline analysis, forecasting, capacity planning, and CRM data reconciliation. Pull and connect data from across our GTM tech stack, including HubSpot, Zendesk, and Gong, into reporting that gives one reliable view of the business, working hands-on in those systems to keep the data accurate. Identify opportunities to improve operational efficiency through automation and AI, while helping the broader GTM organization adopt new capabilities. Lead cross-functional Revenue Operations initiatives, including CRM improvements, reporting enhancements, process redesigns, and system implementations. Create and maintain clear documentation, standard operating procedures, and knowledge resources that improve consistency and scalability across the business. Partner closely with Marketing, Sales, Customer Support, and leadership to improve data quality, streamline processes, and enable better decision-making. What you bring to the table: 4+ years of experience in Revenue Operations, Sales Operations, Marketing Operations, or a similar go-to-market operations role within a SaaS or high-growth company. Experience independently managing projects across multiple business systems with minimal supervision. Strong analytical skills with the ability to solve ambiguous business problems using data. Hands-on experience working in HubSpot (configuration, reporting, and CRM data management is core to this role), with additional exposure to support tools such as Zendesk and Gong. Advanced proficiency with Google Sheets or Excel, including formulas, pivot tables, lookups, and structured data modeling. Comfortable using AI tools such as ChatGPT, Claude, or embedded platform AI to improve workflows and productivity. Excellent communication skills with the ability to explain technical concepts and data insights to a variety of stakeholders. A continuous improvement mindset with strong attention to detail and a passion for building scalable processes. Post-secondary education in Business, Analytics, or a related field, or equivalent practical experience. You have experience building lead scoring models, lifecycle management, or marketing attribution reporting. Bonus points if: You hold HubSpot certifications or have deep CRM administration experience. You've designed and implemented AI-enabled operational workflows that improved team efficiency. You're passionate about improving how teams work through automation, documentation, and operational excellence. What we bring to the table: Impact: Dig in and directly contribute to Wagepoint ’s growth and success. Culture: Work alongside a team that genuinely enjoys solving problems together, celebrates wins, supports one another through challenges, and still finds time for the occasional terrible joke. Growth: We believe learning is part of the job. We’re committed to helping you Get Better Every Day (a representation of our Stay Curious and Kind value!) by offering professional development, new experiences, and career growth as we continue to evolve. Innovation: Curiosity and experimentation encouraged! Bring ideas, challenge assumptions, responsibly utilize AI, and help shape better ways of working. Remote: Work from wherever you do your best work. Wagepoint has always been remote-first, giving you flexibility, autonomy, and hopefully a little extra time with the people (and pets) you love. Ready to join the team? Apply now and help us continue making payroll the easiest part of running a business. Next steps: If this sounds like the right fit, we’d love to hear from you! No need for a formal cover letter, just send us your resume and if you’d like, a few lines about what excites you about the opportunity. If we agree it's a great match, someone from our team will reach out to schedule a call. Psssst! In 2026, we were recognized as one of Canada's Best Workplaces for Mental Wellness and Inclusion. That commitment extends to our hiring process, where we strive to create an experience that is welcoming, respectful, and inclusive from day one. We welcome applicants from all backgrounds, experiences, identities, and perspectives, and we're committed to building a workplace where everyone can thrive. As a remote company, all interviews are conducted virtually. If you require accommodation at any stage of the recruitment process, please let us know. We're happy to support you! **This job posting is for an existing vacancy. As part of our hiring process, AI-based tools are used to support the initial review of applications. Rest assured, our People Ops team carefully reviews all applications and makes the final decisions on candidate progression. Originally posted on Himalayas",
+      "url": "https://himalayas.app/companies/wagepoint/jobs/senior-revenue-operations-analyst",
+      "employment_type": "Full Time",
+      "compensation": "",
+      "published_at": "1786356177",
+      "location_tier": "global_work_from_anywhere",
+      "score": 95,
+      "score_reasons": [
+        "role: operations analyst, sales operations, revenue operations",
+        "skills: hubspot, crm, data quality, excel, google sheets, reporting",
+        "location: global_work_from_anywhere"
+      ],
+      "monthly_inr": null,
+      "is_new": true,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/drawbridge/jobs/senior-revenue-operations-analyst",
@@ -133,7 +170,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/cielo/jobs/manager-revenue-analytics-planning-3180042143",
@@ -155,29 +193,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "himalayas:https://himalayas.app/companies/disher-talent/jobs/revenue-operations-specialist",
-      "source": "Himalayas",
-      "company": "DISHER Talent",
-      "title": "Revenue Operations Specialist",
-      "location": "Worldwide",
-      "workplace": "Remote",
-      "description": "Revenue Operations Analyst DISHER is currently partnering with a global supply chain solutions organization on their Revenue Operations Analyst opportunity. In this role, you will own revenue performance across their existing customer base, balancing growth (upsell/cross-sell) and retention (upgrades/renewals/churn). You will be the data-driven analyst that acts as the bridge between the Account team and Customer Success. You will use HubSpot as your system of record and Power BI as your storytelling engine. What it's like to work here: This organization empowers high-performance teams to solve complex challenges through creativity, partnership, and technology. Employees enjoy a supportive, collaborative environment where initiative and growth are celebrated. With a focus on work-life balance and professional development, this company provides meaningful opportunities for technical and personal advancement in a distributed workplace. What you will get to do: Planning and Modeling: Own annual revenue planning and monthly forecasting for enterprise customers. Build growth scenario models (upsell potential, pricing elasticity) and churn risk simulations. Conduct margin analysis by customer segment and service tier. Process and Governance: Design and maintain the lead-to-cash workflow for renewals and expansions within HubSpot. Manage forecast process (stage progression, commit vs. best-case) and opportunity stage governance. Coordinate with Deal Desk on non-standard renewal pricing and contract terms. Document all workflows and orchestrate cross-functional handoffs (Sales to Account Management to Customer Success) Analytics and Dashboards: Build and maintain executive Power BI dashboards tracking: Pipeline Health (coverage, velocity, win rates) Retention (NRR, GRR, churn by segment) Productivity (attainment, time-to-close) KPI Governance (define metrics, data dictionaries, and cadence) Technology and Innovation: Serve as the HubSpot RevOps Subject Matter Expert. Implement AI workflow orchestration within HubSpot Leverage Power BI for predictive modeling, churn probability, Customer Lifetime Cycle (CLV), using DAX and integrated datasets. What will make you successful: At least 5 years in Revenue/Sales Operations (B2B/SaaS preferred) Advanced HubSpot expertise with the ability to build custom reports, workflow automations, deal pipeline management, and property creation. Proven Power BI experience with DAX, data modeling, paginated reports, embedded dashboards, and business insights. Strong Excel skills for ad-hoc modeling and scenario analysis. Experience with forecasting, retention metrics, and executive presentation. Ability to turn complex data into simple, actionable stories. Ability to spot risks before they materialize. Desire to be in a cross-functional team environment and be the bridge between Account Managers, Customer Success Managers, and ELT priorities. Must have the current and continuing right to work in the United States of America without restrictions or expirations. Originally posted on Himalayas",
-      "url": "https://himalayas.app/companies/disher-talent/jobs/revenue-operations-specialist",
-      "employment_type": "Full Time",
-      "compensation": "",
-      "published_at": "1786214454",
-      "location_tier": "global_work_from_anywhere",
-      "score": 80,
-      "score_reasons": [
-        "role: operations analyst, sales operations, revenue operations",
-        "skills: hubspot, excel, power bi, automation",
-        "location: global_work_from_anywhere"
-      ],
-      "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/rhapsody/jobs/sales-operations-manager",
@@ -199,7 +216,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/dwelly/jobs/data-quality-analyst",
@@ -221,7 +239,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/fortive/jobs/sr-ops-analyst-revenue-operations",
@@ -243,7 +262,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/jobs-for-humanity/jobs/data-verification-specialist",
@@ -265,7 +285,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/logistics-management-institute/jobs/logistics-operations-analyst-clearance-required",
@@ -287,7 +308,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/marketstar/jobs/sales-operations-specialist",
@@ -309,51 +331,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "himalayas:https://himalayas.app/companies/instacart/jobs/senior-revenue-operations-manager-eversight",
-      "source": "Himalayas",
-      "company": "Instacart",
-      "title": "Senior Revenue Operations Manager - Eversight",
-      "location": "Worldwide",
-      "workplace": "Remote",
-      "description": "We're transforming the grocery industry At Instacart , we invite the world to share love through food because we believe everyone should have access to the food they love and more time to enjoy it together. Where others see a simple need for grocery delivery, we see exciting complexity and endless opportunity to serve the varied needs of our community. We work to deliver an essential service that customers rely on to get their groceries and household goods, while also offering safe and flexible earnings opportunities to Instacart Personal Shoppers. Instacart has become a lifeline for millions of people, and we’re building the team to help push our shopping cart forward. If you’re ready to do the best work of your life, come join our table. Instacart is a Flex First team There’s no one-size fits all approach to how we do our best work. Our employees have the flexibility to choose where they do their best work—whether it’s from home, an office, or your favorite coffee shop—while staying connected and building community through regular in-person events. Learn more about our flexible approach to where we work. Why this role is on the menu Eversight, part of Instacart , is building next-generation data insights and analytics platforms that help leading CPGs & Retailers make smarter, faster decisions across pricing, promotions, retail media, and omni-commerce. We're hiring a Senior Revenue Operations Manager to build and run end-to-end revenue operations across our Commercial organization (Sales and Customer Success), spanning both CPG and Retail. This is a build-and-own role, not a request-response one: you'll identify what the business needs before it's escalated to you, bring a recommendation, and drive it to completion. You'll report directly to the Director of Sales Capabilities & Strategy, with broad latitude to design process, own reporting, and act as a trusted partner to commercial leadership across Eversight Sales, Customer Success, and Product, along with cross functional partners like Strategic Finance, Commercial Partnerships and Brand Partnerships. What you'll cook up in your first year Standardized reporting and forecasting models live across CPG and Retail, giving commercial leadership one clear view of pipeline, renewals, and customer health Dashboards built and adopted across Sales and Customer Success that leadership actually uses to make decisions, tracking pipeline, renewal rate, expansion, and churn risk Operational gaps identified and fixed before anyone had to ask, each tied to a measurable improvement in forecast accuracy, data integrity, or process efficiency AI tools, agents, and workflow automations built and shipped that eliminate recurring reporting and data cleanup work, cutting manual operational overhead across the commercial org Trusted operational relationships built across every team you touch, with clean handoffs and no surprises Process documentation and standardized frameworks built as you go, not bolted on after the fact The secret ingredients we're looking for Must-have pantry staples (Minimum Qualifications) Bachelor's degree in Business, Analytics, Statistics, or related field 7+ years of experience in Revenue Operations, Sales Operations, or a similar function within a SaaS company; experience in CPG, Retail, or trade promotion/pricing analytics highly preferred Proven ability to analyze and interpret complex data sets to deliver actionable insight Fluent in using AI tools, agents, and workflow automations to eliminate manual reporting and data cleanup, as a core part of how you operate rather than an occasional add-on Experience with SQL and Tableau Exceptional verbal and written communication skills, with the ability to present findings to leadership Demonstrated ability to identify challenges, prioritize solutions, and execute improvements independently Adept at working cross-functionally with a focus on aligning multiple stakeholders toward shared goals A self-starter able to operate independently in a fast-paced environment Optional garnishes (Preferred Qualifications) MBA Working knowledge of Salesforce and Planhat (or comparable CS platform) Understanding of the CPG trade promotion, pricing, and revenue growth management landscape Understanding of the Retail Merchandising landscape Instacart provides highly market-competitive compensation and benefits in each location where our employees work. This role is remote and the base pay range for a successful candidate is dependent on their permanent work location. Please review our Flex First remote work policy here. Offers may vary based on many factors, such as candidate experience and skills required for the role. Additionally, this role is eligible for a new hire equity grant as well as annual refresh grants. Please read more about our benefits offerings here. For US based candidates, the base pay ranges for a successful candidate are listed below. CA, NY, CT, NJ $170,000—$179,500 USD WA $163,000—$172,000 USD OR, DE, ME, MA, MD, NH, RI, VT, DC, PA, VA, CO, TX, IL, HI $156,000—$164,500 USD All other states $142,000—$150,000 USD Originally posted on Himalayas",
-      "url": "https://himalayas.app/companies/instacart/jobs/senior-revenue-operations-manager-eversight",
-      "employment_type": "Full Time",
-      "compensation": "USD 142000-179500 per annual",
-      "published_at": "1786188406",
-      "location_tier": "global_work_from_anywhere",
-      "score": 65,
-      "score_reasons": [
-        "role: sales operations, revenue operations",
-        "skills: salesforce, reporting, sql, automation",
-        "location: global_work_from_anywhere"
-      ],
-      "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "himalayas:https://himalayas.app/companies/servicenow/jobs/sales-operations-mgr-armis",
-      "source": "Himalayas",
-      "company": "ServiceNow",
-      "title": "Sales Operations Mgr (Armis)",
-      "location": "Worldwide",
-      "workplace": "Remote",
-      "description": "What you get to do in this role: Optimise Sales Processes & Efficiency: Identify systemic bottlenecks and collaborate with BI and Tech Systems teams to design, test, and implement scalable, automated solutions. Master Sales Forecasting & Analytics: Manage the end-to-end sales forecasting cadences. Translate pipeline metrics and raw sales data into strategic, data-driven insights and executive-ready presentations for leadership. Lead Territory & Quota Planning: Partner closely with the Regional Leader to execute annual planning, including territory allocations, quota distribution calculations, and capacity modeling. Champion Data Hygiene & Governance: Take ownership of CRM data hygiene across International markets to ensure reporting accuracy, revenue visibility, and reliable pipeline tracking. Enable & Empower Sales Teams: Serve as the primary subject matter expert for sales methodologies, BI tools, and system workflows. Provide hands-on training and onboarding to boost rep productivity. Drive Regional Growth & Collaboration: Work closely with international account teams to map account plans, identify expansion opportunities, and align cross-functional resources to drive enterprise revenue. To be successful in this role you have: Experience: 5+ years in a Sales Operations, Commercial Operations, or Revenue Operations role—ideally within a high-growth SaaS or tech environment. Technical Capability: Advanced proficiency in modern CRM platforms (e.g., Salesforce, HubSpot) and BI tools. Strong command of spreadsheet modeling, complex data sets, and dashboard creation. Strategic & Analytical Mindset: Demonstrated ability to dissect complex problems, prioritize multiple high-impact projects, and transform raw numbers into actionable commercial strategies. Stakeholder Management: Exceptional communication skills with the ability to influence cross-functional teams and present confidently to senior sales leadership. Adaptability & Drive: A proactive, solution-oriented approach that thrives in a fast-paced, evolving scale-up environment. Education: Bachelor’s degree in Business, Finance, Economics, or a related field (or equivalent practical experience). JV20 Work Personas We approach our distributed world of work with flexibility and trust. Work personas (flexible, remote, or required in office) are categories that are assigned to ServiceNow employees depending on the nature of their work and their assigned work location. Learn more here. To determine eligibility for a work persona, ServiceNow may confirm the distance between your primary residence and the closest ServiceNow office using a third-party service. Equal Opportunity Employer ServiceNow is an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, national origin, age, disability, gender identity, veteran status, or any other category protected by law. In addition, all qualified applicants with arrest or conviction records will be considered for employment in accordance with legal requirements. Accommodations We strive to create an accessible and inclusive experience for all candidates. If you require a reasonable accommodation to complete any part of the application process, or are unable to use this online application and need an alternative method to apply, please contact for assistance. Export Control Regulations For positions requiring access to controlled technology subject to export control regulations, including the U.S. Export Administration Regulations (EAR), ServiceNow may be required to obtain export control approval from government authorities for certain individuals. All employment is contingent upon ServiceNow obtaining any export license or other approval that may be required by relevant export control authorities. From Fortune. ©2026 Fortune Media IP Limited. All rights reserved. Used under license. Who we are: Armis from ServiceNow , protects the entire attack surface and manages an organization’s cyber risk exposure in real time. Combined with ServiceNow ’s Security and Risk capabilities, as well as Identity Security capabilities from Veza, we bring together all critical capabilities to secure every asset, every identity - incl. AI Agents - across all environments with the right level of context - security, operational and business - to build the first of its kind autonomous defense platform for the Agentic Enterprise. It all started when engineer Fred Luddy wrote code that automated a tedious task for his coworker, Phyllis. She cried tears of joy. That moment inspired Fred to build a company that could do that for everyone—freeing people from busywork so they could focus on meaningful work. Today, ServiceNow is the AI control tower for business reinvention. Our ServiceNow AI platform brings together any AI, any data, and any workflow— helping 85% of the Fortune 500® work smarter, faster, and better. We're building an AI-native culture where technology and talent are unstoppable together. And we're just getting started. Join us to put AI to work for people. Originally posted on Himalayas",
-      "url": "https://himalayas.app/companies/servicenow/jobs/sales-operations-mgr-armis",
-      "employment_type": "Full Time",
-      "compensation": "",
-      "published_at": "1786151647",
-      "location_tier": "global_work_from_anywhere",
-      "score": 65,
-      "score_reasons": [
-        "role: sales operations, revenue operations",
-        "skills: salesforce, hubspot, crm, reporting",
-        "location: global_work_from_anywhere"
-      ],
-      "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/virtru/jobs/operations-analyst",
@@ -375,7 +354,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/globalization-partners/jobs/revenue-operations-specialist-9601950328",
@@ -397,7 +377,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/guidepoint-security-llc/jobs/sales-operations-specialist-southwest-1445232019",
@@ -419,7 +400,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/newsela/jobs/data-engineer-1691600252",
@@ -441,7 +423,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/surgo-pty-ltd/jobs/german-operations-sales-excellence-manager-9342146200",
@@ -463,29 +446,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "himalayas:https://himalayas.app/companies/zealogics/jobs/ai-operations-reporting-analytics-analyst-fully-remote-opportunity",
-      "source": "Himalayas",
-      "company": "Zealogics",
-      "title": "AI Operations Reporting & Analytics Analyst - Fully Remote Opportunity",
-      "location": "Worldwide",
-      "workplace": "Remote",
-      "description": "Key Responsibilities Operations Reporting & Analytics Lead the maintenance, governance, and continuous improvement of AI Operations dashboards, scorecards, KPIs, and reporting assets. Ensure operational, consumption, billing, and performance reporting remains accurate, reliable, and actionable. Track adoption, usage, consumption, cost, billing, capacity, and operational performance trends across AI platforms and services. Deliver recurring executive, operational, financial, and consumption reporting packages. Analyze operational and financial data to identify trends, risks, opportunities, and areas requiring attention. Investigate reporting discrepancies, consumption anomalies, and unexpected usage patterns to determine root causes and recommend corrective actions. Data Analysis & Insights Perform deep-dive analysis of AI operational, financial, adoption, and consumption data. Correlate data from multiple sources to provide meaningful insights and recommendations. Develop executive-ready summaries, trend analysis, and operational performance narratives. Translate complex datasets into clear and actionable business insights. Consumption, Billing & Financial Transparency Oversee consumption monitoring, utilization reporting, billing visibility, and cost transparency processes. Support forecasting, budgeting, chargeback, and show back reporting activities. Identify opportunities to improve operational efficiency and optimize resource utilization. Partner with Finance to support AI consumption reporting and cost management activities. Data Governance & Support Readiness Maintain reporting standards, data quality controls, metric definitions, support documentation, and reporting governance processes. Ensure consistency and integrity of operational, financial, and consumption reporting. Support operational audits, compliance reporting, and governance reviews. Partner with Operations, Support, Engineering, and Finance teams to resolve reporting questions, data issues, and operational reporting needs. Typical Deliverables Executive and operational dashboards Consumption, adoption, billing, and metering reports Cost, showback, and chargeback reporting Operational performance scorecards and trend analysis Forecasting and capacity utilization reports Reporting documentation, data dictionaries, metric definitions, and support runbooks Executive summaries and operational insights presentations Success Measures Accurate, timely, and reliable operational reporting. Clear visibility into platform consumption, costs, adoption, utilization, and operational performance. Improved stakeholder confidence in reporting and analytics outputs. Increased identification of cost optimization and operational improvement opportunities. Reduced manual reporting effort through automation and process improvement. High levels of data quality, consistency, and reporting governance. Required Qualifications Technical Skills Advanced proficiency in: Power BI Microsoft Fabric Microsoft Excel (advanced formulas, Power Query, Pivot Tables, data analysis) SQL Experience working with large operational, financial, and consumption datasets. Strong understanding of reporting governance, data quality management, and operational analytics. Experience supporting cloud-based, consumption-driven technology services. Professional Experience 7+ years of experience in Technology Operations, Service Management, Business Intelligence, Reporting, Analytics, FinOps, or similar operational functions. Demonstrated ability to independently analyze complex datasets, identify trends and anomalies, and develop actionable recommendations. Experience producing executive-level operational and financial reporting. Strong stakeholder management, communication, and presentation skills. Core Competencies Analytical problem solving Data-driven decision making Operational governance Financial and consumption analysis Reporting and dashboard stewardship Attention to detail Continuous improvement mindset Executive communication and storytelling with data Originally posted on Himalayas",
-      "url": "https://himalayas.app/companies/zealogics/jobs/ai-operations-reporting-analytics-analyst-fully-remote-opportunity",
-      "employment_type": "Full Time",
-      "compensation": "",
-      "published_at": "1784421395",
-      "location_tier": "global_work_from_anywhere",
-      "score": 60,
-      "score_reasons": [
-        "role: data quality",
-        "skills: data quality, excel, reporting, sql, power bi, automation",
-        "location: global_work_from_anywhere"
-      ],
-      "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/abi-research/jobs/research-analyst-automotive-technologies-7638648008",
@@ -507,7 +469,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/akamai-technologies/jobs/strategy-operations-analyst-ii-opex-hc-mgmt",
@@ -529,7 +492,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/mediaradar/jobs/data-governance-analyst-2744226796",
@@ -551,51 +515,31 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
-      "id": "himalayas:https://himalayas.app/companies/samsara/jobs/sr-business-operations-analyst-post-sales",
+      "id": "himalayas:https://himalayas.app/companies/salsify/jobs/senior-deal-desk-analyst",
       "source": "Himalayas",
-      "company": "Samsara",
-      "title": "Sr. Business Operations Analyst - Post Sales",
+      "company": "Salsify",
+      "title": "Senior Deal Desk Analyst",
       "location": "Worldwide",
       "workplace": "Remote",
-      "description": "Who we are Samsara (NYSE: IOT) is the pioneer of the Connected Operations™ Cloud, which is a platform that enables organizations that depend on physical operations to harness Internet of Things (IoT) data to develop actionable insights and improve their operations. At Samsara , we are helping improve the safety, efficiency and sustainability of the physical operations that power our global economy. Representing more than 40% of global GDP, these industries are the infrastructure of our planet, including agriculture, construction, field services, transportation, and manufacturing — and we are excited to help digitally transform their operations at scale. Working at Samsara means you’ll help define the future of physical operations and be on a team that’s shaping an exciting array of product solutions, including Video-Based Safety, Vehicle Telematics, Apps and Driver Workflows, and Equipment Monitoring. As part of a recently public company, you’ll have the autonomy and support to make an impact as we build for the long term. About the role Samsara is looking for a Business Operations analyst to play a critical role in scaling our post-sales organization — spanning renewals and customer success. The role includes being the expert on critical data sources, weaving that data into analysis that drives insights across the post-sales business. This person will optimize post-sales performance by designing standardized processes, driving adherence across teams, and turning data into recommendations for leadership and managers. This role is open to candidates residing in the US except the San Francisco Bay Metro Area, NYC Metro Area, and Washington, D.C. Metro Area. In this role, you will: Own analytics and trend reporting for an assigned segment or workstream within renewals and customer success (for example, the long-tail/at-scale customer base), serving as the go-to analyst for leadership and frontline managers on that area. Extract and reconcile data across Salesforce, financial systems, and customer success platforms, resolving discrepancies and transforming complex datasets into reliable, decision-ready analysis. Design post-sales processes and drive adherence across the renewals and CS teams — monitoring compliance, flagging drift, and partnering with team leads to close gaps. Build and maintain reporting on utilization, product adoption, and expansion for the existing customer base to inform retention and growth strategy. Partner with Sales Strategy, Business Operations, Finance, and Customer Success leadership to translate data into recommendations that improve renewal rates, reduce churn, and grow revenue retention. Support quarterly/annual reporting on post-sales performance — bookings, pipeline health, and key trends — for business reviews and leadership presentations. Maintain a working understanding of renewals and CS operating models to identify risk, inconsistency, and improvement opportunities across the post-sales org. Minimum requirements 2+ years in management consulting, Sales/Business Operations, financial analysis, or another highly quantitative role Comfort working with large datasets to build models, run analyses, and surface trends Familiarity with Salesforce, Tableau, or a similar sales/CS tech stack Post-sales experience (renewals or customer success) a plus, not required Experience designing or driving adoption of operational processes a plus Strong written and verbal communication, including comfort influencing stakeholders without direct authority Proactive, adaptable, comfortable operating with ambiguity in a fast-paced environment The range of annual base salary for full-time employees for this position is below. Please note that base pay offered may vary depending on factors including your city of residence, job-related knowledge, skills, and experience. Learn more about our total rewards and benefits below. Annual Base Salary $91,630—$138,600 USD Total Rewards At Samsara , we build for the people who keep the global economy moving. We want owners, not passengers, which is why our rewards are designed to fuel high-impact builders. Our compensation program delivers above-market total compensation through a combination of base salary, performance-based bonus/variable pay, and equity (for eligible roles) in a high-growth public company. We meaningfully differentiate pay for our top performers, who have the opportunity to earn above-market compensation that can outpace the broader market over time. Beyond compensation, we provide the foundations that enable long-term success: a flexible, employee-led remote model, a professional development stipend, comprehensive health and parental leave plans, and more. If you’re ready to build for the long term and own the outcome, your journey starts here. Flexible Working At Samsara , we embrace a flexible working model that caters to the diverse needs of our teams. Our offices are open for those who prefer to work in-person and we also support remote work where it aligns with our operational requirements. For certain positions, being close to one of our offices or within a specific geographic area is important to facilitate collaboration, access to resources, or alignment with our service regions. In these cases, the job description will clearly indicate any working location requirements. Our goal is to ensure that all members of our team can contribute effectively, whether they are working on-site, in a hybrid model, or fully remotely. All offers of employment are contingent upon an individual’s ability to secure and maintain the legal right to work at the company and in the specified work location, if applicable. Belonging at Samsara At Samsara , we welcome everyone regardless of their background. All qualified applicants will receive consideration for employment without regard to race, color, religion, national origin, sex, gender, gender identity, sexual orientation, protected veteran status, disability, age, and other characteristics protected by law. We depend on the unique approaches of our team members to help us solve complex problems and want to ensure that Samsara is a place where people from all backgrounds can make an impact. Accommodations Samsara is an inclusive work environment, and we are committed to ensuring equal opportunity in employment for qualified persons with disabilities. Please email or click here if you require any reasonable accommodations throughout the recruiting process. Our Commitment to Authenticity We use Tofu, a fraud detection tool, to validate the authenticity of applications and protect against identity fraud. This ensures we are connecting with real people and allows us to prioritize genuine candidates. Please see Samsara ’s Candidate Privacy Notice for more information. Fraudulent Employment Offers Samsara is aware of scams involving fake job interviews and offers. Please know we do not charge fees to applicants at any stage of the hiring process. Official communication about your application will only come from emails ending in @samsara.com, @us-greenhouse-mail.io or @mail3.guide.co. For more information regarding fraudulent employment offers, please visit our blog post here. Originally posted on Himalayas",
-      "url": "https://himalayas.app/companies/samsara/jobs/sr-business-operations-analyst-post-sales",
+      "description": "Come join a company who is a key leader in the industry scaling the next core commerce infrastructure and on the path from $100M to $500M! Founded in 2012, Salsify helps brand manufacturers, distributors, and retailers in over 80 countries collaborate to win on the digital shelf. As the market leader globally, our products are shopper-centric, frictionless, and create memorable commerce experiences. Our products provide a competitive edge through experiences that improve brand trust, amplify product differentiation and assortments, increase conversion rate, improve profit margins, and speed time to market. Learn how the world’s largest brands, including Mars, L'Oreal, Coca-Cola, Bosch, and GSK, as well as retailers and distributors such as E.Leclerc, Carrefour, Metro, and Intermarché use Salsify everyday to stand out on the digital shelf. At Salsify , we strive to embody an equitable, diverse, and inclusive company culture. We are united across countries, levels, tenures, and a host of other dimensions of diversity. We understand that while work is just one aspect of who we are, a truly inclusive culture accounts for the full authenticity of every single human being that works here. About the Opportunity As part of the Deal Desk team, you will form strong bonds with your colleagues in Sales, Finance, Business Systems, and beyond to maximize revenue and facilitate a smoother sales cycle. In this role, you will assist with providing tactical support for deal structures, pricing/discounting, and approval processes, ensure adherence to the Corporate Bookings Policy, and help escalate critical matters. In this role, you will have a significant impact on Salsify ’s growth and retention strategies by delivering an excellent sales support experience. How You’ll Make an Impact (Main Areas of Focus): Serve as the primary liaison between Sales, Legal, and Finance to help accelerate the review and approval of complex orders. Act as consultant to sales team using historical knowledge of complex deal structuring and revenue recognition policies to help resolve problems seen during deal building and structuring, while helping meet customer needs, and maximize booking value for both the sales rep and company. Collaborate with Sales to build and manage quotes within Salesforce, applying internal policy expertise to ensure quotes align with internal policies, while helping Sales to meet customer needs and maximize revenue. Manage internal escalations for policy exceptions arising from the Sales team, and assist in developing creative solutions to reduce friction and risks during the sales process. Assist with cross-functional initiatives to drive continuous improvement across the quote-to-cash process; identify and implement solutions that reduce friction and resolve systemic operational challenges within Salesforce. You’ll Enjoy This Role if You Have (Desired Skills/Competencies): 7+ years of experience in Deal Desk, Sales Operations, or similar roles Demonstrated ability to partner with GTM Teams and other cross-functional departments Excellent communicator, self-aware, transparent, professional, and open to feedback Understanding of enterprise SaaS businesses, and their operational metrics/processes, with experience working on complex deals across a multi-product portfolio Organized, customer-focused, and strong attention to details Experience with Salesforce and Salesforce CPQ Basic understanding of revenue recognition rules and booking terms BA degree, preferably in an area such as Operations, Finance, Accounting, or Data/Analytics At Salsify , we maintain 3 core principles as part of our Compensation Philosophy : We pay market rates, which are competitive and equitable We pay based on performance and proficiency, not tenure We adjust proactively; when the market moves, we do too The posted compensation range reflects the base salary for this position. In addition to base salary, some eligible roles may also have a commission plan or a bonus incentive. All Salsify employees receive equity in the form of stock options. All full-time employees are invited to participate in our Total Rewards plan, which includes health & medical benefits, flexible spending accounts, flexible PTO, and more. Offers to join Salsify are based on a few criteria, including the scope of the role, the candidate’s work experience, targeted skills, internal equity of the team, and external market data. US National Pay Range $100,300—$118,000 USD Salsify loves a good success story and it would be our privilege to help write yours! We recognize that talent and potential come in all forms and that years of experience does not guarantee on-the-job effectiveness or leadership potential. Our hiring process involves recognizing a person’s achievements, subject matter expertise, and passion, not just check marks next to a job description. If you have an interest in our roles please do not hesitate to apply - we would be happy to speak with you! A member of Talent '' will be reaching out about next steps if we would like to move forward. Salsify ’s mission is to empower brand manufacturers to win on the digital shelf. Helping brand manufacturers to win online is what we do. Our culture is who we are. We are empowered. We are positive thinkers. We take action. We care deeply. These values have driven Salsify ’s growth and earned the company numerous top workplace awards. We are headquartered in Boston, Massachusetts and have hubs in Lisbon (Portugal) and Sydney (Australia). If you are excited to work in a fast-paced environment with a team that values agility, curiosity and passion, we want to hear from you! As part of the hiring process, we may be conducting reference checks with your provided contacts. Please see our Candidate Privacy Statement for information on the personal data we process in connection with your application. An Inclusive Place To Work Salsify does not discriminate based on race, religion, color, national origin, sex, gender, gender expression, sexual orientation, age, marital status, veteran status, or disability status. Studies have found that people of color and women do not apply to jobs if they do not meet all the requirements. At Salsify we are committed to empowering a diverse workforce. We ensure that individuals with disabilities are provided reasonable accommodation to participate in the job application or interview process, to perform essential job functions, and to receive other benefits and privileges of employment. Accommodations Salsify is committed to an inclusive hiring process, and we aim to provide accommodations for persons with disabilities. If you need any accommodations for the application or throughout the interview process please contact . We take your security seriously. When applying for a position with us, please be aware of the following: Official Communication ChannelsAll legitimate communications from our team, including interview requests and job offers, will only come from an email address ending in @salsify.com. We will never use generic email addresses (like Gmail or Yahoo) or ask you to communicate through unofficial channels. Verify Job Postings Always verify the legitimacy of any Salsify job posting by checking our official website's careers page. If a position is not listed there, it is not a genuine Salsify opening. Secure Application Process We use secure applicant tracking systems and encrypted communication channels to protect your sensitive information and documents throughout the application process. No Payments Ever Required Legitimate employers, including Salsify , will never ask for upfront payments for applications, training, or equipment. Any request for payment is a clear sign of a scam. Personal Information Requests Sensitive personal information, such as bank details or social security numbers, will only be requested after a formal job offer has been made and exclusively through secure, verified channels.By being aware of these protocols, you can help us ensure a safe and secure application experience. Originally posted on Himalayas",
+      "url": "https://himalayas.app/companies/salsify/jobs/senior-deal-desk-analyst",
       "employment_type": "Full Time",
-      "compensation": "USD 91630-138600 per annual",
-      "published_at": "1786082574",
+      "compensation": "USD 100300-118000 per annual",
+      "published_at": "1786380020",
       "location_tier": "global_work_from_anywhere",
       "score": 55,
       "score_reasons": [
-        "role: business operations, operations analyst",
-        "skills: salesforce, reporting",
+        "role: sales operations, sales support",
+        "skills: salesforce, excel",
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
-    },
-    {
-      "id": "himalayas:https://himalayas.app/companies/abacus-insights/jobs/associate-data-qa-engineer",
-      "source": "Himalayas",
-      "company": "Abacus Insights",
-      "title": "Associate Data QA Engineer",
-      "location": "Worldwide",
-      "workplace": "Remote",
-      "description": "About Us Abacus Insights is transforming how data works for health plans. Our mission is simple: make healthcare data usable, so the people responsible for care and cost decisions can act faster, with confidence. We help health plans break down data silos to create a single, trusted data foundation. That foundation powers better decisions—so plans can improve outcomes, reduce waste, and deliver better experiences for members and providers alike. Backed by $100M from top investors, we’re tackling big challenges in an industry that’s ready for change. Our platform enables GenAI use cases by delivering clean, connected, and reliable healthcare data to support automation, prioritization, and decision workflows—and it’s why we are leading the way. Our innovation begins with people. We are bold, curious, and collaborative—because the best ideas come from working together. We embrace the thoughtful use of AI and automation to drive innovation and efficiency, and we look for individuals who are curious and adaptable—those excited to leverage emerging technologies to enhance how we work—while keeping human insight, connection, and our clients at the center of every decision. Ready to make an impact? Join us and let’s build the future together. About the Role We’re hiring a Associate Data QA Engineer to join our Data Engineering/TechOps organization and learn alongside experienced engineers in a modern healthcare data platform environment. You’ll help validate, analyze, and deliver high-quality client data outputs—building foundational skills in data engineering, data quality, and SQL while contributing to real client implementations. This is an early-career opportunity designed for recent graduates who are excited to build a foundation in data engineering, healthcare data, and client-facing delivery. As a trusted partner to the team, you will support client adoption of Abacus’s data management offerings while developing hands-on experience in data analysis, mapping, SQL, data quality, and cloud-based data services. We welcome applications from new graduates, including candidates currently authorized to work in the United States under F-1 Optional Practical Training (OPT). Candidates must be authorized to work in the United States at the time of hire. Location: Pacific Time Zone preferred. Candidates outside PST must be able to work core hours aligned to Pacific Time. Your day to day Partner with clients and implementation teams to understand data distribution needs and expected outputs. Perform data analysis, data mapping, and validation of client deliverables. Build and maintain data extract scripts with guidance from senior engineers; troubleshoot and improve performance. Join client and internal team meetings to understand requirements, context, and timelines. Contribute to process improvements, documentation, and workflow efficiency within a collaborative engineering culture. What you bring to the team Interest in healthcare data and curiosity about how data moves through pipelines and platforms. Ability to write SQL queries for analysis, profiling, validation, and basic performance tuning. Analytical, problem-solving mindset and willingness to learn new tools/approaches. Clear communication skills with both technical and non-technical stakeholders. Strong organization skills and comfort juggling multiple tasks/priorities. What we would like to see, but not required Exposure to cloud platforms and modern data engineering tooling (e.g., PySpark/Databricks concepts). Familiarity with Snowflake or cloud data warehouses/services. Prior internship/project experience working with large datasets, ETL/ELT, or data quality testing concepts. Compensation: Compensation for this role is $30/hour or equivalent to $62,400 per annum. What you'll get in return Unlimited paid time off: recharge when you need it. Work from anywhere: flexibility to fit your life. Comprehensive health coverage: multiple plan options to choose from. Equity for every employee: share in our success. Growth-focused environment: your development matters here. Home office setup allowance: one-time support to get you started. Monthly cell phone allowance: stay connected with ease. Our Commitment as an Equal Opportunity Employer As a mission-led technology company helping to drive better healthcare outcomes, Abacus Insights believes that the best innovation and value we can bring to our customers comes from diverse ideas, thoughts, experiences, and perspectives. Therefore, we dedicate resources to building diverse teams and providing equal employment opportunities to all applicants. Abacus prohibits discrimination and harassment regarding race, color, religion, age, sex, national origin, disability status, genetics, protected veteran status, sexual orientation, gender identity or expression, or any other characteristic protected by federal, state, or local laws. At the heart of who we are is a commitment to continuously and intentionally building an inclusive culture—one that empowers every team member across the globe to do their best work and bring their authentic selves. We carry that same commitment into our hiring process, aiming to create an interview experience where you feel comfortable and confident showcasing your strengths. If there’s anything we can do to support that—big or small—please let us know. Originally posted on Himalayas",
-      "url": "https://himalayas.app/companies/abacus-insights/jobs/associate-data-qa-engineer",
-      "employment_type": "Full Time",
-      "compensation": "USD 30-30 per hourly",
-      "published_at": "1786335361",
-      "location_tier": "global_work_from_anywhere",
-      "score": 50,
-      "score_reasons": [
-        "role: data quality",
-        "skills: data quality, sql, automation, healthcare",
-        "location: global_work_from_anywhere"
-      ],
-      "monthly_inr": null,
-      "is_new": true
+      "is_new": true,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/antenna-group/jobs/commercial-operations-analyst",
@@ -617,7 +561,31 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
+    },
+    {
+      "id": "himalayas:https://himalayas.app/companies/humana/jobs/lead-data-quality-integrity",
+      "source": "Himalayas",
+      "company": "Humana",
+      "title": "Lead, Data Quality/Integrity",
+      "location": "Worldwide",
+      "workplace": "Remote",
+      "description": "Become a part of our caring community The Lead, Data Quality/Integrity will develop, manage, and deliver strategic data quality and governance programs that support enterprise provider data objectives, operational effectiveness, and continuous process improvement. This role partners with leaders and cross-functional stakeholders to define implementation plans, manage timelines, identify risks and dependencies, support governance routines, and ensure successful execution of data quality initiatives aligned to business priorities. The Lead, Data Quality/Integrity provides strategic and operational support to the Director of Provider Data Quality in the execution of high-priority initiatives, enterprise data quality objectives, and cross-functional projects. This role partners with leadership and stakeholders across business, technology, operations, compliance, and analytics to drive planning, coordination, governance, communication, and execution across key workstreams. The Lead coordinates enterprise provider data quality initiatives, including planning, execution, monitoring, and reporting, while providing business process support, and data quality governance for provider data. Responsibilities include coordination, integration, validation, metrics analysis, issue management, and process improvement to strengthen data integrity, quality, completeness, availability, and operational efficiency across the enterprise. This role supports data governance routines such as issue tracking, prioritization, escalation, decision documentation, and stakeholder communication. The Lead analyzes data quality trends, translates findings into business impacts and actionable recommendations, and prepares executive-level insights, updates, and materials related to strategic initiatives and data quality performance. The position also supports implementation readiness for provider data quality processes, and controls; drives continuous improvement of provider data quality processes, standards, and operating routines; and manages complex, ambiguous issues with minimal supervision using sound business analysis and independent judgment. Use your skills to make an impact Required Qualifications Experience leading cross-functional initiatives in a matrixed environment. Strong analytical, problem-solving, and root-cause analysis skills. Ability to translate data quality issues into business impact and recommendations. Strong written and verbal communication skills, including executive-level updates. Experience with quality frameworks. Ability to manage multiple priorities, risks, and dependencies. Experience influencing stakeholders without direct authority. Experience with reporting or visualization tools such as Power BI 5 - 7+ years' experience in healthcare 3- 5+ years' of project leadership experience Critical thinking Preferred Qualifications Experience with enterprise provider data platforms. Experience supporting data governance or data quality programs. Experience with regulatory, compliance, audit, or operational controls related to healthcare. Additional Information Work at Home Requirements: To ensure Home or Hybrid Home/Office employees’ ability to work effectively, the self-provided internet service of Home or Hybrid Home/Office employees must meet the following criteria: At minimum, a download speed of 25 Mbps and an upload speed of 10 Mbps is required; wireless, wired cable or DSL connection is suggested. In certain roles, the minimum recommended internet speed required by Humana may not be sufficient for business needs. Humana reserves the right to require associates to upgrade their internet service if necessary. Work from a dedicated space lacking ongoing interruptions to protect member PHI / HIPAA information.Travel: While this is a remote position, occasional travel to Humana 's offices for training or meetings may be required. Scheduled Weekly Hours 40 Pay Range The compensation range below reflects a good faith estimate of starting base pay for full time (40 hours per week) employment at the time of posting. The pay range may be higher or lower based on geographic location and individual pay will vary based on demonstrated job related skills, knowledge, experience, education, certifications, etc.$106,900 - $147,000 per yearThis job is eligible for a bonus incentive plan. This incentive opportunity is based upon company and/or individual performance. Description of Benefits Humana , Inc. and its affiliated subsidiaries (collectively, “ Humana ”) offers competitive benefits that support whole-person well-being. Associate benefits are designed to encourage personal wellness and smart healthcare decisions for you and your family while also knowing your life extends outside of work. Among our benefits, Humana provides medical, dental and vision benefits, 401(k) retirement savings plan, time off (including paid time off, company and personal holidays, paid parental and caregiver leave), short-term and long-term disability, life insurance and many other opportunities.Application Deadline: 08-13-2026 About us About Humana : Humana Inc. (NYSE: HUM) is a leading U.S. healthcare company. Through our Humana insurance services and our CenterWell healthcare services, we make it easier for the millions of people we serve to achieve their best health – delivering the care and service they need, when they need it. These efforts are leading to a better quality of life for people with Medicare and Medicaid, families, individuals, military service personnel, and communities at large. Learn more about what we offer at Humana .com and at CenterWell.com. ​ Equal Opportunity Employer It is the policy of Humana not to discriminate against any employee or applicant for employment because of race, color, religion, sex, sexual orientation, gender identity, national origin, age, marital status, genetic information, disability or protected veteran status. It is also the policy of Humana to take affirmative action, in compliance with Section 503 of the Rehabilitation Act and VEVRAA, to employ and to advance in employment individuals with disability or protected veteran status, and to base all employment decisions only on valid job requirements. This policy shall apply to all employment actions, including but not limited to recruitment, hiring, upgrading, promotion, transfer, demotion, layoff, recall, termination, rates of pay or other forms of compensation and selection for training, including apprenticeship, at all levels of employment. Originally posted on Himalayas",
+      "url": "https://himalayas.app/companies/humana/jobs/lead-data-quality-integrity",
+      "employment_type": "Full Time",
+      "compensation": "USD 106900-147000 per annual",
+      "published_at": "1786379311",
+      "location_tier": "global_work_from_anywhere",
+      "score": 50,
+      "score_reasons": [
+        "role: data quality",
+        "skills: data quality, reporting, power bi, healthcare",
+        "location: global_work_from_anywhere"
+      ],
+      "monthly_inr": null,
+      "is_new": true,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/icf/jobs/data-operator-curator",
@@ -639,7 +607,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/matrix-global/jobs/data-governance-analyst",
@@ -661,7 +630,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/precision-medicine-group/jobs/content-analyst-data-steward",
@@ -683,7 +653,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/vizx-global/jobs/sales-operator",
@@ -705,7 +676,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/ahead/jobs/data-governance-lead",
@@ -727,7 +699,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/blend360/jobs/data-quality-engineer-2245973535",
@@ -749,29 +722,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "remotive:1680495",
-      "source": "Remotive",
-      "company": "Coalition Technologies",
-      "title": "Remote Office Assistant",
-      "location": "Worldwide",
-      "workplace": "Remote",
-      "description": "Coalition Technologies is seeking a reliable, detail-oriented, and highly organized Remote Office Assistant to support administrative, bookkeeping, billing, reporting, data entry, and internal operations tasks. This role is ideal for someone with strong communication skills, discretion, attention to detail, and a willingness to learn and grow within a fast-paced remote work environment. As an Office Assistant, you will help support daily administrative operations, assist with entry-level bookkeeping, organize client documents, support internal reporting, and help maintain accurate company records. This position offers strong growth potential for the right candidate, including opportunities for advancement within the Accounting team or other departments. We are looking for talented and diligent candidates who perform well on our skills assessments. Strong skills test performance may be considered even if a candidate does not meet every preferred experience or educational background requirement. Why Join Coalition Technologies? Coalition Technologies is committed to delivering high-quality work for our clients while providing our team with a fun, thriving, innovative, and growth-focused work environment. We offer: 100% remote work with a company that has supported remote team members for more than a decade Competitive profit-sharing bonus plan, with up to 50% of company profits paid to full-time employees each month Competitive Paid Time Off plan that supports work-life balance Subsidized gym memberships Medical, dental, vision, and life insurance packages for eligible US-based team members International Health Insurance Reimbursement Program for eligible international team members Device upgrade and learning reimbursement programs Career development plans with clearly defined goals and rewards Additional job-specific incentives and bonuses Office Assistant Responsibilities As an Office Assistant, your duties will include: Answering phones and emails Completing entry-level bookkeeping tasks, including recording expenses, organizing receipts, and maintaining transaction records Resolving billing issues with clients and internal team members Providing account access, usage reports, data analysis, and other ad hoc support for team members Supporting quality assurance checks for internal and client-facing reports Organizing new client contracts, creating invoices, and processing client payments Contributing to internal database maintenance, upkeep, and data entry Researching, ordering, and distributing company-wide gifts two to three times per year Organizing company events, competitions, and special projects throughout the year Facilitating company holiday calendars, time-off calendars, and schedule variation calendars Required Skills and Qualifications The ideal candidate will have: Willingness to learn, grow, and collaborate with the team and company as a whole Excellent verbal and written communication skills High level of discretion, ethics, and trustworthiness Strong attention to detail and organizational skills Ability to support administrative, bookkeeping, billing, reporting, and data entry tasks Innovative thinking and willingness to challenge existing methods when improvement is possible Availability to work 40 hours per week, Monday through Friday, 9:00 a.m. to 6:00 p.m. Pacific Time Reliable remote workspace with a fast computer, quality internet, camera, microphone, and speakers Preferred Skills The following experience is preferred but not required: Intermediate spreadsheet skills Experience with bookkeeping or financial record keeping Experience with Google Sheets, Microsoft Excel, QuickBooks Online, and Google Workspace Experience supporting billing, invoicing, reporting, data entry, or administrative operations Remote Work Environment Coalition Technologies is a fully remote company. Our team works remotely with the support of time tracking software, structured communication, and a company culture designed to help remote team members succeed. We have supported remote team members for more than a decade and welcome qualified applicants from around the world. Growth Opportunity This position offers a strong opportunity for growth. Successful Office Assistants at Coalition Technologies have advanced quickly and earned promotions within the Accounting team and across other departments. Compensation For candidates located in California, New York, Washington, and Colorado, the starting base pay for this position ranges from $15 to $25 per hour. Compensation may vary based on factors such as experience, qualifications, skills test performance, geographic location, and seniority of the position offered. For candidates outside of California, New York, Washington, and Colorado, compensation may fall outside the listed range.",
-      "url": "https://remotive.com/remote-jobs/marketing/remote-office-assistant-1680495",
-      "employment_type": "full_time",
-      "compensation": "$31,2k- $52k",
-      "published_at": "2026-07-11T20:18:11",
-      "location_tier": "global_work_from_anywhere",
-      "score": 45,
-      "score_reasons": [
-        "role: quality assurance",
-        "skills: excel, google sheets, reporting",
-        "location: global_work_from_anywhere"
-      ],
-      "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/empower-com/jobs/analyst-technical-operations-2",
@@ -793,29 +745,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
-    },
-    {
-      "id": "himalayas:https://himalayas.app/companies/exl/jobs/data-steward",
-      "source": "Himalayas",
-      "company": "EXL",
-      "title": "Data Steward",
-      "location": "Worldwide",
-      "workplace": "Remote",
-      "description": "Work Location: Remote, US Pay Range: $90K - $115K/Yr Base + Annual Bonus The posted range is the hiring range for this role — a subset of the broader range available to employees over time — and reflects base salary across our national hiring scale. Final offers are based on several factors, including the candidate's skills and experience, internal pay equity, work location, market conditions for the role, and the specific scope and responsibilities of the position. The top of the range is reserved for candidates who notably exceed the requirements; the lower end applies to those with less experience or fewer preferred qualifications. For positions based in higher-cost zones (e.g., California, New York, New Jersey), actual compensation may exceed the posted range; your recruiter will share specifics during the process. For more information on benefits and what we offer please visit us at US Careers and Benefits We are looking for a Data Steward to drive data governance, data quality, and business metadata management initiatives across the enterprise. The role will partner closely with business stakeholders, data owners, and technology teams to ensure critical insurance data assets are properly governed, documented, monitored, and continuously improved. The ideal candidate will possess strong knowledge of P&C Insurance data domains and a passion for improving data quality and business transparency. Key Responsibilities Manage and maintain Critical Data Elements (CDEs) and business metadata repositories. Define, document, and maintain business glossaries and data definitions. Establish and monitor data quality rules and controls. Develop and publish data quality dashboards and reporting. Analyze data quality issues and coordinate remediation efforts. Monitor ongoing data quality trends and identify root causes. Partner with business users to understand data requirements and governance needs. Support governance forums, working groups, and stewardship activities. Ensure adherence to enterprise data standards and governance policies. Assist with regulatory, audit, and compliance reporting requirements. Required Qualifications Bachelor's degree in Business, Information Systems, Data Management, or related field. 5+ years of experience in Data Governance, Data Stewardship, or Data Quality Management. Strong experience with: Data Quality Rule Management Data Quality Reporting Business Metadata Documentation Critical Data Elements (CDEs) Experience using Data Governance tools such as Collibra. Experience within Property & Casualty Insurance. Strong analytical, communication, and stakeholder management skills. Preferred Qualifications Experience supporting underwriting, claims, policy administration, or actuarial data domains. Knowledge of data governance frameworks and regulatory requirements. Experience with SQL and BI reporting tools. Key Skills Data Stewardship Data Quality Management Business Metadata Data Governance CDE Management Root Cause Analysis Reporting & Analytics Collibra P&C Insurance Originally posted on Himalayas",
-      "url": "https://himalayas.app/companies/exl/jobs/data-steward",
-      "employment_type": "Full Time",
-      "compensation": "USD 90000-115000 per annual",
-      "published_at": "1785975907",
-      "location_tier": "global_work_from_anywhere",
-      "score": 45,
-      "score_reasons": [
-        "role: data quality",
-        "skills: data quality, reporting, sql",
-        "location: global_work_from_anywhere"
-      ],
-      "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/logistics-management-institute/jobs/data-governance-specialist-clearance-required",
@@ -837,7 +768,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "himalayas:https://himalayas.app/companies/savanta/jobs/explorer-qual-research-manager-shopper-research-ontario",
@@ -859,29 +791,8 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true
-    },
-    {
-      "id": "adzuna:5746731633",
-      "source": "Adzuna",
-      "company": "Nextpower",
-      "title": "Sales Operations Analyst",
-      "location": "India",
-      "workplace": "",
-      "description": "Job Description: The Sales Operations Analyst will be based in Hyderabad. In this position, you will report to the Sales Operations Manager . This person will be responsible for Creating, maintaining & modifying the Sales orders across all the Regions. Position will utilize the CRM & ERP(NetSuite) tools to provide the team with a consistent and accurate view of global Sales activity. The Analyst will work closely with the Global Sales team, Project Engineering, Project Management, Logistics, Pl…",
-      "url": "https://www.adzuna.in/details/5746731633?utm_medium=api&utm_source=86a70844",
-      "employment_type": "",
-      "compensation": "",
-      "published_at": "2026-06-01T02:22:57Z",
-      "location_tier": "hyderabad",
-      "score": 45,
-      "score_reasons": [
-        "role: operations analyst, sales operations",
-        "skills: crm",
-        "location: hyderabad"
-      ],
-      "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     },
     {
       "id": "adzuna:5815814437",
@@ -903,183 +814,8 @@
         "location: bengaluru"
       ],
       "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "adzuna:5658374641",
-      "source": "Adzuna",
-      "company": "Talent Pro",
-      "title": "Revenue Operations Lead, saas",
-      "location": "Bangalore, Karnataka",
-      "workplace": "",
-      "description": "Strong RevOps / Revenue Operations Lead Profiles (B2B SaaS Only). Mandatory (Experience 1) – Must have minimum 3 years experience in RevOps / Sales Operations / Revenue Operations roles. Mandatory (Experience 2) – Must have minimum 2 years of hands-on CRM experience, including at least 6 months of active HubSpot CRM usage (workflow automation, reporting, integrations, data hygiene). Mandatory (Experience 3) – Must have strong analytics and data management experience, including hands-on work wit…",
-      "url": "https://www.adzuna.in/details/5658374641?utm_medium=api&utm_source=86a70844",
-      "employment_type": "",
-      "compensation": "INR 2000000-2700000 per year",
-      "published_at": "2026-03-08T11:32:36Z",
-      "location_tier": "bengaluru",
-      "score": 57,
-      "score_reasons": [
-        "role: sales operations, revenue operations",
-        "skills: hubspot, crm, reporting, automation",
-        "location: bengaluru"
-      ],
-      "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "adzuna:5778430833",
-      "source": "Adzuna",
-      "company": "Saxon Global INC",
-      "title": "Data Quality Developer",
-      "location": "Bangalore, Karnataka",
-      "workplace": "",
-      "description": "Job description Should have Experience Back-end data validation, data quality assurance. Snowflake with SQL, data modeling, and ETL processes. Data validation, regular expressions, data profiling and data cleansing. Proficiency in scripting or programming languages. Skills: Data Modeling, Etl, Sql, Data Validation Experience: 4.00-9.00 Years",
-      "url": "https://www.adzuna.in/details/5778430833?utm_medium=api&utm_source=86a70844",
-      "employment_type": "",
-      "compensation": "",
-      "published_at": "2026-06-27T07:12:42Z",
-      "location_tier": "bengaluru",
-      "score": 52,
-      "score_reasons": [
-        "role: data quality, quality assurance",
-        "skills: data quality, data cleansing, sql",
-        "location: bengaluru"
-      ],
-      "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "adzuna:5684977517",
-      "source": "Adzuna",
-      "company": "Frequencycx",
-      "title": "Revenue Operations Specialist",
-      "location": "Bangalore, Karnataka",
-      "workplace": "",
-      "description": "The Role We’re hiring a Revenue Operations Specialist who will act as the backbone of our go-to-market engine. This is a builder role — not a maintenance role. You’ll design systems, automate workflows, and implement AI-driven processes across Sales, BD, and Marketing. What You’ll Do • Build AI agents and automation workflows across the revenue stack • Use tools like Zapier, Make, n8n, Clay, and LLM-based workflows • Own CRM (HubSpot/Salesforce) including structure, hygiene, and reporting • B…",
-      "url": "https://www.adzuna.in/details/5684977517?utm_medium=api&utm_source=86a70844",
-      "employment_type": "",
-      "compensation": "INR 800000-1200000 per year",
-      "published_at": "2026-04-01T11:39:35Z",
-      "location_tier": "bengaluru",
-      "score": 47,
-      "score_reasons": [
-        "role: revenue operations",
-        "skills: salesforce, hubspot, crm, reporting, automation",
-        "location: bengaluru"
-      ],
-      "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "adzuna:3914011894",
-      "source": "Adzuna",
-      "company": "Quicken Inc",
-      "title": "Senior Data Quality Engineer",
-      "location": "Bangalore, Karnataka",
-      "workplace": "",
-      "description": "Graduate in Mathematics, Statistics, Computer Science, Economics, Business, Engineering or equivalent work experience. Total experience of 5 years with at least 2 years in managing data quality for high scale data platforms. Good knowledge of SQL querying. Strong skill in analysing data and uncovering patterns using SQL or Python. Excellent understanding of data warehouse/big data concepts such data extraction, data transformation, data loading (ETL process). Strong background in automation and…",
-      "url": "https://www.adzuna.in/details/3914011894?utm_medium=api&utm_source=86a70844",
-      "employment_type": "",
-      "compensation": "",
-      "published_at": "2023-02-09T06:29:25Z",
-      "location_tier": "bengaluru",
-      "score": 47,
-      "score_reasons": [
-        "role: data quality",
-        "skills: data quality, excel, python, sql, automation",
-        "location: bengaluru"
-      ],
-      "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "adzuna:5796411183",
-      "source": "Adzuna",
-      "company": "Sprinklr",
-      "title": "Data Quality Analyst",
-      "location": "Bangalore, Karnataka",
-      "workplace": "",
-      "description": "Role Responsibilities: Maintain and update Salesforce data, including deduplication and hierarchy setup. Support data quality, accuracy, and integrity across platforms. Assist in reporting and data analysis using Excel and Salesforce. Cross-reference data with tools like ZoomInfo and Lusha for enrichment. Key Deliverables: Accurate Salesforce records with structured account hierarchies. Clean, validated, and enriched datasets across business systems. Timely reports and dashboards for performanc…",
-      "url": "https://www.adzuna.in/details/5796411183?utm_medium=api&utm_source=86a70844",
-      "employment_type": "",
-      "compensation": "",
-      "published_at": "2026-07-11T07:19:28Z",
-      "location_tier": "bengaluru",
-      "score": 47,
-      "score_reasons": [
-        "role: data quality",
-        "skills: salesforce, data quality, excel, zoominfo, reporting",
-        "location: bengaluru"
-      ],
-      "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "adzuna:5785771371",
-      "source": "Adzuna",
-      "company": "MSCI",
-      "title": "Geospatial Physical Risk - AI Data Operations Analyst",
-      "location": "Mumbai, Maharashtra",
-      "workplace": "",
-      "description": "This job is with MSCI, an inclusive employer and a member of myGwork – the largest global platform for the LGBTQ business community. Please do not contact the recruiter directly. Your Team Responsibilities: The Geospatial Data Team manages collection operations, data quality, and best practices for Climate and ESG geospatial data. The team drives data acquisition, vendor coordination, QA engineering, process automation, and research enablement-serving as the operational backbone for MSCI's geos…",
-      "url": "https://www.adzuna.in/land/ad/5785771371?se=enANOkCV8RGI3JXz7KkMuA&utm_medium=api&utm_source=86a70844&v=1F85CC85D5C3FFE81DA9A3C55D962E4EB9D0A2EB",
-      "employment_type": "",
-      "compensation": "",
-      "published_at": "2026-07-03T00:54:15Z",
-      "location_tier": "other_india",
-      "score": 58,
-      "score_reasons": [
-        "role: operations analyst, data operations, data quality",
-        "skills: data quality, automation",
-        "location: other_india"
-      ],
-      "monthly_inr": null,
-      "is_new": false
-    },
-    {
-      "id": "adzuna:5835624635",
-      "source": "Adzuna",
-      "company": "NielsenIQ",
-      "title": "Data Operations Analyst",
-      "location": "Chennai, Tamil Nadu",
-      "workplace": "",
-      "description": "Job Description Job Description Work Location – Porur, Chennai Shift - Flexible for all shifts CTC - 3.12 LPA Qualification: Arts and Science Under Graduates – 2025 & 2026 Passed out Only. Interested in keeping up with Market Research Domain Knowledge of collating, cleansing, analyzing, interpreting, and visualizing large volumes of data Good communication skills Enthusiastic to learn and grow within the function Should be able to understand the end-to-end process and identify avenues of the pr…",
-      "url": "https://www.adzuna.in/details/5835624635?utm_medium=api&utm_source=86a70844",
-      "employment_type": "",
-      "compensation": "",
-      "published_at": "2026-08-10T19:24:12Z",
-      "location_tier": "other_india",
-      "score": 53,
-      "score_reasons": [
-        "role: operations analyst, data operations, market research",
-        "skills: market research",
-        "location: other_india"
-      ],
-      "monthly_inr": null,
-      "is_new": true
-    },
-    {
-      "id": "adzuna:5710605357",
-      "source": "Adzuna",
-      "company": "FNZ",
-      "title": "Sales Operations Analyst",
-      "location": "India",
-      "workplace": "",
-      "description": "Job Title Sales Operations Analyst Location Gurgaon, India Role Description We are building out our Sales Operations function and are looking for a high-performing Sales Operations Analyst to support our frontline sales teams. This role will play a critical part in driving sales process excellence, CRM governance, reporting accuracy, and deal compliance. With a major CRM transformation agenda underway, this is an exciting opportunity to contribute to change initiatives while supporting day-to-d…",
-      "url": "https://www.adzuna.in/details/5710605357?utm_medium=api&utm_source=86a70844",
-      "employment_type": "",
-      "compensation": "",
-      "published_at": "2026-04-26T02:17:25Z",
-      "location_tier": "other_india",
-      "score": 48,
-      "score_reasons": [
-        "role: operations analyst, sales operations",
-        "skills: crm, excel, reporting",
-        "location: other_india"
-      ],
-      "monthly_inr": null,
-      "is_new": false
+      "is_new": false,
+      "active_status": "unverified"
     }
   ]
 }
