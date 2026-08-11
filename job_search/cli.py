@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from .active import retain_active_jobs
 from .core import evaluate, job_fingerprint, sort_jobs
 from .report import write_reports
 from .sources import collect
@@ -27,19 +28,29 @@ def run(new_only: bool = False) -> int:
     fingerprints = set()
     for job in unique.values():
         match = evaluate(job, profile)
-        if match and job_fingerprint(match) in fingerprints:
+        fingerprint = job_fingerprint(match) if match else ""
+        if match and fingerprint in fingerprints:
             continue
         if match:
-            fingerprints.add(job_fingerprint(match))
-            match.is_new = match.id not in seen
+            fingerprints.add(fingerprint)
+            match.is_new = match.id not in seen and f"fp:{fingerprint}" not in seen
         if match and (not new_only or match.is_new):
             accepted.append(match)
     accepted = sort_jobs(accepted, profile["location_priority"])
+    accepted, closed_count, unverified_count = retain_active_jobs(
+        accepted,
+        maximum_age_days=int(profile.get("maximum_listing_age_days", 30)),
+    )
+    if closed_count:
+        errors.append(f"Removed {closed_count} definitively closed or expired job posting(s).")
+    if unverified_count:
+        errors.append(f"Could not independently verify {unverified_count} application page(s); retained as unverified.")
     write_reports(accepted, errors, ROOT / "output")
     seen.update(job.id for job in accepted)
+    seen.update(f"fp:{job_fingerprint(job)}" for job in accepted)
     seen_path.write_text(json.dumps(sorted(seen), indent=2), encoding="utf-8")
     new_count = sum(job.is_new for job in accepted)
-    print(f"Collected {len(collected)} jobs; wrote {len(accepted)} active matches ({new_count} new); {len(errors)} source warnings.")
+    print(f"Collected {len(collected)} jobs; wrote {len(accepted)} active matches ({new_count} new); removed {closed_count} closed; {len(errors)} warnings.")
     return 0
 
 

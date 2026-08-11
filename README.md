@@ -33,6 +33,8 @@ python -m job_search run
 
 Reports are written to `output/latest.md`, `output/jobs.csv`, and `output/jobs.json`. Every run shows all currently active matches and labels first-seen jobs `NEW`. Previously seen IDs are retained in `data/seen_jobs.json`.
 
+Before writing reports, the collector checks each shortlisted application page. HTTP 404/410 responses and explicit closed, expired, filled, or no-longer-accepting messages are removed. Listings older than 30 days are also removed as stale. Pages that block automated checks are retained but clearly labeled `Activity unverified` rather than being presented as confirmed active.
+
 ## Sources
 
 - ATS: Greenhouse, Lever, Ashby
@@ -60,7 +62,7 @@ python -m unittest discover -s tests -v
 
 ## GitHub Actions
 
-The included workflow runs every weekday at 09:00 IST (03:30 UTC) and can also be started manually. It commits updated reports and deduplication state back to the repository. GitHub cron may start a few minutes late during busy periods.
+The included workflow is scheduled every weekday at 09:00 and 17:00 IST (03:30 and 11:30 UTC) and can also be started manually. It commits updated reports and deduplication state back to the repository. GitHub cron is best-effort and may start late during busy periods; use the `Generated` timestamp in `output/latest.md` to confirm the latest completed scan.
 
 ## Supported public ATS URLs
 

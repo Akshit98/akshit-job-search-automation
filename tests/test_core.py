@@ -67,7 +67,22 @@ class FitTests(unittest.TestCase):
     def test_cross_source_fingerprint_normalizes_bangalore(self):
         first = job(company="Example, Inc.", location="Bangalore", title="Sales Operations Analyst")
         second = job(company="Example Inc", location="Bengaluru", title="Sales Operations Analyst")
+        first.location_tier = "bengaluru"
+        second.location_tier = "bengaluru"
         self.assertEqual(job_fingerprint(first), job_fingerprint(second))
+
+    def test_cross_source_fingerprint_normalizes_common_aliases(self):
+        first = job(company="Example Private Limited", title="Sr. RevOps Analyst", location="Worldwide")
+        second = job(company="Example", title="Senior Revenue Operations Analyst", location="Remote")
+        first.location_tier = "global_work_from_anywhere"
+        second.location_tier = "global_work_from_anywhere"
+        self.assertEqual(job_fingerprint(first), job_fingerprint(second))
+
+    def test_fingerprint_keeps_seniority_distinct(self):
+        junior = job(title="Junior Sales Operations Analyst")
+        senior = job(title="Senior Sales Operations Analyst")
+        junior.location_tier = senior.location_tier = "remote_india"
+        self.assertNotEqual(job_fingerprint(junior), job_fingerprint(senior))
 
 
 if __name__ == "__main__":
