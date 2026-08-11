@@ -1,6 +1,7 @@
 {
   "candidate": "Akshit Didla",
   "minimum_fit_score": 45,
+  "maximum_listing_age_days": 30,
   "internship_min_monthly_inr": 40000,
   "role_terms": [
     "business operations", "operations analyst", "sales operations",

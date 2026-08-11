@@ -7,7 +7,7 @@ from pathlib import Path
 from .core import Job, generated_at
 
 
-FIELDS = ["id", "is_new", "company", "title", "location", "workplace", "employment_type", "compensation", "monthly_inr", "location_tier", "score", "url", "source", "published_at"]
+FIELDS = ["id", "is_new", "company", "title", "location", "workplace", "employment_type", "compensation", "monthly_inr", "location_tier", "score", "active_status", "url", "source", "published_at"]
 
 
 def write_reports(jobs: list[Job], errors: list[str], output_dir: Path) -> None:
@@ -25,5 +25,6 @@ def write_reports(jobs: list[Job], errors: list[str], output_dir: Path) -> None:
         pay = f" | INR {job.monthly_inr:,}/month" if job.monthly_inr else (f" | {job.compensation}" if job.compensation else "")
         reasons = "; ".join(job.score_reasons or [])
         marker = "NEW - " if job.is_new else ""
-        lines += [f"## {marker}[{job.title}]({job.url})", "", f"{job.company} | Source: {job.source} | {job.location} | {job.location_tier} | Fit {job.score}/100{pay}", "", f"Why: {reasons}", ""]
+        status = "Verified active" if job.active_status == "active" else "Activity unverified"
+        lines += [f"## {marker}[{job.title}]({job.url})", "", f"{job.company} | Source: {job.source} | {job.location} | {job.location_tier} | Fit {job.score}/100 | {status}{pay}", "", f"Why: {reasons}", ""]
     (output_dir / "latest.md").write_text("\n".join(lines), encoding="utf-8")

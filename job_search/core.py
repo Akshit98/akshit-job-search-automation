@@ -37,6 +37,7 @@ class Job:
     score_reasons: list[str] | None = None
     monthly_inr: int | None = None
     is_new: bool = False
+    active_status: str = "unverified"
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
