@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-11T18:30:53+00:00",
+  "generated_at": "2026-08-11T18:39:56+00:00",
   "count": 35,
-  "new_count": 3,
+  "new_count": 0,
   "source_counts": {
     "Adzuna": 2,
     "Himalayas": 31,
@@ -20,7 +20,7 @@
       "location": "India",
       "workplace": "Remote",
       "description": "We're Hiring | Sales Support Administrator (Remote) Are you passionate about Sales Operations and have experience supporting global sales teams? We're looking for a Sales Support Administrator with a strong background in Salesforce CRM and Advanced Excel to join our remote team. Location: Remote (India) Experience: 3–6 Years Key Responsibilities: Support international Sales teams with quote processing, pricing, and discount approvals. Manage opportunities, accounts, and pipeline in Salesforc…",
-      "url": "https://www.adzuna.in/land/ad/5819623328?se=Xj1YxrKV8RGNV-2DpYqbCA&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089",
+      "url": "https://www.adzuna.in/land/ad/5819623328?se=dpSeCrSV8RGwIbMnLvoVfw&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089",
       "employment_type": "",
       "compensation": "",
       "published_at": "2026-07-29T15:21:28Z",
@@ -147,7 +147,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true,
+      "is_new": false,
       "active_status": "unverified"
     },
     {
@@ -538,7 +538,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true,
+      "is_new": false,
       "active_status": "unverified"
     },
     {
@@ -584,7 +584,7 @@
         "location: global_work_from_anywhere"
       ],
       "monthly_inr": null,
-      "is_new": true,
+      "is_new": false,
       "active_status": "unverified"
     },
     {

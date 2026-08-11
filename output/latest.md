@@ -1,7 +1,7 @@
 # Latest matching jobs
 
-Generated: 2026-08-11T18:30:53+00:00
-Matches: 35 (3 NEW)
+Generated: 2026-08-11T18:39:56+00:00
+Matches: 35 (0 NEW)
 
 ## Source coverage
 
@@ -12,7 +12,7 @@ Adzuna: 2 | Himalayas: 31 | lever: 2
 - Removed 9 definitively closed or expired job posting(s).
 - Could not independently verify 33 application page(s); retained as unverified.
 
-## [Sales Support Administrator](https://www.adzuna.in/land/ad/5819623328?se=Xj1YxrKV8RGNV-2DpYqbCA&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089)
+## [Sales Support Administrator](https://www.adzuna.in/land/ad/5819623328?se=dpSeCrSV8RGwIbMnLvoVfw&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089)
 
 Artech Infosystem Private Limited | Source: Adzuna | India | remote_india | Fit 60/100 | Activity unverified
 
@@ -42,7 +42,7 @@ Steno | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 95/100 |
 
 Why: role: sales operations, revenue operations, data quality; skills: hubspot, crm, data quality, excel, google sheets, reporting; location: global_work_from_anywhere
 
-## NEW - [Senior Revenue Operations Analyst](https://himalayas.app/companies/wagepoint/jobs/senior-revenue-operations-analyst)
+## [Senior Revenue Operations Analyst](https://himalayas.app/companies/wagepoint/jobs/senior-revenue-operations-analyst)
 
 Wagepoint | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 95/100 | Activity unverified
 
@@ -144,7 +144,7 @@ MediaRadar | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 55/
 
 Why: role: data operations, data quality; skills: data quality, reporting; location: global_work_from_anywhere
 
-## NEW - [Senior Deal Desk Analyst](https://himalayas.app/companies/salsify/jobs/senior-deal-desk-analyst)
+## [Senior Deal Desk Analyst](https://himalayas.app/companies/salsify/jobs/senior-deal-desk-analyst)
 
 Salsify | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 55/100 | Activity unverified | USD 100300-118000 per annual
 
@@ -156,7 +156,7 @@ Antenna Group | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 
 
 Why: role: operations analyst; skills: salesforce, hubspot, crm, reporting; location: global_work_from_anywhere
 
-## NEW - [Lead, Data Quality/Integrity](https://himalayas.app/companies/humana/jobs/lead-data-quality-integrity)
+## [Lead, Data Quality/Integrity](https://himalayas.app/companies/humana/jobs/lead-data-quality-integrity)
 
 Humana | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 50/100 | Activity unverified | USD 106900-147000 per annual
 
