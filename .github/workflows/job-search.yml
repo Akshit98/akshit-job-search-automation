@@ -2,6 +2,13 @@ name: Job search
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "job_search/**"
+      - "config/**"
+      - "tests/**"
+      - ".github/workflows/job-search.yml"
   push:
     branches: [main]
     paths:
@@ -17,7 +24,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: job-search
+  group: job-search-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -37,6 +44,7 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Find new jobs
         id: search
+        if: github.event_name != 'pull_request'
         env:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
@@ -44,7 +52,7 @@ jobs:
           THEMUSE_API_KEY: ${{ secrets.THEMUSE_API_KEY }}
         run: python -m job_search run
       - name: Add report to workflow summary
-        if: always()
+        if: always() && github.event_name != 'pull_request'
         shell: bash
         env:
           SEARCH_OUTCOME: ${{ steps.search.outcome }}
@@ -56,13 +64,13 @@ jobs:
             echo "The previous good report was preserved. Inspect the source errors in the job log." >> "$GITHUB_STEP_SUMMARY"
           fi
       - name: Notify Slack when configured
-        if: success()
+        if: success() && github.event_name != 'pull_request'
         continue-on-error: true
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: python -m job_search.notify
       - name: Commit reports
-        if: success()
+        if: success() && github.event_name != 'pull_request'
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
