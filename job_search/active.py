@@ -3,6 +3,7 @@ from __future__ import annotations
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from urllib.error import HTTPError, URLError
+from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 from .core import Job, clean_text
@@ -36,6 +37,17 @@ def classify_active_response(status_code: int, body: str) -> str:
     return "active"
 
 
+def redirected_to_listing_index(original_url: str, final_url: str) -> bool:
+    """Detect removed job pages redirected to the board's general job index."""
+    original = urlparse(original_url)
+    final = urlparse(final_url)
+    if original.netloc.lower() != final.netloc.lower():
+        return False
+    original_path = original.path.rstrip("/").lower()
+    final_path = final.path.rstrip("/").lower()
+    return "/jobs/" in original_path and final_path in ("/jobs", "")
+
+
 def check_job_active(job: Job, timeout: int = 12) -> str:
     if not job.url or not job.url.startswith(("http://", "https://")):
         return "unverified"
@@ -50,6 +62,8 @@ def check_job_active(job: Job, timeout: int = 12) -> str:
     try:
         with urlopen(request, timeout=timeout) as response:
             body = response.read(300_000).decode("utf-8", errors="ignore")
+            if redirected_to_listing_index(job.url, response.geturl()):
+                return "closed"
             return classify_active_response(response.getcode(), body)
     except HTTPError as exc:
         return classify_active_response(exc.code, "")

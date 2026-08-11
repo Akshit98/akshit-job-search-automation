@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 
-INDIA_TERMS = ("india", "ind", "hyderabad", "bengaluru", "bangalore", "chennai", "pune", "mumbai", "delhi", "noida", "gurgaon", "gurugram")
+INDIA_TERMS = ("india", "hyderabad", "bengaluru", "bangalore", "chennai", "pune", "mumbai", "delhi", "noida", "gurgaon", "gurugram")
 REMOTE_TERMS = ("remote", "work from home", "work-from-home", "distributed")
 GLOBAL_TERMS = ("anywhere", "worldwide", "global remote", "work from anywhere", "any location")
 INTERNSHIP_TERMS = ("intern", "internship", "trainee")
@@ -48,7 +48,7 @@ def location_tier(job: Job) -> str | None:
     description = job.description[:1600].lower()
     blob = f"{advertised} {description}"
     is_remote = any(term in advertised for term in REMOTE_TERMS) or any(term in description for term in REMOTE_TERMS)
-    is_india = any(term in advertised for term in INDIA_TERMS)
+    is_india = any(re.search(rf"\b{re.escape(term)}\b", advertised) for term in INDIA_TERMS)
     explicitly_foreign = any(term in advertised for term in (
         "united states", "usa", "u.s.", "north america", "noram", "emea",
         "europe", "uk", "united kingdom", "canada", "latin america", "latam",
