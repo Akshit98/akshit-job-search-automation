@@ -23,6 +23,11 @@ def run(new_only: bool = False) -> int:
     seen_path = ROOT / "data" / "seen_jobs.json"
     seen = set(load_json(seen_path)) if seen_path.exists() else set()
     collected, errors = collect(sources)
+    if not collected:
+        print("No jobs were collected; preserving the previous report.")
+        for error in errors:
+            print(f"Source error: {error}")
+        return 2
     unique = {job.id: job for job in collected}
     accepted = []
     fingerprints = set()
