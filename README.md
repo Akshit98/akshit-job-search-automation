@@ -54,6 +54,10 @@ Add these under **Settings > Secrets and variables > Actions**:
 
 Missing optional credentials do not fail the workflow; those sources remain disabled until configured.
 
+### Optional Slack alerts
+
+Slack is optional and only sends a concise notification when the public-source report contains NEW matches or real source failures. It never sends Gmail-derived job-alert data. To enable it, create a Slack Incoming Webhook for your chosen private channel and add its URL as the Actions repository secret `SLACK_WEBHOOK_URL`. If the secret is absent, the notification step safely skips.
+
 Run the tests with:
 
 ```powershell
@@ -62,7 +66,9 @@ python -m unittest discover -s tests -v
 
 ## GitHub Actions
 
-The included workflow is scheduled every weekday at 09:00 and 17:00 IST (03:30 and 11:30 UTC) and can also be started manually. It commits updated reports and deduplication state back to the repository. GitHub cron is best-effort and may start late during busy periods; use the `Generated` timestamp in `output/latest.md` to confirm the latest completed scan.
+The included workflow is scheduled every weekday at 09:00 and 17:00 IST (03:30 and 11:30 UTC), runs immediately after automation code/config changes reach `main`, and can also be started manually. It commits updated reports and deduplication state back to the repository. Every run places the full report in the GitHub Actions summary. GitHub cron is best-effort and may start late during busy periods; use the `Generated` timestamp in `output/latest.md` to confirm the latest completed scan.
+
+If every configured source fails and zero jobs are collected, the workflow fails without overwriting the last good report.
 
 ## Supported public ATS URLs
 

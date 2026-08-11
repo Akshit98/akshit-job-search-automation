@@ -2,6 +2,13 @@ name: Job search
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "job_search/**"
+      - "config/**"
+      - "tests/**"
+      - ".github/workflows/job-search.yml"
   schedule:
     - cron: "30 3 * * 1-5"
     - cron: "30 11 * * 1-5"
@@ -16,22 +23,48 @@ concurrency:
 jobs:
   search:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PYTHONUNBUFFERED: "1"
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Run tests
         run: python -m unittest discover -s tests -v
       - name: Find new jobs
+        id: search
         env:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
           JOOBLE_API_KEY: ${{ secrets.JOOBLE_API_KEY }}
           THEMUSE_API_KEY: ${{ secrets.THEMUSE_API_KEY }}
         run: python -m job_search run
-      - name: Commit reports
+      - name: Add report to workflow summary
+        if: always()
+        shell: bash
+        env:
+          SEARCH_OUTCOME: ${{ steps.search.outcome }}
         run: |
+          if [ "$SEARCH_OUTCOME" = "success" ] && [ -f output/latest.md ]; then
+            cat output/latest.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## Job search failed" >> "$GITHUB_STEP_SUMMARY"
+            echo "The previous good report was preserved. Inspect the source errors in the job log." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Notify Slack when configured
+        if: success()
+        continue-on-error: true
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python -m job_search.notify
+      - name: Commit reports
+        if: success()
+        run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add output data/seen_jobs.json
