@@ -1,9 +1,9 @@
 # Latest matching jobs
 
-Generated: 2026-08-10T05:07:30+00:00
-Matches: 43
+Generated: 2026-08-11T04:50:57+00:00
+Matches: 49
 
-## [Sales Support Administrator](https://www.adzuna.in/land/ad/5819623328?se=rKW1YHmU8RGRI-kHrEOjyQ&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089)
+## [Sales Support Administrator](https://www.adzuna.in/land/ad/5819623328?se=SpbZO0CV8RGi4ovdpLalnw&utm_medium=api&utm_source=86a70844&v=315E76DEF58F21AF23736B8E262673E4CE871089)
 
 Artech Infosystem Private Limited | Source: Adzuna | India | remote_india | Fit 60/100
 
@@ -111,6 +111,12 @@ Globalization Partners | Source: Himalayas | Worldwide | global_work_from_anywhe
 
 Why: role: revenue operations; skills: salesforce, hubspot, crm, excel, reporting, automation; location: global_work_from_anywhere
 
+## NEW - [Sales Operations Specialist (Southwest)](https://himalayas.app/companies/guidepoint-security-llc/jobs/sales-operations-specialist-southwest-1445232019)
+
+GuidePoint Security LLC | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 60/100
+
+Why: role: sales operations, sales support; skills: salesforce, crm, excel; location: global_work_from_anywhere
+
 ## [Data Engineer](https://himalayas.app/companies/newsela/jobs/data-engineer-1691600252)
 
 Newsela | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 60/100 | USD 100000-120800 per annual
@@ -122,12 +128,6 @@ Why: role: data quality, quality assurance; skills: data quality, python, sql; l
 Surgo PTY Ltd | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 60/100 | ZAR 30000-60000 per monthly
 
 Why: role: data quality, quality assurance; skills: crm, data quality, excel; location: global_work_from_anywhere
-
-## [Quality Assurance Associate](https://himalayas.app/companies/tahche-outsourcing-services-inc/jobs/quality-assurance-associate)
-
-Tahche Outsourcing Services Inc | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 60/100
-
-Why: role: data quality, quality assurance; skills: data quality, excel, reporting; location: global_work_from_anywhere
 
 ## [AI Operations Reporting & Analytics Analyst - Fully Remote Opportunity](https://himalayas.app/companies/zealogics/jobs/ai-operations-reporting-analytics-analyst-fully-remote-opportunity)
 
@@ -147,6 +147,24 @@ Akamai Technologies | Source: Himalayas | Worldwide | global_work_from_anywhere 
 
 Why: role: operations analyst; skills: excel, google sheets, reporting, sql, automation; location: global_work_from_anywhere
 
+## NEW - [Data Governance Analyst](https://himalayas.app/companies/mediaradar/jobs/data-governance-analyst-2744226796)
+
+MediaRadar | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 55/100
+
+Why: role: data operations, data quality; skills: data quality, reporting; location: global_work_from_anywhere
+
+## NEW - [Sr. Business Operations Analyst - Post Sales](https://himalayas.app/companies/samsara/jobs/sr-business-operations-analyst-post-sales)
+
+Samsara | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 55/100 | USD 91630-138600 per annual
+
+Why: role: business operations, operations analyst; skills: salesforce, reporting; location: global_work_from_anywhere
+
+## NEW - [Associate Data QA Engineer](https://himalayas.app/companies/abacus-insights/jobs/associate-data-qa-engineer)
+
+Abacus Insights | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 50/100 | USD 30-30 per hourly
+
+Why: role: data quality; skills: data quality, sql, automation, healthcare; location: global_work_from_anywhere
+
 ## [Commercial Operations Analyst](https://himalayas.app/companies/antenna-group/jobs/commercial-operations-analyst)
 
 Antenna Group | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 50/100
@@ -158,6 +176,12 @@ Why: role: operations analyst; skills: salesforce, hubspot, crm, reporting; loca
 ICF | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 50/100 | USD 55665-94631 per annual
 
 Why: role: data quality, quality assurance; skills: data quality; location: global_work_from_anywhere
+
+## NEW - [Data Governance Analyst](https://himalayas.app/companies/matrix-global/jobs/data-governance-analyst)
+
+Matrix Global | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 50/100
+
+Why: role: data quality; skills: data quality, excel, reporting, healthcare; location: global_work_from_anywhere
 
 ## [Content Analyst (Data Steward)](https://himalayas.app/companies/precision-medicine-group/jobs/content-analyst-data-steward)
 
@@ -189,6 +213,12 @@ Coalition Technologies | Source: Remotive | Worldwide | global_work_from_anywher
 
 Why: role: quality assurance; skills: excel, google sheets, reporting; location: global_work_from_anywhere
 
+## NEW - [Analyst Technical Operations-2](https://himalayas.app/companies/empower-com/jobs/analyst-technical-operations-2)
+
+Empower | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 45/100
+
+Why: role: operations analyst; skills: excel, sql, automation; location: global_work_from_anywhere
+
 ## [Data Steward](https://himalayas.app/companies/exl/jobs/data-steward)
 
 EXL | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 45/100 | USD 90000-115000 per annual
@@ -201,13 +231,13 @@ Logistics Management Institute | Source: Himalayas | Worldwide | global_work_fro
 
 Why: role: data quality; skills: data quality, reporting, healthcare; location: global_work_from_anywhere
 
-## [AI Quality Coordinator](https://himalayas.app/companies/rws-group/jobs/ai-quality-coordinator-8107591972)
+## NEW - [Explorer | Qual Research Manager | Shopper Research | Ontario](https://himalayas.app/companies/savanta/jobs/explorer-qual-research-manager-shopper-research-ontario)
 
-RWS Group | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 45/100
+Savanta | Source: Himalayas | Worldwide | global_work_from_anywhere | Fit 45/100 | CAD 80000-85000 per annual
 
-Why: role: data quality; skills: data quality, excel, power bi; location: global_work_from_anywhere
+Why: role: market research; skills: market research, excel, reporting; location: global_work_from_anywhere
 
-## NEW - [Sales Operations Analyst](https://www.adzuna.in/details/5746731633?utm_medium=api&utm_source=86a70844)
+## [Sales Operations Analyst](https://www.adzuna.in/details/5746731633?utm_medium=api&utm_source=86a70844)
 
 Nextpower | Source: Adzuna | India | hyderabad | Fit 45/100
 
@@ -249,11 +279,17 @@ Sprinklr | Source: Adzuna | Bangalore, Karnataka | bengaluru | Fit 47/100
 
 Why: role: data quality; skills: salesforce, data quality, excel, zoominfo, reporting; location: bengaluru
 
-## [Geospatial Physical Risk - AI Data Operations Analyst](https://www.adzuna.in/land/ad/5785771371?se=4sKHXnmU8RGlDuOngCclFw&utm_medium=api&utm_source=86a70844&v=1F85CC85D5C3FFE81DA9A3C55D962E4EB9D0A2EB)
+## [Geospatial Physical Risk - AI Data Operations Analyst](https://www.adzuna.in/land/ad/5785771371?se=enANOkCV8RGI3JXz7KkMuA&utm_medium=api&utm_source=86a70844&v=1F85CC85D5C3FFE81DA9A3C55D962E4EB9D0A2EB)
 
 MSCI | Source: Adzuna | Mumbai, Maharashtra | other_india | Fit 58/100
 
 Why: role: operations analyst, data operations, data quality; skills: data quality, automation; location: other_india
+
+## NEW - [Data Operations Analyst](https://www.adzuna.in/details/5835624635?utm_medium=api&utm_source=86a70844)
+
+NielsenIQ | Source: Adzuna | Chennai, Tamil Nadu | other_india | Fit 53/100
+
+Why: role: operations analyst, data operations, market research; skills: market research; location: other_india
 
 ## [Sales Operations Analyst](https://www.adzuna.in/details/5710605357?utm_medium=api&utm_source=86a70844)
 
