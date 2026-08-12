@@ -1,6 +1,6 @@
 # Latest matching jobs
 
-Generated: 2026-08-12T05:15:51+00:00
+Generated: 2026-08-12T12:12:15+00:00
 Matches: 6 (0 NEW)
 
 ## Source coverage
@@ -9,7 +9,7 @@ Adzuna: 1 | Himalayas: 3 | lever: 2
 
 ## Run notes
 
-- Removed 9 definitively closed or expired job posting(s).
+- Removed 7 definitively closed or expired job posting(s).
 - Could not independently verify 4 application page(s); retained as unverified.
 
 ## [Sales Analyst](https://himalayas.app/companies/fortive/jobs/sales-analyst)
