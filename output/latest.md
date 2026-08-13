@@ -1,15 +1,15 @@
 # Latest matching jobs
 
-Generated: 2026-08-13T05:19:53+00:00
-Matches: 6 (0 NEW)
+Generated: 2026-08-13T12:10:50+00:00
+Matches: 7 (0 NEW)
 
 ## Source coverage
 
-Adzuna: 1 | Himalayas: 3 | lever: 2
+Adzuna: 1 | Himalayas: 3 | Remotive: 1 | lever: 2
 
 ## Run notes
 
-- Removed 7 definitively closed or expired job posting(s).
+- Removed 8 definitively closed or expired job posting(s).
 - Could not independently verify 4 application page(s); retained as unverified.
 
 ## [Sales Analyst](https://himalayas.app/companies/fortive/jobs/sales-analyst)
@@ -41,6 +41,12 @@ Why: role: operations analyst; skills: excel, sql, automation; location: remote_
 Sprinto | Source: lever | Bengaluru | remote_india | Fit 45/100 | Verified active
 
 Why: role: market research; skills: crm, market research, automation; location: remote_india
+
+## [Remote Office Assistant](https://remotive.com/remote-jobs/marketing/remote-office-assistant-1680495)
+
+Coalition Technologies | Source: Remotive | Worldwide | global_work_from_anywhere | Fit 45/100 | Verified active | $31,2k- $52k
+
+Why: role: quality assurance; skills: excel, google sheets, reporting; location: global_work_from_anywhere
 
 ## [Associate Data Quality Specialist](https://www.adzuna.in/details/5815814437?utm_medium=api&utm_source=86a70844)
 
