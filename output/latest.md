@@ -1,11 +1,11 @@
 # Latest matching jobs
 
-Generated: 2026-08-14T05:16:53+00:00
-Matches: 7 (0 NEW)
+Generated: 2026-08-14T12:10:00+00:00
+Matches: 8 (1 NEW)
 
 ## Source coverage
 
-Adzuna: 1 | Himalayas: 3 | Remotive: 1 | lever: 2
+Adzuna: 1 | Arbeitnow: 1 | Himalayas: 3 | Remotive: 1 | lever: 2
 
 ## Run notes
 
@@ -41,6 +41,12 @@ Why: role: operations analyst; skills: excel, sql, automation; location: remote_
 Sprinto | Source: lever | Bengaluru | remote_india | Fit 45/100 | Verified active
 
 Why: role: market research; skills: crm, market research, automation; location: remote_india
+
+## NEW - [Senior Data & Python Software Engineer](https://www.arbeitnow.co.uk/jobs/companies/ceartas/remote-senior-data-python-software-engineer-235366)
+
+Ceartas | Source: Arbeitnow | Remote | global_work_from_anywhere | Fit 50/100 | Verified active
+
+Why: role: data quality; skills: data quality, python, sql, automation; location: global_work_from_anywhere
 
 ## [Remote Office Assistant](https://remotive.com/remote-jobs/marketing/remote-office-assistant-1680495)
 
