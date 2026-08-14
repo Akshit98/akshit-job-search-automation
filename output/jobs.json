@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T12:10:50+00:00",
+  "generated_at": "2026-08-14T05:16:53+00:00",
   "count": 7,
   "new_count": 0,
   "source_counts": {
@@ -9,7 +9,7 @@
     "lever": 2
   },
   "errors": [
-    "Removed 8 definitively closed or expired job posting(s).",
+    "Removed 7 definitively closed or expired job posting(s).",
     "Could not independently verify 4 application page(s); retained as unverified."
   ],
   "jobs": [
