@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-08-14T12:10:00+00:00",
+  "generated_at": "2026-08-17T04:20:56+00:00",
   "count": 8,
-  "new_count": 1,
+  "new_count": 2,
   "source_counts": {
-    "Adzuna": 1,
+    "Adzuna": 2,
     "Arbeitnow": 1,
-    "Himalayas": 3,
+    "Himalayas": 2,
     "Remotive": 1,
     "lever": 2
   },
   "errors": [
-    "Removed 7 definitively closed or expired job posting(s).",
+    "Removed 8 definitively closed or expired job posting(s).",
     "Could not independently verify 4 application page(s); retained as unverified."
   ],
   "jobs": [
@@ -61,29 +61,6 @@
       "active_status": "active"
     },
     {
-      "id": "himalayas:https://himalayas.app/companies/precision-medicine-group/jobs/content-analyst-data-steward",
-      "source": "Himalayas",
-      "company": "Precision Medicine Group",
-      "title": "Content Analyst (Data Steward)",
-      "location": "India",
-      "workplace": "Remote",
-      "description": "Position Summary: The Content Analyst (Data Steward) is a skilled and detail-oriented individual responsible for ensuring the accuracy, completeness, and consistency of data throughout our Products. You engage in analyzing and evaluating content across various Products to ensure accuracy, relevance, and quality. This role reports directly to the Product Owner in Precision Medicine Group , India. You work closely with various teams to ensure that data is properly classified, managed, and updated. Essential functions of the job include but are not limited to: Monitoring and maintaining data quality by validating, cleansing, and enriching data as needed Work with stakeholders to identify critical data elements and define data quality standards. Create and maintain data dictionaries, data lineage, and metadata management practices. Develop and maintain data governance policies, procedures, and standards. Monitor and maintain the integrity of data across multiple systems and applications. Conduct data profiling and analysis to identify data quality issues and recommend solutions. Develop and maintain data management tools, including data quality dashboards, scorecards, and reports. Work with Operations teams to ensure that data management processes are integrated into adjacent development and delivery activities. Train end-users on data management best practices and procedures. Ensure compliance with data privacy, security, and regulatory requirements. Participate in data governance committees and collaborate with other data stewards to develop and implement enterprise-wide data management strategies. Gather feedback from internal users and external clients to understand their needs and translate them into meaningful data product improvements. Minimum Required: Bachelor's degree in computer science, information management, or a related field. At least 1-3 years of experience in data management, data governance, or a related field. Strong understanding of data management concepts, including data quality, metadata management, data lineage, and data governance. Familiarity with SQL, data modeling, and database management systems. Other Required: Experience with data profiling and analysis tools. A combined of 1-2 years of work experience across US Healthcare data. Knowledge of data privacy, security, and regulatory compliance requirements. Preferred: Experience with Reltio, Informatica or other MDM tools Familiarity with Snowflake Any data provided as a part of this application will be stored in accordance with our Privacy Policy. For CA applicants, please also refer to our CA Privacy Notice. Precision Medicine Group is an Equal Opportunity Employer. Employment decisions are made without regard to race, color, age, religion, sex, sexual orientation, gender identity, national origin, disability, veteran status or other characteristics protected by law. If you are an individual with a disability and require a reasonable accommodation to complete any part of the application process or are limited in the ability or unable to access or use this online application process and need an alternative method for applying, you may contact Precision Medicine Group at . Recruitment Fraud Warning: Please be aware that fraudulent individuals and websites may impersonate Precision Medicine Group or its affiliates and attempt to obtain personal, financial, or banking information through fake job postings or employment offers. Precision Medicine Group will never request payment, banking details, or other sensitive financial information as part of the recruitment process. If you believe you have been targeted by a recruitment scam, we encourage you to report the incident to your local law enforcement authorities, consumer protection agency, or relevant cybercrime reporting organization in your country. Please also notify us at so we can investigate and take appropriate action. Originally posted on Himalayas",
-      "url": "https://himalayas.app/companies/precision-medicine-group/jobs/content-analyst-data-steward",
-      "employment_type": "Full Time",
-      "compensation": "",
-      "published_at": "1786149500",
-      "location_tier": "remote_india",
-      "score": 50,
-      "score_reasons": [
-        "role: data quality",
-        "skills: data quality, reporting, sql, healthcare",
-        "location: remote_india"
-      ],
-      "monthly_inr": null,
-      "is_new": false,
-      "active_status": "unverified"
-    },
-    {
       "id": "himalayas:https://himalayas.app/companies/empower-com/jobs/analyst-technical-operations-2",
       "source": "Himalayas",
       "company": "Empower",
@@ -130,29 +107,6 @@
       "active_status": "active"
     },
     {
-      "id": "arbeitnow:remote-senior-data-python-software-engineer-235366",
-      "source": "Arbeitnow",
-      "company": "Ceartas",
-      "title": "Senior Data & Python Software Engineer",
-      "location": "Remote",
-      "workplace": "On-site",
-      "description": "At Ceartas, we lead the way in AI-powered brand protection, copyright law, and digital security, safeguarding the integrity of content creators, brands, and enterprises worldwide. As we scale rapidly, we're looking for a Data & Python Software engineer to drive innovation in our data pipelines and crawling technologies. In this pivotal role, you'll collaborate with our CTO and Head of Engineering, steering our Data Engineering Team toward developing groundbreaking solutions for digital security challenges. Build Scalable Web Data Extraction Pipelines: Design and develop web scraping systems that support large-scale web data extraction and brand protection workflows. Ensure that data moves reliably from collection through processing to storage while maintaining performance, resilience, and operational stability at scale. Ensure Data Quality and Governance: Own data validation, consistency, and governance across ingestion, storage, and serving layers. Establish clear standards for schema design, transformation logic, and monitoring to guarantee trustworthy, production-grade datasets that can be reliably consumed across the organization. Optimize Performance and Reliability: Continuously improve scraping system efficiency through performance tuning, cost optimization, and architectural enhancements. Implement logging, metrics, and tracing to monitor production systems, diagnose issues quickly, and maintain high reliability under growing workloads. Responsibilities: Design, build, and maintain high-performance web scraping systems as well backend services and data pipelines supporting web data extraction and brand protection use cases Implement and maintain scraping focused APIs and other data services that power internal products and external integrations Build reliable ingestion, processing, and storage workflows for large-scale web data Handle cleaning of web data and ensure data quality, validation, and governance across ingestion, storage, and serving layers Optimize scraping systems for performance, scalability, reliability, and cost efficiency Monitor, debug, and improve scraping system reliability using observability tools (logging, metrics, tracing) Collaborate closely with product and engineering teams to deliver features from design through full end-to-end production deployment Take independent ownership of systems in production, including maintenance, iteration and performance management Core Technical Requirements: Experience with web scraping Strong SQL skills Strong Python experience Experience with PostgreSQL or similar relational databases Experience designing and building scalable APIs and backend services (e.g. FastAPI, Django, or similar frameworks) Experience designing efficient, scalable data models and database schemas Hands-on experience deploying and operating systems in the cloud (AWS, GCP, or Azure) Experience working with Docker and containerized environments Preferred Technical Requirements: Experience with workflow orchestration tools such as Airflow Experience with browser-based automation tools (Playwright, Selenium, or similar) Experience with DBT or analytics-focused data transformation workflows Experience building or operating high-concurrency systems and task queues Experience designing and deploying cloud-native workflows on AWS Familiarity with CI/CD pipelines and production deployment practices Experience working in a high-growth, early-stage startup environment Experience - University education in a technical field such as Computer Science, Engineering or similar. Masters level preferred. 4+ years ( or 2 year+ in a early stage startup) Find Jobs in United Kingdom on Arbeitnow",
-      "url": "https://www.arbeitnow.co.uk/jobs/companies/ceartas/remote-senior-data-python-software-engineer-235366",
-      "employment_type": "Full-time",
-      "compensation": "",
-      "published_at": "1786700411",
-      "location_tier": "global_work_from_anywhere",
-      "score": 50,
-      "score_reasons": [
-        "role: data quality",
-        "skills: data quality, python, sql, automation",
-        "location: global_work_from_anywhere"
-      ],
-      "monthly_inr": null,
-      "is_new": true,
-      "active_status": "active"
-    },
-    {
       "id": "remotive:1680495",
       "source": "Remotive",
       "company": "Coalition Technologies",
@@ -176,6 +130,28 @@
       "active_status": "active"
     },
     {
+      "id": "arbeitnow:remote-senior-crm-specialist-314203",
+      "source": "Arbeitnow",
+      "company": "Corporatecareers",
+      "title": "Senior CRM Specialist",
+      "location": "Ireland, Malta, Remote",
+      "workplace": "On-site",
+      "description": "Grandstand (Nasdaq: GRSD) is the intelligence layer of sports, gaming and entertainment. We build the brands people trust, the data our partners depend on, and the technology this industry runs on with exceptional people, not shortcuts. OpticOdds delivers enterprise-grade data infrastructure to B2B partners worldwide, while OddsJam and RotoWire put that same real-time intelligence directly into the hands of consumers.&nbsp; On the gaming and entertainment side, our portfolio includes some of the biggest names in the space: Gambling.com , Casinos.com , Spotlight.Vegas , and WhichBingo.co.uk . Our flagship sites reach millions of consumers every month. We're the first, and only, U.S. publicly traded company of our kind, and the first company to win EGR's Affiliate of the Year three times. We hold every hire to the same five standards: Taste, Agency, Speed, Craft, Responsibility. As a Senior CRM Specialist , you will play a pivotal role in driving the commercial success of our CRM programme. You'll take ownership of customer journey optimisation, testing, segmentation and automation across multiple brands and international markets, ensuring every communication is designed to maximise engagement, retention and revenue. Working closely with Commercial, Product, Data and Operations teams, you'll identify opportunities to improve customer lifecycle marketing, build sophisticated automated journeys and continually optimise performance through data-driven decision making. This role is ideal for someone who is commercially minded, highly analytical and naturally curious, someone who enjoys solving problems, learning new technologies quickly and taking ownership of delivering measurable business results. Responsibilities Take ownership of CRM performance across all customer communications, continually identifying opportunities to increase engagement, conversion, retention and overall revenue. Lead the CRM testing roadmap, developing a culture of continuous experimentation through A/B and multivariate testing across customer journeys, content, timing, segmentation and personalisation. Own and evolve customer segmentation strategies, ensuring every communication reaches the right customer at the right time using behavioural, transactional and lifecycle data. Continuously analyse journey performance, proactively identifying opportunities to optimise automations, improve customer experience and maximise commercial return. Take responsibility for identifying new CRM opportunities independently, bringing forward ideas backed by data and seeing them through to implementation. Design, build and optimise automated customer lifecycle journeys across acquisition, onboarding, engagement, retention and reactivation. Develop dynamic and personalised CRM campaigns across Email, SMS, Push Notifications and emerging engagement channels. Partner with Commercial, Product, Data and Operations teams to ensure CRM activity supports wider business objectives and revenue targets. Build and optimise landing pages that support CRM campaigns and improve conversion performance. Monitor campaign performance and produce regular reporting with clear commercial insights and recommendations. Maintain excellent database hygiene, customer segmentation and GDPR compliance. Leverage AI-powered tools to accelerate campaign creation, reporting, analysis and personalisation while maintaining high editorial standards. Stay informed on emerging CRM technologies, AI capabilities and industry best practices, recommending new approaches that improve team performance. Support and mentor junior CRM team members while promoting best practices across the wider business. Requirements Essential 4+ years' experience in CRM, Lifecycle Marketing or Marketing Automation. Proven experience delivering measurable commercial growth through CRM optimisation and customer lifecycle marketing. Strong experience building and managing complex automated customer journeys. Excellent understanding of customer segmentation, personalisation and lifecycle marketing. Experience leading structured testing programmes and using data to drive commercial decisions. Highly analytical with the ability to identify opportunities independently and take ownership through to delivery. A proactive, self-starting mindset with excellent problem-solving skills and a willingness to learn quickly in a fast-moving environment. Confident working autonomously, researching solutions and driving projects forward with minimal supervision. Excellent communication and stakeholder management skills. Strong organisational skills with the ability to manage multiple brands and priorities simultaneously. Desirable Previous experience within the online gambling, sports betting or affiliate marketing industry, with a proven track record of delivering successful CRM initiatives. Hands-on experience using Bloomreach Engagement . Experience with HTML/CSS for email development. Experience using reporting platforms such as Tableau, Power BI or Looker. Experience leveraging AI-assisted tools to improve CRM production, reporting and customer personalisation. What You'll Bring We're looking for someone who doesn't wait to be told what to do. You'll be naturally curious, commercially minded and constantly looking for ways to improve performance. You'll enjoy digging into data, finding opportunities others have missed and taking ownership of delivering measurable results. You're someone who learns quickly, thrives on solving problems independently and is comfortable challenging the status quo in pursuit of better customer experiences and stronger commercial outcomes. You'll be equally comfortable collaborating with stakeholders across the business or rolling up your sleeves to build, test and optimise campaigns yourself. Perks &amp; Benefits Comprehensive private Healthcare Insurance Flexible work environment and home office available Home office allowance Gym &amp; Leisure Allowance All the hardware and software you need to be successful Regular company events and social outings, activities, Spot Awards and a Monthly Social Club Access to courses for Personal and Career Development Company Paid Volunteer Day &nbsp; Find more English Speaking Jobs in United Kingdom on Arbeitnow",
+      "url": "https://www.arbeitnow.co.uk/jobs/companies/corporatecareers/remote-senior-crm-specialist-314203",
+      "employment_type": "Full-time",
+      "compensation": "",
+      "published_at": "1786895709",
+      "location_tier": "global_work_from_anywhere",
+      "score": 45,
+      "score_reasons": [
+        "skills: crm, excel, reporting, power bi, automation, healthcare",
+        "location: global_work_from_anywhere"
+      ],
+      "monthly_inr": null,
+      "is_new": true,
+      "active_status": "active"
+    },
+    {
       "id": "adzuna:5815814437",
       "source": "Adzuna",
       "company": "CSC",
@@ -196,6 +172,29 @@
       ],
       "monthly_inr": null,
       "is_new": false,
+      "active_status": "unverified"
+    },
+    {
+      "id": "adzuna:5843160922",
+      "source": "Adzuna",
+      "company": "Jobgether",
+      "title": "Senior Associate - Salesforce Revenue Operations",
+      "location": "India",
+      "workplace": "",
+      "description": "This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Senior Associate - Salesforce Revenue Operations based in India. This is a hands-on Salesforce Revenue Operations role focused on keeping a business-critical Salesforce environment accurate, reliable, and efficient. You will support daily administration, user management, data quality, reporting, and troubleshooting while contributing to broader operational initiative…",
+      "url": "https://www.adzuna.in/details/5843160922?utm_medium=api&utm_source=86a70844",
+      "employment_type": "",
+      "compensation": "",
+      "published_at": "2026-08-15T20:49:01Z",
+      "location_tier": "other_india",
+      "score": 48,
+      "score_reasons": [
+        "role: revenue operations, data quality",
+        "skills: salesforce, data quality, reporting",
+        "location: other_india"
+      ],
+      "monthly_inr": null,
+      "is_new": true,
       "active_status": "unverified"
     }
   ]

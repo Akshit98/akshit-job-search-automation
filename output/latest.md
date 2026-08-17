@@ -1,15 +1,15 @@
 # Latest matching jobs
 
-Generated: 2026-08-14T12:10:00+00:00
-Matches: 8 (1 NEW)
+Generated: 2026-08-17T04:20:56+00:00
+Matches: 8 (2 NEW)
 
 ## Source coverage
 
-Adzuna: 1 | Arbeitnow: 1 | Himalayas: 3 | Remotive: 1 | lever: 2
+Adzuna: 2 | Arbeitnow: 1 | Himalayas: 2 | Remotive: 1 | lever: 2
 
 ## Run notes
 
-- Removed 7 definitively closed or expired job posting(s).
+- Removed 8 definitively closed or expired job posting(s).
 - Could not independently verify 4 application page(s); retained as unverified.
 
 ## [Sales Analyst](https://himalayas.app/companies/fortive/jobs/sales-analyst)
@@ -24,12 +24,6 @@ cprime | Source: lever | Hyderabad, India | remote_india | Fit 55/100 | Verified
 
 Why: role: data quality, salesforce operations; skills: salesforce, data quality; location: remote_india
 
-## [Content Analyst (Data Steward)](https://himalayas.app/companies/precision-medicine-group/jobs/content-analyst-data-steward)
-
-Precision Medicine Group | Source: Himalayas | India | remote_india | Fit 50/100 | Activity unverified
-
-Why: role: data quality; skills: data quality, reporting, sql, healthcare; location: remote_india
-
 ## [Analyst Technical Operations-2](https://himalayas.app/companies/empower-com/jobs/analyst-technical-operations-2)
 
 Empower | Source: Himalayas | India | remote_india | Fit 45/100 | Activity unverified
@@ -42,20 +36,26 @@ Sprinto | Source: lever | Bengaluru | remote_india | Fit 45/100 | Verified activ
 
 Why: role: market research; skills: crm, market research, automation; location: remote_india
 
-## NEW - [Senior Data & Python Software Engineer](https://www.arbeitnow.co.uk/jobs/companies/ceartas/remote-senior-data-python-software-engineer-235366)
-
-Ceartas | Source: Arbeitnow | Remote | global_work_from_anywhere | Fit 50/100 | Verified active
-
-Why: role: data quality; skills: data quality, python, sql, automation; location: global_work_from_anywhere
-
 ## [Remote Office Assistant](https://remotive.com/remote-jobs/marketing/remote-office-assistant-1680495)
 
 Coalition Technologies | Source: Remotive | Worldwide | global_work_from_anywhere | Fit 45/100 | Verified active | $31,2k- $52k
 
 Why: role: quality assurance; skills: excel, google sheets, reporting; location: global_work_from_anywhere
 
+## NEW - [Senior CRM Specialist](https://www.arbeitnow.co.uk/jobs/companies/corporatecareers/remote-senior-crm-specialist-314203)
+
+Corporatecareers | Source: Arbeitnow | Ireland, Malta, Remote | global_work_from_anywhere | Fit 45/100 | Verified active
+
+Why: skills: crm, excel, reporting, power bi, automation, healthcare; location: global_work_from_anywhere
+
 ## [Associate Data Quality Specialist](https://www.adzuna.in/details/5815814437?utm_medium=api&utm_source=86a70844)
 
 CSC | Source: Adzuna | India | bengaluru | Fit 57/100 | Activity unverified
 
 Why: role: business operations, data operations, data quality; skills: data quality; location: bengaluru
+
+## NEW - [Senior Associate - Salesforce Revenue Operations](https://www.adzuna.in/details/5843160922?utm_medium=api&utm_source=86a70844)
+
+Jobgether | Source: Adzuna | India | other_india | Fit 48/100 | Activity unverified
+
+Why: role: revenue operations, data quality; skills: salesforce, data quality, reporting; location: other_india
