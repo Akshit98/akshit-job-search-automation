@@ -1,7 +1,7 @@
 # Latest matching jobs
 
-Generated: 2026-08-17T04:20:56+00:00
-Matches: 8 (2 NEW)
+Generated: 2026-08-17T11:51:35+00:00
+Matches: 8 (0 NEW)
 
 ## Source coverage
 
@@ -42,7 +42,7 @@ Coalition Technologies | Source: Remotive | Worldwide | global_work_from_anywher
 
 Why: role: quality assurance; skills: excel, google sheets, reporting; location: global_work_from_anywhere
 
-## NEW - [Senior CRM Specialist](https://www.arbeitnow.co.uk/jobs/companies/corporatecareers/remote-senior-crm-specialist-314203)
+## [Senior CRM Specialist](https://www.arbeitnow.co.uk/jobs/companies/corporatecareers/remote-senior-crm-specialist-314203)
 
 Corporatecareers | Source: Arbeitnow | Ireland, Malta, Remote | global_work_from_anywhere | Fit 45/100 | Verified active
 
@@ -54,7 +54,7 @@ CSC | Source: Adzuna | India | bengaluru | Fit 57/100 | Activity unverified
 
 Why: role: business operations, data operations, data quality; skills: data quality; location: bengaluru
 
-## NEW - [Senior Associate - Salesforce Revenue Operations](https://www.adzuna.in/details/5843160922?utm_medium=api&utm_source=86a70844)
+## [Senior Associate - Salesforce Revenue Operations](https://www.adzuna.in/details/5843160922?utm_medium=api&utm_source=86a70844)
 
 Jobgether | Source: Adzuna | India | other_india | Fit 48/100 | Activity unverified
 
