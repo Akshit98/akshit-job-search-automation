@@ -1,6 +1,6 @@
 # Latest matching jobs
 
-Generated: 2026-08-18T11:53:08+00:00
+Generated: 2026-08-19T04:09:57+00:00
 Matches: 8 (0 NEW)
 
 ## Source coverage
@@ -9,7 +9,7 @@ Adzuna: 3 | Himalayas: 2 | Remotive: 1 | lever: 2
 
 ## Run notes
 
-- Removed 7 definitively closed or expired job posting(s).
+- Removed 6 definitively closed or expired job posting(s).
 - Could not independently verify 5 application page(s); retained as unverified.
 
 ## [Sales Analyst](https://himalayas.app/companies/fortive/jobs/sales-analyst)
@@ -48,7 +48,7 @@ CSC | Source: Adzuna | India | bengaluru | Fit 57/100 | Activity unverified
 
 Why: role: business operations, data operations, data quality; skills: data quality; location: bengaluru
 
-## [Lead Generation Specialist](https://www.adzuna.in/land/ad/5842123713?se=ZLF2Xfua8RGLXOy3jHjydA&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C)
+## [Lead Generation Specialist](https://www.adzuna.in/land/ad/5842123713?se=KkTE04Ob8RG33K-LVeyx-w&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C)
 
 Coverfox Insurance | Source: Adzuna | Bangalore, Karnataka | bengaluru | Fit 47/100 | Activity unverified
 

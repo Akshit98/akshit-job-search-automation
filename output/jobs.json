@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-18T11:53:08+00:00",
+  "generated_at": "2026-08-19T04:09:57+00:00",
   "count": 8,
   "new_count": 0,
   "source_counts": {
@@ -9,7 +9,7 @@
     "lever": 2
   },
   "errors": [
-    "Removed 7 definitively closed or expired job posting(s).",
+    "Removed 6 definitively closed or expired job posting(s).",
     "Could not independently verify 5 application page(s); retained as unverified."
   ],
   "jobs": [
@@ -159,7 +159,7 @@
       "location": "Bangalore, Karnataka",
       "workplace": "",
       "description": "About the Role You will play a critical role in driving business growth by identifying, engaging, and qualifying potential clients across sectors such as Insurance, Fintech, NBFC, and InsurTech. You will be responsible for generating leads through strategic outreach methods, nurturing relationships with key decision-makers. Your ability to combine market research with client understanding will be key in scheduling high-quality meetings and demos that move opportunities forward in the sales funn…",
-      "url": "https://www.adzuna.in/land/ad/5842123713?se=ZLF2Xfua8RGLXOy3jHjydA&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C",
+      "url": "https://www.adzuna.in/land/ad/5842123713?se=KkTE04Ob8RG33K-LVeyx-w&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C",
       "employment_type": "",
       "compensation": "",
       "published_at": "2026-08-15T00:27:16Z",
