@@ -1,16 +1,16 @@
 # Latest matching jobs
 
-Generated: 2026-08-19T04:09:57+00:00
-Matches: 8 (0 NEW)
+Generated: 2026-08-19T11:51:45+00:00
+Matches: 9 (0 NEW)
 
 ## Source coverage
 
-Adzuna: 3 | Himalayas: 2 | Remotive: 1 | lever: 2
+Adzuna: 3 | Himalayas: 3 | Remotive: 1 | lever: 2
 
 ## Run notes
 
 - Removed 6 definitively closed or expired job posting(s).
-- Could not independently verify 5 application page(s); retained as unverified.
+- Could not independently verify 6 application page(s); retained as unverified.
 
 ## [Sales Analyst](https://himalayas.app/companies/fortive/jobs/sales-analyst)
 
@@ -23,6 +23,12 @@ Why: role: business operations, sales operations, data quality; skills: salesfor
 cprime | Source: lever | Hyderabad, India | remote_india | Fit 55/100 | Verified active
 
 Why: role: data quality, salesforce operations; skills: salesforce, data quality; location: remote_india
+
+## [Lead Analyst - Operations](https://himalayas.app/companies/wns-global-services/jobs/lead-analyst-operations)
+
+WNS Global Services | Source: Himalayas | India | remote_india | Fit 55/100 | Activity unverified
+
+Why: role: sales operations; skills: excel, sales navigator, reporting, automation, healthcare; location: remote_india
 
 ## [Analyst Technical Operations-2](https://himalayas.app/companies/empower-com/jobs/analyst-technical-operations-2)
 
@@ -48,7 +54,7 @@ CSC | Source: Adzuna | India | bengaluru | Fit 57/100 | Activity unverified
 
 Why: role: business operations, data operations, data quality; skills: data quality; location: bengaluru
 
-## [Lead Generation Specialist](https://www.adzuna.in/land/ad/5842123713?se=KkTE04Ob8RG33K-LVeyx-w&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C)
+## [Lead Generation Specialist](https://www.adzuna.in/land/ad/5842123713?se=PKLqVsSb8RGBBemgB9CsRA&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C)
 
 Coverfox Insurance | Source: Adzuna | Bangalore, Karnataka | bengaluru | Fit 47/100 | Activity unverified
 
