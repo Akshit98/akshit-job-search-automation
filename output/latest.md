@@ -1,11 +1,11 @@
 # Latest matching jobs
 
-Generated: 2026-08-20T04:09:43+00:00
-Matches: 9 (0 NEW)
+Generated: 2026-08-20T11:54:15+00:00
+Matches: 8 (0 NEW)
 
 ## Source coverage
 
-Adzuna: 3 | Himalayas: 3 | Remotive: 1 | lever: 2
+Adzuna: 3 | Himalayas: 2 | Remotive: 1 | lever: 2
 
 ## Run notes
 
@@ -24,12 +24,6 @@ cprime | Source: lever | Hyderabad, India | remote_india | Fit 55/100 | Verified
 
 Why: role: data quality, salesforce operations; skills: salesforce, data quality; location: remote_india
 
-## [Lead Analyst - Operations](https://himalayas.app/companies/wns-global-services/jobs/lead-analyst-operations)
-
-WNS Global Services | Source: Himalayas | India | remote_india | Fit 55/100 | Activity unverified
-
-Why: role: sales operations; skills: excel, sales navigator, reporting, automation, healthcare; location: remote_india
-
 ## [Analyst Technical Operations-2](https://himalayas.app/companies/empower-com/jobs/analyst-technical-operations-2)
 
 Empower | Source: Himalayas | India | remote_india | Fit 45/100 | Activity unverified
@@ -38,7 +32,7 @@ Why: role: operations analyst; skills: excel, sql, automation; location: remote_
 
 ## [Market Research Executive](https://jobs.lever.co/Sprinto/f191e1f6-cfd3-476f-a43f-943ed52348cf)
 
-Sprinto | Source: lever | Bengaluru | remote_india | Fit 45/100 | Verified active
+Sprinto | Source: lever | Bengaluru | remote_india | Fit 45/100 | Activity unverified
 
 Why: role: market research; skills: crm, market research, automation; location: remote_india
 
@@ -54,7 +48,7 @@ CSC | Source: Adzuna | India | bengaluru | Fit 57/100 | Activity unverified
 
 Why: role: business operations, data operations, data quality; skills: data quality; location: bengaluru
 
-## [Lead Generation Specialist](https://www.adzuna.in/land/ad/5842123713?se=4pmO9Uyc8RGQor-L2zKR7A&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C)
+## [Lead Generation Specialist](https://www.adzuna.in/land/ad/5842123713?se=5IRE2o2c8RGwBe63zKMEtw&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C)
 
 Coverfox Insurance | Source: Adzuna | Bangalore, Karnataka | bengaluru | Fit 47/100 | Activity unverified
 

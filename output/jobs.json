@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-20T04:09:43+00:00",
-  "count": 9,
+  "generated_at": "2026-08-20T11:54:15+00:00",
+  "count": 8,
   "new_count": 0,
   "source_counts": {
     "Adzuna": 3,
-    "Himalayas": 3,
+    "Himalayas": 2,
     "Remotive": 1,
     "lever": 2
   },
@@ -60,29 +60,6 @@
       "active_status": "active"
     },
     {
-      "id": "himalayas:https://himalayas.app/companies/wns-global-services/jobs/lead-analyst-operations",
-      "source": "Himalayas",
-      "company": "WNS Global Services",
-      "title": "Lead Analyst - Operations",
-      "location": "India",
-      "workplace": "Remote",
-      "description": "Key Responsibilities: 1. Tool & Software Management • Oversee GTM tools, ensuring optimal configuration, integrations, performance, and ongoing enhancements. • Provide training, troubleshooting support, and best practice guidance for tool adoption and utilization. • Conduct regular audits and collaborate cross-functionally to improve tool functionality and efficiency. 2. Tools & Applications Oversight Manage and optimize the following key platforms: • Mindtickle – Own backend management, upload content, create certification templates, conduct audits, maintain vendor relationships, and oversee tool expansions. • Gong – Support implementation, analysis, and enablement for revenue teams. • LinkedIn Sales Navigator, LeadiQ, Loopio, Lusha, Outreach – Ensure seamless integration and utilization for sales and GTM teams. 3. Stakeholder Enablement • Align GTM tools with broader sales and revenue strategies to enhance efficiency and effectiveness. o Develop training materials, documentation, and onboarding programs for tool adoption. o Gather and incorporate stakeholder feedback for continuous improvement. 4. Data & Insights Management • Maintain data accuracy and integrity across GTM tools. • Develop reports and dashboards that provide actionable insights to sales, revenue, and enablement teams. • Leverage analytics to optimize tool usage and decision-making. 5. Security & Compliance • Enforce data security measures and access controls across GTM tools. • Conduct regular security audits and ensure compliance with company policies and industry regulations. Qualifications: • 3+ years of experience in revenue enablement, sales operations, or GTM tool management. • Strong proficiency with Mindtickle o Experience with data analytics, dashboard creation, and reporting tools. o Ability to drive process improvements and automation initiatives. o Excellent stakeholder management, communication, and training skills. • Strong analytical mindset with a focus on optimizing sales and enablement outcomes. WNS, part of Capgemini, is an Agentic AI-powered leader in intelligent operations and transformation, serving more than 700 clients across 10 industries, including Banking and Financial Services, Healthcare, Insurance, Shipping and Logistics, and Travel and Hospitality. We bring together deep domain excellence – WNS’ core differentiator – with AI-powered platforms and analytics to help businesses innovate, scale, adapt and build resilience in a world defined by disruption.Our purpose is clear: to enable lasting business value by designing intelligent, human-led solutions that deliver sustainable outcomes and a differentiated impact. With three global headquarters across four continents, operations in 13 countries, 65 delivery centers and more than 66,000 employees, WNS combines scale, expertise and execution to create meaningful, measurable impact. Originally posted on Himalayas",
-      "url": "https://himalayas.app/companies/wns-global-services/jobs/lead-analyst-operations",
-      "employment_type": "Full Time",
-      "compensation": "",
-      "published_at": "1786891526",
-      "location_tier": "remote_india",
-      "score": 55,
-      "score_reasons": [
-        "role: sales operations",
-        "skills: excel, sales navigator, reporting, automation, healthcare",
-        "location: remote_india"
-      ],
-      "monthly_inr": null,
-      "is_new": false,
-      "active_status": "unverified"
-    },
-    {
       "id": "himalayas:https://himalayas.app/companies/empower-com/jobs/analyst-technical-operations-2",
       "source": "Himalayas",
       "company": "Empower",
@@ -126,7 +103,7 @@
       ],
       "monthly_inr": null,
       "is_new": false,
-      "active_status": "active"
+      "active_status": "unverified"
     },
     {
       "id": "remotive:1680495",
@@ -182,7 +159,7 @@
       "location": "Bangalore, Karnataka",
       "workplace": "",
       "description": "About the Role You will play a critical role in driving business growth by identifying, engaging, and qualifying potential clients across sectors such as Insurance, Fintech, NBFC, and InsurTech. You will be responsible for generating leads through strategic outreach methods, nurturing relationships with key decision-makers. Your ability to combine market research with client understanding will be key in scheduling high-quality meetings and demos that move opportunities forward in the sales funn…",
-      "url": "https://www.adzuna.in/land/ad/5842123713?se=4pmO9Uyc8RGQor-L2zKR7A&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C",
+      "url": "https://www.adzuna.in/land/ad/5842123713?se=5IRE2o2c8RGwBe63zKMEtw&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C",
       "employment_type": "",
       "compensation": "",
       "published_at": "2026-08-15T00:27:16Z",
