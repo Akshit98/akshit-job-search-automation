@@ -1,6 +1,6 @@
 # Latest matching jobs
 
-Generated: 2026-08-19T11:51:45+00:00
+Generated: 2026-08-20T04:09:43+00:00
 Matches: 9 (0 NEW)
 
 ## Source coverage
@@ -54,7 +54,7 @@ CSC | Source: Adzuna | India | bengaluru | Fit 57/100 | Activity unverified
 
 Why: role: business operations, data operations, data quality; skills: data quality; location: bengaluru
 
-## [Lead Generation Specialist](https://www.adzuna.in/land/ad/5842123713?se=PKLqVsSb8RGBBemgB9CsRA&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C)
+## [Lead Generation Specialist](https://www.adzuna.in/land/ad/5842123713?se=4pmO9Uyc8RGQor-L2zKR7A&utm_medium=api&utm_source=86a70844&v=5207CC6EA3CBA662456F1F258A511CF9D2E0399C)
 
 Coverfox Insurance | Source: Adzuna | Bangalore, Karnataka | bengaluru | Fit 47/100 | Activity unverified
 
