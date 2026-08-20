@@ -44,12 +44,16 @@ def run(new_only: bool = False) -> int:
     accepted = sort_jobs(accepted, profile["location_priority"])
     accepted, closed_count, unverified_count = retain_active_jobs(
         accepted,
-        maximum_age_days=int(profile.get("maximum_listing_age_days", 30)),
+        maximum_age_days=int(profile.get("maximum_listing_age_days", 0)),
+        require_verified_active=bool(profile.get("require_verified_active", False)),
     )
     if closed_count:
         errors.append(f"Removed {closed_count} definitively closed or expired job posting(s).")
     if unverified_count:
-        errors.append(f"Could not independently verify {unverified_count} application page(s); retained as unverified.")
+        if profile.get("require_verified_active", False):
+            errors.append(f"Excluded {unverified_count} application page(s) because active hiring could not be verified.")
+        else:
+            errors.append(f"Could not independently verify {unverified_count} application page(s); retained as unverified.")
     write_reports(accepted, errors, ROOT / "output")
     seen.update(job.id for job in accepted)
     seen.update(f"fp:{job_fingerprint(job)}" for job in accepted)

@@ -11,17 +11,34 @@ from .sources import USER_AGENT
 
 
 CLOSED_MARKERS = (
+    "job removed",
+    "job not found",
     "applications are now closed",
     "applications have closed",
+    "applications closed",
     "no longer accepting applications",
     "job is no longer available",
     "job is no longer active",
+    "this position is no longer available",
+    "this role is no longer available",
+    "the job you are looking for is no longer available",
     "this job has expired",
     "job posting has expired",
     "position has been filled",
     "role has been filled",
     "vacancy is closed",
     "posting has been removed",
+)
+
+ACTIVE_MARKERS = (
+    "apply now",
+    "apply for this job",
+    "apply for this role",
+    "apply to this job",
+    "submit application",
+    "submit your application",
+    "application form",
+    "start application",
 )
 
 
@@ -34,7 +51,9 @@ def classify_active_response(status_code: int, body: str) -> str:
     text = clean_text(body).lower()
     if any(marker in text for marker in CLOSED_MARKERS):
         return "closed"
-    return "active"
+    if any(marker in text for marker in ACTIVE_MARKERS):
+        return "active"
+    return "unverified"
 
 
 def redirected_to_listing_index(original_url: str, final_url: str) -> bool:
@@ -87,6 +106,10 @@ def published_datetime(value: str) -> datetime | None:
 
 
 def is_stale(job: Job, maximum_age_days: int, now: datetime | None = None) -> bool:
+    # Zero disables age-based exclusion. Older vacancies remain eligible when
+    # their application page still confirms that applications are open.
+    if maximum_age_days <= 0:
+        return False
     published = published_datetime(job.published_at)
     if not published:
         return False
@@ -94,8 +117,13 @@ def is_stale(job: Job, maximum_age_days: int, now: datetime | None = None) -> bo
     return published < current - timedelta(days=maximum_age_days)
 
 
-def retain_active_jobs(jobs: list[Job], workers: int = 8, maximum_age_days: int = 30) -> tuple[list[Job], int, int]:
-    """Remove only definitively closed jobs; retain inconclusive checks."""
+def retain_active_jobs(
+    jobs: list[Job],
+    workers: int = 8,
+    maximum_age_days: int = 0,
+    require_verified_active: bool = False,
+) -> tuple[list[Job], int, int]:
+    """Live-check jobs and optionally retain only verified-open vacancies."""
     if not jobs:
         return [], 0, 0
     recent = []
@@ -114,7 +142,10 @@ def retain_active_jobs(jobs: list[Job], workers: int = 8, maximum_age_days: int 
                 job.active_status = future.result()
             except Exception:
                 job.active_status = "unverified"
-    active = [job for job in recent if job.active_status != "closed"]
-    closed_count = len(stale) + len(recent) - len(active)
-    unverified_count = sum(job.active_status == "unverified" for job in active)
+    unverified_count = sum(job.active_status == "unverified" for job in recent)
+    if require_verified_active:
+        active = [job for job in recent if job.active_status == "active"]
+    else:
+        active = [job for job in recent if job.active_status != "closed"]
+    closed_count = len(stale) + sum(job.active_status == "closed" for job in recent)
     return active, closed_count, unverified_count
