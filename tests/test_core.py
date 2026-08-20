@@ -1,11 +1,21 @@
 import unittest
 
-from job_search.core import Job, evaluate, job_fingerprint, location_tier, monthly_compensation_inr
+from job_search.core import (
+    Job,
+    annual_compensation_inr,
+    contains_term,
+    evaluate,
+    job_fingerprint,
+    location_tier,
+    minimum_required_experience_years,
+    monthly_compensation_inr,
+)
 
 
 PROFILE = {
     "minimum_fit_score": 45,
     "internship_min_monthly_inr": 40000,
+    "maximum_required_experience_years": 5,
     "role_terms": ["sales operations", "data quality", "market research"],
     "skills": ["salesforce", "crm", "excel", "research"],
     "excluded_titles": ["director"],
@@ -42,6 +52,18 @@ class PayTests(unittest.TestCase):
     def test_annual_rupees(self):
         self.assertEqual(monthly_compensation_inr("INR 6 lakh per year"), 50000)
 
+    def test_annual_range_uses_lower_bound(self):
+        self.assertEqual(
+            annual_compensation_inr("₹ 9.5-10 Lacs P.A."),
+            950000,
+        )
+
+    def test_monthly_salary_converts_to_annual(self):
+        self.assertEqual(
+            annual_compensation_inr("From ₹1,43,600 a month"),
+            1723200,
+        )
+
     def test_missing_pay_is_unknown(self):
         self.assertIsNone(monthly_compensation_inr("Competitive stipend"))
 
@@ -60,6 +82,27 @@ class FitTests(unittest.TestCase):
 
     def test_contract_rejected(self):
         self.assertIsNone(evaluate(job(employment_type="Contract"), PROFILE))
+
+    def test_full_time_contract_onboarding_work_is_not_misread_as_contract_job(self):
+        candidate = job(
+            employment_type="Full-time",
+            description="Salesforce CRM data quality, Excel research, and contract onboarding support",
+        )
+        self.assertIsNotNone(evaluate(candidate, PROFILE))
+
+    def test_role_requiring_more_than_five_years_is_rejected(self):
+        candidate = job(description="Requires 6+ years of experience in sales operations")
+        self.assertIsNone(evaluate(candidate, PROFILE))
+
+    def test_extracts_minimum_from_experience_range(self):
+        self.assertEqual(
+            minimum_required_experience_years("Candidates need 3-5 years of experience."),
+            3,
+        )
+
+    def test_short_acronym_gap_does_not_match_inside_normal_word(self):
+        self.assertFalse(contains_term("investigate operational situations", "uat"))
+        self.assertTrue(contains_term("support UAT execution", "uat"))
 
     def test_director_title_rejected(self):
         self.assertIsNone(evaluate(job(title="Director of Sales Operations"), PROFILE))

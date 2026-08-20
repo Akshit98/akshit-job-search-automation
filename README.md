@@ -13,13 +13,31 @@ A transparent, human-in-the-loop job finder tailored to Akshit Didla's resume. I
 
 Location-restricted remote roles outside India are excluded. The tool never applies automatically.
 
+## Candidate basis
+
+The profile uses Akshit's verified non-overlapping experience through April 2026: approximately 3 years and 2 months across data verification, market research, CRM data maintenance, sales support, and lead generation. The strongest evidence is:
+
+- 5,000+ U.S. healthcare-provider records verified against official licensing sources
+- duplicate resolution, record merging, missing-data research, and QA review of 100-200 record batches
+- Salesforce account cleanup/enrichment, company and executive research, meeting preparation, follow-up coordination, and reporting
+- U.S.-focused team support and comfort with evening/night shifts
+- professional use of Excel, Google Sheets, Apollo.io, ZoomInfo, SalesIntel, LinkedIn Sales Navigator, and 6sense
+
+HubSpot is treated as supporting experience. SQL, Power BI, Python, Microsoft 365, and AI automation are learning areas, not established professional expertise.
+
 ## Target roles
 
-- CRM / Salesforce operations and data quality
-- Business, sales, revenue, and research operations
-- Market research and research analyst
-- Lead generation and data operations
-- Healthcare/provider data verification and quality assurance
+- Primary: Data Operations, Data Quality, Reference/Master Data, CRM Operations, Sales Operations, Business Operations, Operations Analyst/Associate, Market/Research Operations, provider data/credentialing, reporting, and Professional Services Operations
+- Adjacent: Revenue/GTM/Commercial/Customer/Partner Operations, Sales Enablement, Salesforce support, Data Governance, Business Systems/Process Analyst, Content/Onboarding Operations, MIS/BI reporting, Operations Coordinator/Specialist, and research-led lead generation
+- Pure finance, accounting, actuarial, software-engineering, product-management, quota-carrying sales, and heavily technical data roles are excluded unless the transferable fit is unusually strong
+
+The preferred experience band is 0-4 years. Roles requiring exactly 5 years may be retained as stretches; roles requiring more than 5 years are rejected.
+
+## Compensation quality
+
+Employer-confirmed pay strengthens ranking. The working lower-bound targets are 6.5 LPA for remote India, 8 LPA for global remote, 7 LPA for Hyderabad, and 8 LPA for Bengaluru or other Indian cities. The corresponding targets are 8, 12, 8, 10, and 9 LPA. Because many employers do not publish pay, an otherwise strong job is retained with **Pay not disclosed** rather than silently discarded. Platform estimates never count as employer-confirmed compensation.
+
+Listings from the past 7 days receive a freshness preference, but age is never a reason for rejection. Older vacancies remain eligible with no fixed age cutoff. Every shortlisted application page must show a live application signal and must not contain closed, expired, filled, or removed language before the job is reported.
 
 ## Quick start
 
@@ -33,7 +51,7 @@ python -m job_search run
 
 Reports are written to `output/latest.md`, `output/jobs.csv`, and `output/jobs.json`. Every run shows all currently active matches and labels first-seen jobs `NEW`. Previously seen IDs are retained in `data/seen_jobs.json`.
 
-Before writing reports, the collector checks each shortlisted application page. HTTP 404/410 responses and explicit closed, expired, filled, or no-longer-accepting messages are removed. Listings older than 30 days are also removed as stale. Pages that block automated checks are retained but clearly labeled `Activity unverified` rather than being presented as confirmed active.
+Before writing reports, the collector checks each shortlisted application page. HTTP 404/410 responses and explicit closed, expired, filled, removed, or no-longer-accepting messages are removed. A page must also contain a recognizable application action, such as **Apply now** or **Submit application**. Blocked or inconclusive pages are excluded from active results. There is no maximum posting age as long as hiring is verified active.
 
 ## Sources
 
