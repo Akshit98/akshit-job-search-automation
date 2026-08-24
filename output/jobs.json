@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-08-21T11:53:51+00:00",
+  "generated_at": "2026-08-24T04:23:28+00:00",
   "count": 0,
   "new_count": 0,
   "source_counts": {},
   "errors": [
-    "Excluded 14 application page(s) because active hiring could not be verified."
+    "Excluded 13 application page(s) because active hiring could not be verified."
   ],
   "jobs": []
 }
