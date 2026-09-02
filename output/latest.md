@@ -1,8 +1,8 @@
 # Latest matching jobs
 
-Generated: 2026-09-01T15:31:40+00:00
+Generated: 2026-09-02T08:05:59+00:00
 Matches: 0 (0 NEW)
 
 ## Run notes
 
-- Excluded 11 application page(s) because active hiring could not be verified.
+- Excluded 13 application page(s) because active hiring could not be verified.
