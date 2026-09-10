@@ -1,10 +1,38 @@
 {
-  "generated_at": "2026-09-09T15:14:49+00:00",
-  "count": 0,
-  "new_count": 0,
-  "source_counts": {},
+  "generated_at": "2026-09-10T08:21:35+00:00",
+  "count": 1,
+  "new_count": 1,
+  "source_counts": {
+    "Remote OK": 1
+  },
   "errors": [
-    "Excluded 12 application page(s) because active hiring could not be verified."
+    "Excluded 11 application page(s) because active hiring could not be verified."
   ],
-  "jobs": []
+  "jobs": [
+    {
+      "id": "remoteok:1136216",
+      "source": "Remote OK",
+      "company": "GROW10X",
+      "title": "Market Research",
+      "location": "Chennai, Chennai, Tamil Nadu, India",
+      "workplace": "Remote",
+      "description": "Company Description GROW10X is a leading full-service agency specializing in helping B2B SaaS technology companies accelerate revenue growth through outbound lead generation. Utilizing a combination of cutting-edge technology, expert strategies, on-demand data, and a globally distributed team, GROW10X is dedicated to delivering measurable sales outcomes for clients. With a focus on direct outreach methods such as cold calling and one-on-one cold email marketing, the team works as an integrated extension of clients' sales operations. By providing comprehensive support from prospect identification to pipeline growth, GROW10X ensures scalable and efficient sales enablement. Role Description You will be finding contacts and sending emails. Qualifications Strong expertise in LinkedIn research Proficient in using Analytical Skills to interpret complex data and provide actionable insights Experience in conducting Quantitative Research and presenting data-driven recommendations Excellent verbal and written Communication skills Proficiency in the use of tools and platforms for data collection and analysis is a plus Ability to work independently and collaboratively in a remote, fast-paced environment Bachelor's degree in Business, Marketing, Data Science, or a related field preferred Prior experience in B2B SaaS or sales enablement is an advantage Please mention the word **AMBITIOUS** and tag RNTcuMTUxLjEyOS4zOQ== when applying to show you read the job post completely (#RNTcuMTUxLjEyOS4zOQ==). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
+      "url": "https://remoteOK.com/remote-jobs/remote-market-research-grow10x-1136216",
+      "employment_type": "Full-time",
+      "compensation": "",
+      "published_at": "2026-08-04T07:13:53+00:00",
+      "location_tier": "remote_india",
+      "score": 63,
+      "score_reasons": [
+        "primary role: sales operations, market research",
+        "proven skills: market research, lead generation",
+        "location: remote_india"
+      ],
+      "monthly_inr": null,
+      "annual_inr": null,
+      "minimum_experience_years": null,
+      "is_new": true,
+      "active_status": "active"
+    }
+  ]
 }
