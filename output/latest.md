@@ -1,6 +1,6 @@
 # Latest matching jobs
 
-Generated: 2026-09-14T09:13:11+00:00
+Generated: 2026-09-14T17:01:29+00:00
 Matches: 1 (0 NEW)
 
 ## Source coverage
@@ -9,7 +9,8 @@ Remote OK: 1
 
 ## Run notes
 
-- Excluded 10 application page(s) because active hiring could not be verified.
+- adzuna/optional: HTTP Error 503: Service Temporarily Unavailable
+- Excluded 3 application page(s) because active hiring could not be verified.
 
 ## [Market Research](https://remoteOK.com/remote-jobs/remote-market-research-grow10x-1136216)
 
