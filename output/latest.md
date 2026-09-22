@@ -1,6 +1,6 @@
 # Latest matching jobs
 
-Generated: 2026-09-21T17:09:15+00:00
+Generated: 2026-09-22T08:46:39+00:00
 Matches: 1 (0 NEW)
 
 ## Source coverage
@@ -9,7 +9,7 @@ Remote OK: 1
 
 ## Run notes
 
-- Excluded 10 application page(s) because active hiring could not be verified.
+- Excluded 11 application page(s) because active hiring could not be verified.
 
 ## [Market Research](https://remoteOK.com/remote-jobs/remote-market-research-grow10x-1136216)
 
