@@ -1,38 +1,39 @@
 {
-  "generated_at": "2026-10-01T10:24:32+00:00",
+  "generated_at": "2026-10-01T16:47:07+00:00",
   "count": 1,
-  "new_count": 0,
+  "new_count": 1,
   "source_counts": {
-    "Remote OK": 1
+    "Adzuna": 1
   },
   "errors": [
-    "Excluded 21 application page(s) because active hiring could not be verified."
+    "Could not independently verify 1 application page(s); retained as unverified."
   ],
   "jobs": [
     {
-      "id": "remoteok:1136216",
-      "source": "Remote OK",
-      "company": "GROW10X",
-      "title": "Market Research",
-      "location": "Chennai, Chennai, Tamil Nadu, India",
-      "workplace": "Remote",
-      "description": "Company Description GROW10X is a leading full-service agency specializing in helping B2B SaaS technology companies accelerate revenue growth through outbound lead generation. Utilizing a combination of cutting-edge technology, expert strategies, on-demand data, and a globally distributed team, GROW10X is dedicated to delivering measurable sales outcomes for clients. With a focus on direct outreach methods such as cold calling and one-on-one cold email marketing, the team works as an integrated extension of clients' sales operations. By providing comprehensive support from prospect identification to pipeline growth, GROW10X ensures scalable and efficient sales enablement. Role Description You will be finding contacts and sending emails. Qualifications Strong expertise in LinkedIn research Proficient in using Analytical Skills to interpret complex data and provide actionable insights Experience in conducting Quantitative Research and presenting data-driven recommendations Excellent verbal and written Communication skills Proficiency in the use of tools and platforms for data collection and analysis is a plus Ability to work independently and collaboratively in a remote, fast-paced environment Bachelor's degree in Business, Marketing, Data Science, or a related field preferred Prior experience in B2B SaaS or sales enablement is an advantage Please mention the word **AMBITIOUS** and tag RMjAuODMuMTU5LjIy when applying to show you read the job post completely (#RMjAuODMuMTU5LjIy). This is a beta feature to avoid spam applicants. Companies can search these words to find applicants that read this and see they're human.",
-      "url": "https://remoteOK.com/remote-jobs/remote-market-research-grow10x-1136216",
-      "employment_type": "Full-time",
-      "compensation": "",
-      "published_at": "2026-08-04T07:13:53+00:00",
-      "location_tier": "remote_india",
-      "score": 63,
+      "id": "adzuna:5901872355",
+      "source": "Adzuna",
+      "company": "Acme Services Private Limited",
+      "title": "Data Quality Control",
+      "location": "Bazargate, Mumbai",
+      "workplace": "",
+      "description": "Job Description: Manage Data Quality Governance and ensure accuracy, completeness, consistency, and integrity of financial and regulatory reporting data. Design and execute data quality controls and conduct data integrity assessments. Identify, investigate, and resolve data quality issues through root-cause analysis and remediation tracking. Perform data validation and reconciliations to ensure reliable reporting data. Collaborate with Finance, Risk, Technology, and Regulatory Reporting stakeho…",
+      "url": "https://www.adzuna.in/details/5901872355?utm_medium=api&utm_source=86a70844",
+      "employment_type": "",
+      "compensation": "INR 1500000-3000000 per year",
+      "published_at": "2026-09-28T23:54:17Z",
+      "location_tier": "other_india",
+      "score": 69,
       "score_reasons": [
-        "primary role: sales operations, market research",
-        "proven skills: market research, lead generation",
-        "location: remote_india"
+        "primary role: data quality, data integrity, data validation",
+        "proven skills: data quality, data validation, reporting",
+        "advertised lower-bound pay: INR 1,500,000/year",
+        "location: other_india"
       ],
       "monthly_inr": null,
-      "annual_inr": null,
+      "annual_inr": 1500000,
       "minimum_experience_years": null,
-      "is_new": false,
-      "active_status": "active"
+      "is_new": true,
+      "active_status": "unverified"
     }
   ]
 }

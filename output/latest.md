@@ -1,18 +1,18 @@
 # Latest matching jobs
 
-Generated: 2026-10-01T10:24:32+00:00
-Matches: 1 (0 NEW)
+Generated: 2026-10-01T16:47:07+00:00
+Matches: 1 (1 NEW)
 
 ## Source coverage
 
-Remote OK: 1
+Adzuna: 1
 
 ## Run notes
 
-- Excluded 21 application page(s) because active hiring could not be verified.
+- Could not independently verify 1 application page(s); retained as unverified.
 
-## [Market Research](https://remoteOK.com/remote-jobs/remote-market-research-grow10x-1136216)
+## NEW - [Data Quality Control](https://www.adzuna.in/details/5901872355?utm_medium=api&utm_source=86a70844)
 
-GROW10X | Source: Remote OK | Chennai, Chennai, Tamil Nadu, India | remote_india | Fit 63/100 | Verified active | Pay not disclosed
+Acme Services Private Limited | Source: Adzuna | Bazargate, Mumbai | other_india | Fit 69/100 | Activity unverified | INR 1500000-3000000 per year
 
-Why: primary role: sales operations, market research; proven skills: market research, lead generation; location: remote_india
+Why: primary role: data quality, data integrity, data validation; proven skills: data quality, data validation, reporting; advertised lower-bound pay: INR 1,500,000/year; location: other_india
