@@ -20,8 +20,47 @@ FIELDS = [
     "screening_queue", "hard_excluded", "evidence_quality", "domain_compatibility",
     "domain_conflicts", "exclusion_signals", "seniority_assessment", "title_relevance",
     "skill_overlap",
+    "canonical_employer", "ats_board_id", "source_type", "source_priority",
+    "original_source_url", "canonical_url", "description_provenance",
+    "description_retrieval_status", "description_retrieved_at", "source_quality_confidence",
     "url", "source", "published_at",
 ]
+
+
+PUBLIC_DIAGNOSTIC_REASONS = {
+    "successful": "",
+    "zero_results": "",
+    "disabled": "disabled by configuration",
+    "missing_credential": "required credentials unavailable",
+    "timeout": "request timed out",
+    "http_failure": "network request failed",
+    "malformed_response": "response was not valid JSON",
+    "schema_parser_error": "response schema was incompatible",
+}
+
+
+def _public_diagnostics(items: list[dict] | None) -> list[dict]:
+    public = []
+    for item in items or []:
+        safe = dict(item)
+        status = str(safe.get("status") or "schema_parser_error")
+        reason = PUBLIC_DIAGNOSTIC_REASONS.get(status, "source processing failed")
+        if status == "http_failure" and str(safe.get("reason", "")).startswith("HTTP "):
+            code = str(safe["reason"])[5:8]
+            reason = f"HTTP {code}" if code.isdigit() else "network request failed"
+        safe["reason"] = reason
+        public.append(safe)
+    return public
+
+
+def _public_errors(errors: list[str]) -> list[str]:
+    safe = []
+    for error in errors:
+        if error.startswith("Removed ") or error.startswith("Could not independently verify "):
+            safe.append(error)
+        else:
+            safe.append("A configured source failed; see the categorized source-health entry.")
+    return list(dict.fromkeys(safe))
 
 
 def write_reports(
@@ -30,9 +69,12 @@ def write_reports(
     errors: list[str],
     output_dir: Path,
     suppressed_count: int = 0,
+    source_diagnostics: list[dict] | None = None,
 ) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     all_reported = jobs + needs_verification
+    source_diagnostics = _public_diagnostics(source_diagnostics)
+    errors = _public_errors(errors)
     source_counts = dict(sorted(Counter(job.source for job in all_reported).items()))
     payload = {
         "generated_at": generated_at(),
@@ -42,6 +84,19 @@ def write_reports(
         "suppressed_count": suppressed_count,
         "source_counts": source_counts,
         "errors": errors,
+        "source_diagnostics": source_diagnostics,
+        "source_health": {
+            "attempted": sum(bool(item.get("attempted")) for item in source_diagnostics),
+            "successful": sum(item.get("status") in ("successful", "zero_results") for item in source_diagnostics),
+            "failed": sum(item.get("status") in ("http_failure", "timeout", "malformed_response", "schema_parser_error") for item in source_diagnostics),
+            "missing_credential": sum(item.get("status") == "missing_credential" for item in source_diagnostics),
+            "raw_jobs": sum(int(item.get("jobs_returned", 0)) for item in source_diagnostics),
+            "strong_shortlist": len(jobs),
+            "review_queue": len(needs_verification),
+            "suppressed": suppressed_count,
+            "sufficient_fit_evidence": sum(job.evidence_quality == "sufficient" for job in all_reported),
+            "numerical_hiring_fit": sum(job.actual_hiring_fit_status == "assessed" for job in all_reported),
+        },
         "jobs": [job.to_dict() for job in jobs],
         "needs_verification": [job.to_dict() for job in needs_verification],
         "strong_shortlist": [job.to_dict() for job in jobs],
@@ -67,6 +122,10 @@ def write_reports(
         lines += ["## Source coverage", "", " | ".join(f"{source}: {count}" for source, count in source_counts.items()), ""]
     if errors:
         lines += ["## Run notes", ""] + [f"- {error}" for error in errors] + [""]
+    if source_diagnostics:
+        lines += ["## Source health", ""]
+        lines += [f"- {item.get('source_id')}: {item.get('status')} — {item.get('jobs_returned', 0)} jobs" + (f" ({item.get('reason')})" if item.get('reason') else "") for item in source_diagnostics]
+        lines += [""]
     def append_jobs(title: str, section_jobs: list[Job]) -> None:
         lines.extend([f"## {title}", ""])
         if not section_jobs:

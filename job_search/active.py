@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import json
+import re
 from datetime import datetime, timedelta, timezone
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
@@ -41,6 +43,53 @@ ACTIVE_MARKERS = (
     "start application",
 )
 
+# Lever pages are commonly 700-800 KB because they embed application data near
+# the end of the document. Read the complete response up to a deliberate hard
+# ceiling, and reject oversized pages rather than parsing a misleading prefix.
+MAX_JOB_PAGE_BYTES = 2_000_000
+
+
+def enrich_from_job_page(job: Job, body: str, final_url: str) -> bool:
+    """Use a canonical page's JobPosting JSON-LD when it is fuller than the source excerpt."""
+    job.final_url = final_url
+    job.canonical_url = final_url or job.canonical_url or job.url
+    job.description_retrieval_status = "no_structured_job_description"
+    scripts = re.findall(
+        r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>',
+        body, flags=re.I | re.S,
+    )
+    candidates: list[dict] = []
+    for script in scripts:
+        try:
+            payload = json.loads(script.strip())
+        except json.JSONDecodeError:
+            continue
+        values = payload if isinstance(payload, list) else [payload]
+        for value in values:
+            if isinstance(value, dict) and value.get("@type") == "JobPosting":
+                candidates.append(value)
+            if isinstance(value, dict) and isinstance(value.get("@graph"), list):
+                candidates.extend(item for item in value["@graph"] if isinstance(item, dict) and item.get("@type") == "JobPosting")
+    descriptions = [clean_text(item.get("description")) for item in candidates]
+    fullest = max(descriptions, key=len, default="")
+    if fullest and len(fullest) > len(clean_text(job.description)):
+        job.description = fullest
+        job.description_provenance = "employer_job_page"
+        job.description_retrieval_status = "enriched"
+        job.description_retrieved_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+        organization = next((item.get("hiringOrganization") for item in candidates if item.get("hiringOrganization")), None)
+        if isinstance(organization, dict) and clean_text(organization.get("name")):
+            organization_name = clean_text(organization.get("name"))
+            provider_self_attribution = (
+                job.source_type == "aggregator"
+                and organization_name.casefold() == clean_text(job.source).casefold()
+            )
+            if not provider_self_attribution:
+                job.canonical_employer = organization_name
+                job.company = organization_name
+        return True
+    return False
+
 
 def classify_active_response(status_code: int, body: str) -> str:
     """Return active, closed, or unverified from an application-page response."""
@@ -80,7 +129,14 @@ def check_job_active(job: Job, timeout: int = 12) -> str:
     )
     try:
         with urlopen(request, timeout=timeout) as response:
-            body = response.read(300_000).decode("utf-8", errors="ignore")
+            payload = response.read(MAX_JOB_PAGE_BYTES + 1)
+            if len(payload) > MAX_JOB_PAGE_BYTES:
+                job.final_url = response.geturl()
+                job.canonical_url = response.geturl() or job.canonical_url or job.url
+                job.description_retrieval_status = "page_too_large"
+                return "unverified"
+            body = payload.decode("utf-8", errors="ignore")
+            enrich_from_job_page(job, body, response.geturl())
             if redirected_to_listing_index(job.url, response.geturl()):
                 return "closed"
             return classify_active_response(response.getcode(), body)

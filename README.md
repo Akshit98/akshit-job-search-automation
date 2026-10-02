@@ -79,6 +79,8 @@ Application status, notes, and personal history stay in the ignored private loca
 
 Gmail alert links are intentionally never written to this public repository because some contain personalized authentication or tracking tokens.
 
+Source definitions and career-target queries are centralized in `config/sources.json`. Direct employer ATS boards carry canonical employer names and higher source priority than public boards and aggregators. Every collected job records its source type, board identifier where applicable, description provenance, canonical URL, and retrieval status. When duplicate listings are found, the direct employer version wins; a fuller employer description may replace a thin aggregator excerpt. Per-source health distinguishes successful, disabled, missing-credential, zero-result, HTTP, timeout, malformed-response, and schema/parser outcomes.
+
 ### Optional GitHub secrets
 
 Add these under **Settings > Secrets and variables > Actions**:

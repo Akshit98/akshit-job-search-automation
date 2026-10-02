@@ -81,6 +81,16 @@ class Job:
     evidence_quality: str = "insufficient"
     title_relevance: list[str] | None = None
     skill_overlap: list[str] | None = None
+    canonical_employer: str = ""
+    ats_board_id: str = ""
+    source_type: str = "unknown"
+    source_priority: int = 0
+    original_source_url: str = ""
+    canonical_url: str = ""
+    description_provenance: str = "source_payload"
+    description_retrieval_status: str = "not_attempted"
+    description_retrieved_at: str = ""
+    source_quality_confidence: str = "unknown"
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

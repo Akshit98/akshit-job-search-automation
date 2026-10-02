@@ -8,6 +8,14 @@ from job_search.report import write_reports
 
 
 class ReportTests(unittest.TestCase):
+    def test_public_reports_do_not_repeat_unsanitized_diagnostic_text(self):
+        sentinel = "SENTINEL_SECRET_VALUE"
+        diagnostics = [{"source_id":"example","status":"http_failure","attempted":True,"jobs_returned":0,"reason":f"https://example.test/?token={sentinel}"}]
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            write_reports([], [], [f"request failed: {sentinel}"], output, source_diagnostics=diagnostics)
+            combined = (output / "latest.md").read_text(encoding="utf-8") + (output / "jobs.json").read_text(encoding="utf-8")
+        self.assertNotIn(sentinel, combined)
     def test_assessed_fit_is_shown_with_raw_score_cap_and_categories(self):
         assessed = Job(
             "fit-1", "test", "Example", "Data Operations Analyst", "India", "Remote",

@@ -1,19 +1,61 @@
 import unittest
+from pathlib import Path
 from datetime import datetime, timezone
 from unittest.mock import patch
 
 from job_search.active import (
+    MAX_JOB_PAGE_BYTES,
+    check_job_active,
     apply_freshness,
     classify_active_response,
     is_stale,
     published_datetime,
     redirected_to_listing_index,
     retain_active_jobs,
+    enrich_from_job_page,
 )
 from job_search.core import Job
 
 
 class ActiveStatusTests(unittest.TestCase):
+    def test_full_employer_jd_replaces_thin_aggregator_excerpt(self):
+        html = (Path(__file__).parent / "fixtures" / "job_page.html").read_text(encoding="utf-8")
+        job = Job("1", "Adzuna", "Example", "Analyst", "India", "", "Thin excerpt", "https://example.test", source_type="aggregator", description_provenance="aggregator_excerpt")
+        self.assertTrue(enrich_from_job_page(job, html, "https://employer.test/job"))
+        self.assertIn("CRM data maintenance", job.description)
+        self.assertEqual(job.description_provenance, "employer_job_page")
+        self.assertEqual(job.final_url, "https://employer.test/job")
+
+    def test_aggregator_jsonld_does_not_replace_employer_with_provider(self):
+        html = '<script type="application/ld+json">{"@type":"JobPosting","description":"A much fuller responsibilities and requirements section for this operations role.","hiringOrganization":{"name":"Jobgether"}}</script>'
+        job = Job("1", "Jobgether", "Undisclosed employer", "Operations Analyst", "India", "Remote", "Thin excerpt", "https://example.test", source_type="aggregator", canonical_employer="Undisclosed employer")
+        self.assertTrue(enrich_from_job_page(job, html, "https://example.test"))
+        self.assertEqual(job.company, "Undisclosed employer")
+        self.assertEqual(job.canonical_employer, "Undisclosed employer")
+
+    @patch("job_search.active.urlopen")
+    def test_jsonld_after_300kb_is_still_read(self, mock_urlopen):
+        prefix = "x" * 350_000
+        html = prefix + '<script type="application/ld+json">{"@type":"JobPosting","description":"Responsibilities: maintain CRM records. Requirements: Salesforce experience and operational reporting."}</script><a>Apply now</a>'
+        response = mock_urlopen.return_value.__enter__.return_value
+        response.read.return_value = html.encode("utf-8")
+        response.geturl.return_value = "https://example.test/job"
+        response.getcode.return_value = 200
+        job = Job("late", "test", "Example", "CRM Operations", "India", "", "Thin text", "https://example.test/job")
+        self.assertEqual(check_job_active(job), "active")
+        self.assertEqual(job.description_retrieval_status, "enriched")
+        self.assertIn("Salesforce experience", job.description)
+        response.read.assert_called_once_with(MAX_JOB_PAGE_BYTES + 1)
+
+    @patch("job_search.active.urlopen")
+    def test_oversized_page_is_explicitly_unverified(self, mock_urlopen):
+        response = mock_urlopen.return_value.__enter__.return_value
+        response.read.return_value = b"x" * (MAX_JOB_PAGE_BYTES + 1)
+        response.geturl.return_value = "https://example.test/job"
+        job = Job("large", "test", "Example", "Operations", "India", "", "Original", "https://example.test/job")
+        self.assertEqual(check_job_active(job), "unverified")
+        self.assertEqual(job.description_retrieval_status, "page_too_large")
+        self.assertEqual(job.description, "Original")
     def test_404_is_closed(self):
         self.assertEqual(classify_active_response(404, ""), "closed")
 
