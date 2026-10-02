@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 from pathlib import Path
 from urllib.request import Request, urlopen
@@ -10,8 +11,21 @@ ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "output" / "jobs.json"
 
 
+def hiring_fit_text(job: dict) -> str:
+    value = job.get("actual_hiring_fit")
+    if isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value) and 0 <= value <= 100:
+        rendered = int(value) if float(value).is_integer() else value
+        return f"Hiring fit: {rendered}/100"
+    if job.get("actual_hiring_fit_status") == "insufficient_evidence":
+        return "Hiring fit: insufficient evidence"
+    return "Hiring fit: not assessed"
+
+
 def build_slack_message(payload: dict) -> str | None:
-    new_jobs = [job for job in payload.get("jobs", []) if job.get("is_new")]
+    new_jobs = [
+        job for job in payload.get("jobs", [])
+        if job.get("is_new") and job.get("active_status") == "active"
+    ]
     source_errors = [
         error for error in payload.get("errors", [])
         if not error.startswith(("Removed ", "Could not independently verify "))
@@ -23,10 +37,10 @@ def build_slack_message(payload: dict) -> str | None:
         title = str(job.get("title") or "Untitled role").replace("<", "").replace(">", "")
         company = str(job.get("company") or "Unknown company").replace("<", "").replace(">", "")
         url = str(job.get("url") or "")
-        score = job.get("score", "?")
+        score = job.get("screening_score", "?")
         tier = str(job.get("location_tier") or "location unclassified")
         label = f"<{url}|{title}>" if url.startswith(("https://", "http://")) else title
-        lines.append(f"• {label} — {company} ({tier}, {score}/100)")
+        lines.append(f"• {label} — {company} ({tier}, screening {score}/100; {hiring_fit_text(job)})")
     if len(new_jobs) > 5:
         lines.append(f"• Plus {len(new_jobs) - 5} more in the GitHub report")
     if source_errors:

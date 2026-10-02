@@ -3,3 +3,5 @@ __pycache__/
 .venv/
 tmp/
 .env
+private/
+application_state.json

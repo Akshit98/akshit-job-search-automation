@@ -1,43 +1,46 @@
 # Akshit Job Search Automation
 
-A transparent, human-in-the-loop job finder tailored to Akshit Didla's resume. It collects public openings from ATS career pages, public job-board feeds, and optional aggregators; filters them using strict employment and location rules; scores resume fit; removes duplicates; and writes Markdown/CSV/JSON reports.
+A transparent, human-in-the-loop job finder tailored to Akshit Didla's verified background. It collects public openings from ATS career pages, public job-board feeds, and optional aggregators; checks eligibility; assigns an automated screening score; removes duplicates; verifies application pages; and writes Markdown/CSV/JSON reports.
 
 ## Search priority
 
-1. Full-time remote roles in India.
-2. Full-time global roles that explicitly allow working from India or anywhere.
-3. Full-time onsite or hybrid roles in Hyderabad.
-4. Full-time onsite or hybrid roles in Bengaluru.
-5. Full-time onsite or hybrid roles elsewhere in India.
-6. Internships in any accepted location only when advertised compensation is explicitly at least INR 40,000 per month (or a supported equivalent).
+Eligible full-time roles across India and global/remote roles that explicitly support hiring in India are accepted. Location is primarily an eligibility check, not a hiring-fit bonus. When otherwise comparable roles have the same screening score and freshness, remote roles and Hyderabad are preferred as tie-breakers; Bengaluru and other Indian locations are not downgraded in the score.
+
+Remote internships require explicitly advertised compensation of at least INR 40,000 per month. Onsite or hybrid internships must pay more than INR 40,000 per month. The current parser recognizes INR compensation only.
 
 Location-restricted remote roles outside India are excluded. The tool never applies automatically.
 
 ## Candidate basis
 
-The profile uses Akshit's verified non-overlapping experience through April 2026: approximately 3 years and 2 months across data verification, market research, CRM data maintenance, sales support, and lead generation. The strongest evidence is:
+The profile uses Akshit's verified background through April 2026: approximately 39 months from the recorded non-overlapping dates, with 42 months retained separately as the user's reported presentation total. Relevant work covers data verification, market research, CRM data maintenance, sales support, and lead generation. The strongest evidence is:
 
 - 5,000+ U.S. healthcare-provider records verified against official licensing sources
 - duplicate resolution, record merging, missing-data research, and QA review of 100-200 record batches
-- Salesforce account cleanup/enrichment, company and executive research, meeting preparation, follow-up coordination, and reporting
+- Salesforce and HubSpot use for CRM data maintenance and support, not administration or systems ownership
+- basic operational Excel/Google Sheets reporting and dataset work, not advanced Excel
 - U.S.-focused team support and comfort with evening/night shifts
 - professional use of Excel, Google Sheets, Apollo.io, ZoomInfo, SalesIntel, LinkedIn Sales Navigator, and 6sense
 
-HubSpot is treated as supporting experience. SQL, Power BI, Python, Microsoft 365, and AI automation are learning areas, not established professional expertise.
+SQL, Python, Power BI, Microsoft 365, and AI automation are learning areas, not established professional proficiency. The profile does not claim RevOps ownership, forecasting, billing, quota administration, automation ownership, SaaS metrics experience, advanced HubSpot ownership, or professional software/data engineering.
 
 ## Target roles
 
-- Primary: Data Operations, Data Quality, Reference/Master Data, CRM Operations, Sales Operations, Business Operations, Operations Analyst/Associate, Market/Research Operations, provider data/credentialing, reporting, and Professional Services Operations
-- Adjacent: Revenue/GTM/Commercial/Customer/Partner Operations, Sales Enablement, Salesforce support, Data Governance, Business Systems/Process Analyst, Content/Onboarding Operations, MIS/BI reporting, Operations Coordinator/Specialist, and research-led lead generation
-- Pure finance, accounting, actuarial, software-engineering, product-management, quota-carrying sales, and heavily technical data roles are excluded unless the transferable fit is unusually strong
+- Primary: Business Operations, Operations Analyst/Associate, GTM Operations, operational Sales Operations, CRM Operations/CRM Data, Data Quality/Data Operations, Market/Business Research, Research Operations, Implementation/Product Operations, Customer/Partner Operations, and junior non-coding AI workflow/process operations
+- Excluded or strongly penalized: cold calling, SDR/BDR, outbound prospecting, meeting-setting, quota-carrying sales, recruiter-style outbound work, finance/accounting-heavy RevOps, software/data engineering, and roles where advanced SQL, Python, Power BI, Excel, forecasting, billing, quota administration, or advanced HubSpot ownership is mandatory
 
 The preferred experience band is 0-4 years. Roles requiring exactly 5 years may be retained as stretches; roles requiring more than 5 years are rejected.
 
 ## Compensation quality
 
-Employer-confirmed pay strengthens ranking. The working lower-bound targets are 6.5 LPA for remote India, 8 LPA for global remote, 7 LPA for Hyderabad, and 8 LPA for Bengaluru or other Indian cities. The corresponding targets are 8, 12, 8, 10, and 9 LPA. Because many employers do not publish pay, an otherwise strong job is retained with **Pay not disclosed** rather than silently discarded. Platform estimates never count as employer-confirmed compensation.
+The primary full-time target is INR 10 LPA or a realistic equivalent. Unpublished compensation does not reject an otherwise strong role. Employer-posted compensation below the target is visibly labelled and lowers the screening score. Aggregator estimates are shown as estimates but do not affect the score. Career value is a separate human-review signal and never offsets weak compensation or changes Actual Hiring Fit.
 
-Listings from the past 7 days receive a freshness preference, but age is never a reason for rejection. Older vacancies remain eligible with no fixed age cutoff. Every shortlisted application page must show a live application signal and must not contain closed, expired, filled, or removed language before the job is reported.
+Listings are labelled fresh (up to 7 days), recent (8-30 days), older, or unknown. Freshness affects ordering after screening score; an older vacancy remains eligible when it is officially active. Verified-active jobs scoring at least 45 can enter the **Strong shortlist** only when no exclusion applies and evidence is not insufficient. Jobs scoring 30–44, and higher-scoring jobs that remain unverified or evidence-thin, enter the **Review queue**. Jobs below 30 or carrying hard-exclusion signals are suppressed. Confirmed closed roles are removed.
+
+## Scores and assessment status
+
+`screening_score` remains an automated prioritization signal based on title/function relevance, verified candidate-skill overlap, domain compatibility, seniority, evidence quality, experience, and compensation. Exclusion rules operate separately and always override the score. It does not determine Actual Hiring Fit.
+
+Actual Hiring Fit is assessed separately from structured, provenance-bearing evidence in `config/evidence.json`. The six explicit categories are direct responsibilities (35), tools/domain (25), years/seniority/leadership (15), transferable evidence (15), education/certifications (5), and practical requirements (5). Requirement extraction retains unmatched and unclassified material requirements, and category credit reflects breadth and centrality rather than a small recognized keyword subset. Reports retain requirement-coverage confidence, the raw sum, every applicable mandatory-gap cap, and the final capped score. When coverage or source evidence is insufficient, Actual Hiring Fit remains null. ATS/Resume Similarity is weighted requirement coverage and remains separate from Actual Hiring Fit and career value.
 
 ## Quick start
 
@@ -49,9 +52,23 @@ Listings from the past 7 days receive a freshness preference, but age is never a
 python -m job_search run
 ```
 
+Use `python -m job_search run --dry-run` to collect and print a diagnostic without changing tracked reports or `data/seen_jobs.json`.
+
+Private application status is stored locally and is never loaded by scheduled report generation. Update it with:
+
+```powershell
+python -m job_search status JOB_ID applied --note "Submitted directly"
+```
+
+Supported states are `new`, `reviewed`, `saved`, `applied`, `interview`, `offer`, `rejected`, `closed`, and `not_pursuing`. The default file is ignored at `private/application_state.json`; set `JOB_SEARCH_PRIVATE_STATE` to use a different private path. `config/application-state.example.json` documents the public schema without personal data. Public suppression/fingerprints and private status history intentionally remain separate layers.
+
 Reports are written to `output/latest.md`, `output/jobs.csv`, and `output/jobs.json`. Every run shows all currently active matches and labels first-seen jobs `NEW`. Previously seen IDs are retained in `data/seen_jobs.json`.
 
-Before writing reports, the collector checks each shortlisted application page. HTTP 404/410 responses and explicit closed, expired, filled, removed, or no-longer-accepting messages are removed. A page must also contain a recognizable application action, such as **Apply now** or **Submit application**. Blocked or inconclusive pages are excluded from active results. There is no maximum posting age as long as hiring is verified active.
+Before writing reports, the collector checks each non-suppressed application page. HTTP 404/410 responses and explicit closed, expired, filled, removed, or no-longer-accepting messages are removed. Pages with a recognizable application action, such as **Apply now** or **Submit application**, may enter the strong shortlist when the score, evidence, and exclusion rules also allow it. Blocked, inconclusive, or evidence-thin pages remain in the review queue.
+
+## Application-state privacy
+
+Application status, notes, and personal history stay in the ignored private local state. Scheduled public automation does not read this file, and public reports and Slack notifications do not include it. The existing non-sensitive seen-ID/fingerprint layer remains the only repository-visible suppression mechanism; broader disposition-aware public suppression is deliberately deferred.
 
 ## Sources
 
@@ -61,6 +78,8 @@ Before writing reports, the collector checks each shortlisted application page. 
 - Private companion automation: Gmail alerts from LinkedIn, Naukri, Indeed, Foundit, Glassdoor, Wellfound, and Instahyre
 
 Gmail alert links are intentionally never written to this public repository because some contain personalized authentication or tracking tokens.
+
+Source definitions and career-target queries are centralized in `config/sources.json`. Direct employer ATS boards carry canonical employer names and higher source priority than public boards and aggregators. Every collected job records its source type, board identifier where applicable, description provenance, canonical URL, and retrieval status. When duplicate listings are found, the direct employer version wins; a fuller employer description may replace a thin aggregator excerpt. Per-source health distinguishes successful, disabled, missing-credential, zero-result, HTTP, timeout, malformed-response, and schema/parser outcomes.
 
 ### Optional GitHub secrets
 

@@ -21,16 +21,35 @@ on:
     - cron: "30 11 * * 1-5"
 
 permissions:
-  contents: write
-
-concurrency:
-  group: job-search-${{ github.event_name }}-${{ github.ref }}
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  search:
+  validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Validate public configuration
+        run: |
+          python -c "import json,pathlib; from job_search.evidence import load_evidence; from job_search.sources import validate_source_config; root=pathlib.Path('.'); validate_source_config(json.loads((root/'config/sources.json').read_text())); load_evidence(root/'config/evidence.json'); print('Configuration valid')"
+      - name: Compile Python
+        run: python -m compileall -q job_search tests
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+
+  search:
+    if: github.event_name != 'pull_request'
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    concurrency:
+      group: job-search-report-writer-${{ github.repository }}
+      cancel-in-progress: false
     env:
       PYTHONUNBUFFERED: "1"
     steps:
@@ -40,19 +59,16 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-      - name: Run tests
-        run: python -m unittest discover -s tests -v
-      - name: Find new jobs
+      - name: Find jobs
         id: search
-        if: github.event_name != 'pull_request'
         env:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
           JOOBLE_API_KEY: ${{ secrets.JOOBLE_API_KEY }}
           THEMUSE_API_KEY: ${{ secrets.THEMUSE_API_KEY }}
         run: python -m job_search run
-      - name: Add report to workflow summary
-        if: always() && github.event_name != 'pull_request'
+      - name: Add health and report summary
+        if: always()
         shell: bash
         env:
           SEARCH_OUTCOME: ${{ steps.search.outcome }}
@@ -61,21 +77,34 @@ jobs:
             cat output/latest.md >> "$GITHUB_STEP_SUMMARY"
           else
             echo "## Job search failed" >> "$GITHUB_STEP_SUMMARY"
-            echo "The previous good report was preserved. Inspect the source errors in the job log." >> "$GITHUB_STEP_SUMMARY"
+            echo "The previous good report was preserved. Inspect source-health diagnostics in the job log." >> "$GITHUB_STEP_SUMMARY"
           fi
       - name: Notify Slack when configured
-        if: success() && github.event_name != 'pull_request'
+        if: success()
         continue-on-error: true
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: python -m job_search.notify
-      - name: Commit reports
-        if: success() && github.event_name != 'pull_request'
+      - name: Commit reports safely
+        if: success()
+        shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add output data/seen_jobs.json
-          git diff --cached --quiet || git commit -m "chore: update job matches"
-          git pull --rebase origin main
-          git push
+          git add -- output/latest.md output/jobs.json output/jobs.csv data/seen_jobs.json
+          if git diff --cached --quiet; then
+            echo "No public report changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update job matches"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push raced with a main update; retrying ($attempt/3)."
+          done
+          echo "Unable to write reports after three attempts." >&2
+          exit 1

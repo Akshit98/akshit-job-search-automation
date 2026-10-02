@@ -1,12 +1,26 @@
 {
-  "greenhouse": ["remotecom"],
-  "lever": ["Sprinto", "cprime", "jumpcloud", "jobgether"],
-  "ashby": ["deel"],
-  "remoteok": ["public"],
-  "remotive": ["public"],
-  "arbeitnow": ["public"],
-  "himalayas": ["public"],
-  "themuse": ["public"],
-  "adzuna": ["optional"],
-  "jooble": ["optional"]
+  "schema_version": 2,
+  "queries": {
+    "career_targets": [
+      "business operations", "operations analyst", "data operations", "data quality",
+      "crm operations", "sales operations", "gtm operations", "market research",
+      "research operations", "implementation operations", "customer operations",
+      "partner operations", "ai operations"
+    ]
+  },
+  "sources": [
+    {"id":"greenhouse/remote","type":"greenhouse","enabled":true,"employer_name":"Remote","board_id":"remotecom","source_type":"direct_employer","source_priority":100,"expected_location_coverage":"global remote","compensation_provenance":"employer_posted"},
+    {"id":"lever/sprinto","type":"lever","enabled":true,"employer_name":"Sprinto","board_id":"Sprinto","source_type":"direct_employer","source_priority":100,"expected_location_coverage":"India and remote","compensation_provenance":"employer_posted"},
+    {"id":"lever/cprime","type":"lever","enabled":true,"employer_name":"Cprime","board_id":"cprime","source_type":"direct_employer","source_priority":100,"expected_location_coverage":"global","compensation_provenance":"employer_posted"},
+    {"id":"lever/jumpcloud","type":"lever","enabled":true,"employer_name":"JumpCloud","board_id":"jumpcloud","source_type":"direct_employer","source_priority":100,"expected_location_coverage":"India and global remote","compensation_provenance":"employer_posted"},
+    {"id":"lever/jobgether","type":"lever","enabled":true,"provider_name":"Jobgether","board_id":"jobgether","source_type":"aggregator","source_priority":25,"expected_location_coverage":"global","compensation_provenance":"aggregator_estimate"},
+    {"id":"ashby/deel","type":"ashby","enabled":true,"employer_name":"Deel","board_id":"deel","source_type":"direct_employer","source_priority":100,"expected_location_coverage":"global remote","compensation_provenance":"employer_posted"},
+    {"id":"remoteok/public","type":"remoteok","enabled":true,"source_type":"job_board","source_priority":50,"expected_location_coverage":"global remote","compensation_provenance":"source_reported"},
+    {"id":"remotive/public","type":"remotive","enabled":true,"source_type":"job_board","source_priority":50,"expected_location_coverage":"global remote","compensation_provenance":"source_reported"},
+    {"id":"arbeitnow/public","type":"arbeitnow","enabled":true,"source_type":"job_board","source_priority":45,"expected_location_coverage":"global","compensation_provenance":"not_available"},
+    {"id":"himalayas/public","type":"himalayas","enabled":true,"source_type":"job_board","source_priority":55,"query_group":"career_targets","expected_location_coverage":"global remote with restrictions","compensation_provenance":"source_reported"},
+    {"id":"themuse/public","type":"themuse","enabled":true,"source_type":"job_board","source_priority":55,"expected_location_coverage":"global","compensation_provenance":"not_available"},
+    {"id":"adzuna/india","type":"adzuna","enabled":true,"source_type":"aggregator","source_priority":20,"query_group":"career_targets","required_env":["ADZUNA_APP_ID","ADZUNA_APP_KEY"],"expected_location_coverage":"India","compensation_provenance":"aggregator_estimate"},
+    {"id":"jooble/india","type":"jooble","enabled":true,"source_type":"aggregator","source_priority":20,"query_group":"career_targets","required_env":["JOOBLE_API_KEY"],"expected_location_coverage":"India","compensation_provenance":"aggregator_estimate"}
+  ]
 }
