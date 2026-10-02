@@ -13,6 +13,8 @@ FIELDS = [
     "employment_type", "compensation", "monthly_inr", "annual_inr",
     "minimum_experience_years", "location_tier", "screening_score",
     "ats_similarity", "actual_hiring_fit", "actual_hiring_fit_status",
+    "actual_hiring_fit_raw", "actual_hiring_fit_cap", "actual_hiring_fit_cap_reasons",
+    "fit_category_scores", "requirement_coverage_confidence", "unclassified_material_requirements",
     "career_value", "compensation_assessment", "active_status",
     "verification_reason", "verified_at", "listing_age_days", "freshness",
     "screening_queue", "hard_excluded", "evidence_quality", "domain_compatibility",
@@ -58,7 +60,7 @@ def write_reports(
         f"Review queue: {len(needs_verification)}",
         f"Suppressed: {suppressed_count}",
         "",
-        "Actual Hiring Fit is not assessed in Phase 1. Screening scores are automated prioritization signals, not hiring-fit ratings.",
+        "Screening scores are automated prioritization signals. Actual Hiring Fit is a separate evidence-based assessment and is shown only when the job description contains sufficient detail.",
         "",
     ]
     if source_counts:
@@ -88,6 +90,32 @@ def write_reports(
             reasons = "; ".join(job.screening_reasons or [])
             marker = "NEW - " if job.is_new else ""
             age = f" | {job.freshness} ({job.listing_age_days} days old)" if job.listing_age_days is not None else " | age unknown"
+            if job.actual_hiring_fit_status == "assessed":
+                cap_text = (
+                    f"; capped at {job.actual_hiring_fit_cap}"
+                    if job.actual_hiring_fit_cap is not None else ""
+                )
+                fit_line = f"Actual Hiring Fit: {job.actual_hiring_fit}/100 (raw {job.actual_hiring_fit_raw}{cap_text})"
+                categories = "; ".join(
+                    f"{name}: {score}" for name, score in (job.fit_category_scores or {}).items()
+                )
+                cap_reasons = "; ".join(job.actual_hiring_fit_cap_reasons or []) or "none"
+                fit_details = [
+                    fit_line,
+                    f"Requirement coverage confidence: {job.requirement_coverage_confidence:.0%}" if job.requirement_coverage_confidence is not None else "Requirement coverage confidence: unknown",
+                    f"Fit categories: {categories}",
+                    f"Mandatory-gap caps: {cap_reasons}",
+                ]
+            else:
+                coverage = (
+                    f"; requirement coverage {job.requirement_coverage_confidence:.0%}"
+                    if job.requirement_coverage_confidence is not None else ""
+                )
+                fit_details = [f"Actual Hiring Fit: Not assessed (insufficient reliable job-description evidence{coverage})"]
+            ats_line = (
+                f"ATS/Resume Similarity: {job.ats_similarity}/100"
+                if job.ats_similarity is not None else "ATS/Resume Similarity: Not assessed"
+            )
             lines.extend([
                 f"### {marker}[{job.title}]({job.url})",
                 "",
@@ -95,7 +123,8 @@ def write_reports(
                 "",
                 f"Why: {reasons}",
                 "",
-                "Actual Hiring Fit: Not assessed",
+                *fit_details,
+                ats_line,
                 "",
             ])
 

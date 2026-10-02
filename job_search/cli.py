@@ -6,8 +6,11 @@ from pathlib import Path
 
 from .active import retain_active_jobs
 from .core import assign_screening_queue, evaluate, job_fingerprint, sort_jobs
+from .evidence import load_evidence
+from .fit import assess_job_fit
 from .report import write_reports
 from .sources import collect
+from .tracking import ALLOWED_STATES, TrackingStore, resolve_private_state_path
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,6 +22,7 @@ def load_json(path: Path):
 
 def run(new_only: bool = False, dry_run: bool = False) -> int:
     profile = load_json(ROOT / "config" / "profile.json")
+    evidence = load_evidence(ROOT / "config" / "evidence.json")
     sources = load_json(ROOT / "config" / "sources.json")
     seen_path = ROOT / "data" / "seen_jobs.json"
     seen = set(load_json(seen_path)) if seen_path.exists() else set()
@@ -55,6 +59,7 @@ def run(new_only: bool = False, dry_run: bool = False) -> int:
     )
     for job in retained:
         assign_screening_queue(job, profile)
+        assess_job_fit(job, evidence)
     location_preference = profile.get("location_preference", profile.get("location_priority", []))
     strong_shortlist = sort_jobs(
         [job for job in retained if job.screening_queue == "strong_shortlist"],
@@ -80,7 +85,14 @@ def run(new_only: bool = False, dry_run: bool = False) -> int:
             for job in jobs[:limit]:
                 age = f", {job.freshness}" + (f"/{job.listing_age_days}d" if job.listing_age_days is not None else "")
                 pay = f", {job.compensation_assessment}"
-                print(f"- {job.title} — {job.company} | screening {job.screening_score}/100 | {job.location_tier}{age}{pay} | {job.active_status}, evidence {job.evidence_quality} | Actual Hiring Fit: not assessed")
+                fit = (
+                    f"{job.actual_hiring_fit}/100 (raw {job.actual_hiring_fit_raw}"
+                    + (f", cap {job.actual_hiring_fit_cap}" if job.actual_hiring_fit_cap is not None else "")
+                    + ")"
+                    if job.actual_hiring_fit_status == "assessed"
+                    else "not assessed: insufficient evidence"
+                )
+                print(f"- {job.title} — {job.company} | screening {job.screening_score}/100 | {job.location_tier}{age}{pay} | {job.active_status}, evidence {job.evidence_quality} | Actual Hiring Fit: {fit} | ATS similarity: {job.ats_similarity}/100")
     else:
         write_reports(strong_shortlist, review_queue, errors, ROOT / "output", suppressed_count=suppressed_count)
         seen.update(job.id for job in all_reported)
@@ -97,5 +109,14 @@ def main(argv: list[str] | None = None) -> int:
     run_parser = sub.add_parser("run", help="collect, filter, score, and report jobs")
     run_parser.add_argument("--new-only", action="store_true", help="report only jobs not seen in an earlier run")
     run_parser.add_argument("--dry-run", action="store_true", help="collect and print a diagnostic without changing reports or seen state")
+    status_parser = sub.add_parser("status", help="update private local application state")
+    status_parser.add_argument("job_id", help="stable job ID or fingerprint")
+    status_parser.add_argument("state", choices=sorted(ALLOWED_STATES))
+    status_parser.add_argument("--note", help="private note stored only in the local tracking file")
     args = parser.parse_args(argv)
+    if args.command == "status":
+        store = TrackingStore(resolve_private_state_path(ROOT), ROOT)
+        record = store.set_status(args.job_id, args.state, args.note)
+        print(f"Saved private status for {args.job_id}: {record['state']}")
+        return 0
     return run(args.new_only, args.dry_run)

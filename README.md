@@ -38,9 +38,9 @@ Listings are labelled fresh (up to 7 days), recent (8-30 days), older, or unknow
 
 ## Scores and assessment status
 
-`screening_score` is an automated prioritization signal based on title/function relevance, verified candidate-skill overlap, domain compatibility, seniority, evidence quality, experience, and compensation. Exclusion rules operate separately and always override the score. It is not Actual Hiring Fit. ATS similarity and Actual Hiring Fit remain unassessed in Phase 1. They are stored as null/not-assessed and must not be inferred from the screening score.
+`screening_score` remains an automated prioritization signal based on title/function relevance, verified candidate-skill overlap, domain compatibility, seniority, evidence quality, experience, and compensation. Exclusion rules operate separately and always override the score. It does not determine Actual Hiring Fit.
 
-Actual Hiring Fit will be added only through the separately tested evidence-based Phase 2 engine, including the approved mandatory-gap caps.
+Actual Hiring Fit is assessed separately from structured, provenance-bearing evidence in `config/evidence.json`. The six explicit categories are direct responsibilities (35), tools/domain (25), years/seniority/leadership (15), transferable evidence (15), education/certifications (5), and practical requirements (5). Requirement extraction retains unmatched and unclassified material requirements, and category credit reflects breadth and centrality rather than a small recognized keyword subset. Reports retain requirement-coverage confidence, the raw sum, every applicable mandatory-gap cap, and the final capped score. When coverage or source evidence is insufficient, Actual Hiring Fit remains null. ATS/Resume Similarity is weighted requirement coverage and remains separate from Actual Hiring Fit and career value.
 
 ## Quick start
 
@@ -54,13 +54,21 @@ python -m job_search run
 
 Use `python -m job_search run --dry-run` to collect and print a diagnostic without changing tracked reports or `data/seen_jobs.json`.
 
+Private application status is stored locally and is never loaded by scheduled report generation. Update it with:
+
+```powershell
+python -m job_search status JOB_ID applied --note "Submitted directly"
+```
+
+Supported states are `new`, `reviewed`, `saved`, `applied`, `interview`, `offer`, `rejected`, `closed`, and `not_pursuing`. The default file is ignored at `private/application_state.json`; set `JOB_SEARCH_PRIVATE_STATE` to use a different private path. `config/application-state.example.json` documents the public schema without personal data. Public suppression/fingerprints and private status history intentionally remain separate layers.
+
 Reports are written to `output/latest.md`, `output/jobs.csv`, and `output/jobs.json`. Every run shows all currently active matches and labels first-seen jobs `NEW`. Previously seen IDs are retained in `data/seen_jobs.json`.
 
 Before writing reports, the collector checks each non-suppressed application page. HTTP 404/410 responses and explicit closed, expired, filled, removed, or no-longer-accepting messages are removed. Pages with a recognizable application action, such as **Apply now** or **Submit application**, may enter the strong shortlist when the score, evidence, and exclusion rules also allow it. Blocked, inconclusive, or evidence-thin pages remain in the review queue.
 
-## Future application-state design
+## Application-state privacy
 
-Private application tracking is intentionally not implemented in Phase 1. The planned design has two layers: a non-sensitive public suppression/fingerprint mechanism that scheduled automation can use to avoid re-recommending dispositioned jobs, and private local state containing the actual status, notes, and personal application history. Private statuses such as applied, rejected, interview, offer, and not-pursuing must never be committed to the public repository or included in public reports or Slack notifications.
+Application status, notes, and personal history stay in the ignored private local state. Scheduled public automation does not read this file, and public reports and Slack notifications do not include it. The existing non-sensitive seen-ID/fingerprint layer remains the only repository-visible suppression mechanism; broader disposition-aware public suppression is deliberately deferred.
 
 ## Sources
 

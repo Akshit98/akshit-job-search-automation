@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "jobs": {
+    "example:job-id": {
+      "state": "reviewed",
+      "updated_at": "2026-10-02T00:00:00+00:00",
+      "history": [
+        {
+          "state": "reviewed",
+          "timestamp": "2026-10-02T00:00:00+00:00"
+        }
+      ]
+    }
+  }
+}

@@ -51,6 +51,13 @@ class Job:
     ats_similarity_status: str = "not_assessed"
     actual_hiring_fit: int | None = None
     actual_hiring_fit_status: str = "not_assessed"
+    actual_hiring_fit_raw: int | None = None
+    actual_hiring_fit_cap: int | None = None
+    actual_hiring_fit_cap_reasons: list[str] | None = None
+    fit_category_scores: dict[str, int] | None = None
+    fit_assessment: dict[str, Any] | None = None
+    requirement_coverage_confidence: float | None = None
+    unclassified_material_requirements: list[str] | None = None
     mandatory_gaps: list[str] | None = None
     material_gaps: list[str] | None = None
     career_value: str = "not_assessed"
@@ -90,6 +97,13 @@ def location_tier(job: Job) -> str | None:
         "europe", "uk", "united kingdom", "canada", "latin america", "latam",
         "australia", "apac"
     ))
+    non_india_only = any(term in blob for term in (
+        "latin america and the philippines", "latam and the philippines", "latam or the philippines",
+        "philippines and latin america", "philippines or latin america", "philippines only",
+        "hiring from latin america", "open only to candidates in latin america",
+    )) and not re.search(r"\bindia\b", advertised)
+    if non_india_only:
+        return None
     if is_remote and is_india:
         return "remote_india"
     if explicitly_foreign and not any(term in advertised for term in GLOBAL_TERMS):
@@ -307,6 +321,9 @@ def outbound_responsibility_signals(job: Job) -> list[str]:
         "meeting setting", "setting meetings", "appointment setting", "quota-carrying",
         "sales quota", "prospect conversion", "convert prospects", "recruiter outreach",
         "candidate sourcing", "contacting candidates", "direct outreach",
+        "cold email campaign", "cold-email campaign", "outbound sequence", "outbound campaign execution",
+        "prospect reply management", "managing prospect replies", "monitoring deliverability",
+        "email deliverability", "inbox provisioning",
     )
     hits = {term for term in outbound_terms if term in text}
     responsibility_cues = (

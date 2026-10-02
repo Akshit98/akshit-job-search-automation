@@ -33,6 +33,15 @@ def job(**kwargs):
 
 
 class LocationTests(unittest.TestCase):
+    def test_remote_role_limited_to_non_india_regions_is_rejected(self):
+        job = Job(
+            "restricted", "test", "Example", "Operations Coordinator",
+            "Worldwide", "Remote",
+            "This remote role is open only to candidates in Latin America and the Philippines.",
+            "https://example.test/restricted",
+        )
+        self.assertIsNone(location_tier(job))
+
     def test_remote_india_first(self):
         self.assertEqual(location_tier(job()), "remote_india")
 
@@ -113,6 +122,18 @@ class PayTests(unittest.TestCase):
 
 
 class FitTests(unittest.TestCase):
+    def test_sales_operations_title_with_central_outbound_campaigns_is_excluded(self):
+        candidate = job(
+            title="Sales Operations Coordinator",
+            description=(
+                "Responsibilities include sourcing 1,000 prospects weekly, executing cold-email campaigns, "
+                "building outbound sequences, managing prospect replies, and monitoring deliverability."
+            ),
+        )
+        result = evaluate(candidate, PROFILE)
+        self.assertIsNotNone(result)
+        self.assertIn("outbound_sales", result.exclusion_signals)
+
     def test_matching_full_time_role_accepted(self):
         self.assertIsNotNone(evaluate(job(), PROFILE))
 
