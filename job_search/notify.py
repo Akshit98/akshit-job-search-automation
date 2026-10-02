@@ -11,7 +11,10 @@ REPORT = ROOT / "output" / "jobs.json"
 
 
 def build_slack_message(payload: dict) -> str | None:
-    new_jobs = [job for job in payload.get("jobs", []) if job.get("is_new")]
+    new_jobs = [
+        job for job in payload.get("jobs", [])
+        if job.get("is_new") and job.get("active_status") == "active"
+    ]
     source_errors = [
         error for error in payload.get("errors", [])
         if not error.startswith(("Removed ", "Could not independently verify "))
@@ -23,10 +26,10 @@ def build_slack_message(payload: dict) -> str | None:
         title = str(job.get("title") or "Untitled role").replace("<", "").replace(">", "")
         company = str(job.get("company") or "Unknown company").replace("<", "").replace(">", "")
         url = str(job.get("url") or "")
-        score = job.get("score", "?")
+        score = job.get("screening_score", "?")
         tier = str(job.get("location_tier") or "location unclassified")
         label = f"<{url}|{title}>" if url.startswith(("https://", "http://")) else title
-        lines.append(f"• {label} — {company} ({tier}, {score}/100)")
+        lines.append(f"• {label} — {company} ({tier}, screening {score}/100; hiring fit not assessed)")
     if len(new_jobs) > 5:
         lines.append(f"• Plus {len(new_jobs) - 5} more in the GitHub report")
     if source_errors:

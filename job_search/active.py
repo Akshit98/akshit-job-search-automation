@@ -117,11 +117,33 @@ def is_stale(job: Job, maximum_age_days: int, now: datetime | None = None) -> bo
     return published < current - timedelta(days=maximum_age_days)
 
 
+def apply_freshness(
+    job: Job,
+    preferred_age_days: int = 7,
+    now: datetime | None = None,
+) -> None:
+    """Label age for ranking without rejecting an older vacancy."""
+    published = published_datetime(job.published_at)
+    if not published:
+        job.listing_age_days = None
+        job.freshness = "unknown"
+        return
+    current = now or datetime.now(timezone.utc)
+    job.listing_age_days = max(0, (current - published).days)
+    if job.listing_age_days <= preferred_age_days:
+        job.freshness = "fresh"
+    elif job.listing_age_days <= 30:
+        job.freshness = "recent"
+    else:
+        job.freshness = "older"
+
+
 def retain_active_jobs(
     jobs: list[Job],
     workers: int = 8,
     maximum_age_days: int = 0,
     require_verified_active: bool = False,
+    preferred_age_days: int = 7,
 ) -> tuple[list[Job], int, int]:
     """Live-check jobs and optionally retain only verified-open vacancies."""
     if not jobs:
@@ -129,8 +151,11 @@ def retain_active_jobs(
     recent = []
     stale = []
     for job in jobs:
+        apply_freshness(job, preferred_age_days=preferred_age_days)
         if is_stale(job, maximum_age_days):
             job.active_status = "closed"
+            job.verification_reason = "posting_age_exceeded_configured_maximum"
+            job.verified_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
             stale.append(job)
         else:
             recent.append(job)
@@ -142,6 +167,12 @@ def retain_active_jobs(
                 job.active_status = future.result()
             except Exception:
                 job.active_status = "unverified"
+            job.verification_reason = {
+                "active": "application_signal_found",
+                "closed": "closed_signal_or_http_status",
+                "unverified": "active_hiring_not_confirmed",
+            }[job.active_status]
+            job.verified_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
     unverified_count = sum(job.active_status == "unverified" for job in recent)
     if require_verified_active:
         active = [job for job in recent if job.active_status == "active"]

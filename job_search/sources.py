@@ -197,6 +197,7 @@ def adzuna(_: str) -> list[Job]:
                 workplace="Remote" if "remote" in f"{item.get('title')} {item.get('description')}".lower() else "",
                 description=clean_text(item.get("description")), url=item.get("redirect_url", ""),
                 employment_type=clean_text(item.get("contract_type")), compensation=salary,
+                compensation_source="aggregator_estimate",
                 published_at=clean_text(item.get("created")),
             ))
     return jobs
@@ -216,6 +217,7 @@ def jooble(_: str) -> list[Job]:
                 workplace="Remote" if "remote" in f"{item.get('title')} {item.get('location')} {item.get('snippet')}".lower() else "",
                 description=clean_text(item.get("snippet")), url=item.get("link", ""),
                 employment_type=clean_text(item.get("type")), compensation=clean_text(item.get("salary")),
+                compensation_source="aggregator_estimate",
                 published_at=clean_text(item.get("updated")),
             ))
     return jobs

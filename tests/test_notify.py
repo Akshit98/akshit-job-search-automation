@@ -9,7 +9,7 @@ class SlackNotificationTests(unittest.TestCase):
         self.assertIsNone(build_slack_message(payload))
 
     def test_includes_new_job_without_exposing_secrets(self):
-        payload = {"jobs": [{"is_new": True, "title": "Revenue Operations Analyst", "company": "Example", "url": "https://example.test/job/1", "score": 90, "location_tier": "remote_india"}], "errors": []}
+        payload = {"jobs": [{"is_new": True, "title": "Revenue Operations Analyst", "company": "Example", "url": "https://example.test/job/1", "screening_score": 90, "location_tier": "remote_india", "active_status": "active"}], "needs_verification": [], "errors": []}
         message = build_slack_message(payload)
         self.assertIn("Revenue Operations Analyst", message)
         self.assertIn("remote_india", message)

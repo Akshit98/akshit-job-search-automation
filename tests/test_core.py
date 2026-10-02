@@ -2,6 +2,7 @@ import unittest
 
 from job_search.core import (
     Job,
+    assign_screening_queue,
     annual_compensation_inr,
     contains_term,
     evaluate,
@@ -19,6 +20,9 @@ PROFILE = {
     "role_terms": ["sales operations", "data quality", "market research"],
     "skills": ["salesforce", "crm", "excel", "research"],
     "excluded_titles": ["director"],
+    "screening_exclusion_terms": ["cold calling", "sdr", "meeting setting"],
+    "mandatory_advanced_skill_terms": ["advanced sql", "advanced python", "advanced power bi", "advanced excel"],
+    "salary_target_lpa": {"remote_india": 10, "hyderabad": 10, "bengaluru": 10, "other_india": 10},
 }
 
 
@@ -49,6 +53,12 @@ class LocationTests(unittest.TestCase):
 
     def test_does_not_treat_indiana_as_india(self):
         self.assertIsNone(location_tier(job(location="Indiana, United States", workplace="Remote")))
+
+    def test_india_inclusive_apac_role_is_eligible(self):
+        self.assertEqual(
+            location_tier(job(location="Remote - APAC (India eligible)", workplace="Remote")),
+            "remote_india",
+        )
 
 
 class PayTests(unittest.TestCase):
@@ -81,6 +91,26 @@ class PayTests(unittest.TestCase):
         candidate = job(title="Market Research Intern", employment_type="Internship", compensation="INR 40,000 per month")
         self.assertIsNotNone(evaluate(candidate, PROFILE))
 
+    def test_onsite_internship_at_exact_threshold_is_rejected(self):
+        candidate = job(
+            title="Market Research Intern",
+            location="Bengaluru",
+            workplace="On-site",
+            employment_type="Internship",
+            compensation="INR 40,000 per month",
+        )
+        self.assertIsNone(evaluate(candidate, PROFILE))
+
+    def test_onsite_internship_above_threshold_is_accepted(self):
+        candidate = job(
+            title="Market Research Intern",
+            location="Bengaluru",
+            workplace="On-site",
+            employment_type="Internship",
+            compensation="INR 40,001 per month",
+        )
+        self.assertIsNotNone(evaluate(candidate, PROFILE))
+
 
 class FitTests(unittest.TestCase):
     def test_matching_full_time_role_accepted(self):
@@ -111,7 +141,199 @@ class FitTests(unittest.TestCase):
         self.assertTrue(contains_term("support UAT execution", "uat"))
 
     def test_director_title_rejected(self):
-        self.assertIsNone(evaluate(job(title="Director of Sales Operations"), PROFILE))
+        result = evaluate(job(title="Director of Sales Operations"), PROFILE)
+        self.assertEqual(result.screening_queue, "suppressed")
+        self.assertTrue(result.hard_excluded)
+
+    def test_engineering_title_is_rejected_for_non_coding_targets(self):
+        profile = {**PROFILE, "excluded_titles": [*PROFILE["excluded_titles"], "engineer", "developer"]}
+        result = evaluate(job(title="Informatica MDM Senior Engineer"), profile)
+        self.assertEqual(result.screening_queue, "suppressed")
+        self.assertTrue(result.hard_excluded)
+
+    def test_actual_hiring_fit_is_not_assessed_in_phase_one(self):
+        candidate = evaluate(job(), PROFILE)
+        self.assertIsNotNone(candidate)
+        self.assertIsNone(candidate.actual_hiring_fit)
+        self.assertEqual(candidate.actual_hiring_fit_status, "not_assessed")
+
+    def test_score_is_named_screening_score(self):
+        candidate = evaluate(job(), PROFILE)
+        self.assertGreater(candidate.screening_score, 0)
+        self.assertFalse(hasattr(candidate, "score"))
+
+    def test_location_does_not_change_screening_score(self):
+        remote = evaluate(job(location="Remote - India", workplace="Remote"), PROFILE)
+        bengaluru = evaluate(job(location="Bengaluru", workplace="Hybrid"), PROFILE)
+        self.assertEqual(remote.screening_score, bengaluru.screening_score)
+
+    def test_primary_role_can_clear_screen_without_location_bonus(self):
+        profile = {**PROFILE, "minimum_fit_score": 40}
+        candidate = evaluate(job(description="Sales operations using Salesforce and Excel reporting"), profile)
+        self.assertIsNotNone(candidate)
+
+    def test_disclosed_below_target_salary_remains_visible(self):
+        candidate = evaluate(job(compensation="INR 8 lakh per year"), PROFILE)
+        self.assertIsNotNone(candidate)
+        self.assertEqual(candidate.compensation_assessment, "below_target")
+        self.assertIn("below INR 10.0 LPA target", " ".join(candidate.screening_reasons))
+
+    def test_unpublished_salary_is_not_rejected(self):
+        candidate = evaluate(job(compensation=""), PROFILE)
+        self.assertIsNotNone(candidate)
+        self.assertEqual(candidate.compensation_assessment, "not_disclosed")
+
+    def test_aggregator_salary_does_not_increase_screening_score(self):
+        undisclosed = evaluate(job(compensation=""), PROFILE)
+        estimate = evaluate(job(compensation="INR 20 lakh per year", compensation_source="aggregator_estimate"), PROFILE)
+        self.assertEqual(undisclosed.screening_score, estimate.screening_score)
+        self.assertEqual(estimate.compensation_assessment, "estimate_only")
+
+    def test_career_value_does_not_change_screening_score(self):
+        baseline = evaluate(job(), PROFILE)
+        flagged = evaluate(job(career_value="high"), PROFILE)
+        self.assertEqual(baseline.screening_score, flagged.screening_score)
+
+    def test_cold_calling_role_is_rejected(self):
+        candidate = job(description="Salesforce CRM data quality and Excel research plus mandatory cold calling")
+        result = evaluate(candidate, PROFILE)
+        self.assertTrue(result.hard_excluded)
+        self.assertEqual(result.screening_queue, "suppressed")
+
+    def test_market_research_title_with_outbound_responsibilities_is_excluded(self):
+        candidate = job(
+            title="Market Research Analyst",
+            description=(
+                "Responsibilities include outbound lead generation, cold calling prospects, "
+                "cold email outreach, and setting meetings for the sales team."
+            ),
+        )
+        result = evaluate(candidate, PROFILE)
+        self.assertTrue(result.hard_excluded)
+        self.assertIn("outbound_sales", result.exclusion_signals)
+
+    def test_business_development_with_prospecting_is_excluded(self):
+        candidate = job(
+            title="Business Development Executive",
+            description="You will prospect outbound accounts, contact decision makers, and set sales meetings.",
+        )
+        result = evaluate(candidate, PROFILE)
+        self.assertTrue(result.hard_excluded)
+
+    def test_company_sales_team_mention_does_not_exclude_operations_role(self):
+        candidate = job(description="This company has a sales team. The role maintains CRM data quality and Excel reports.")
+        result = evaluate(candidate, PROFILE)
+        self.assertFalse(result.hard_excluded)
+
+    def test_security_operations_is_domain_suppressed(self):
+        result = evaluate(job(title="Security Operations Analyst", description="Monitor cyber threats and security incidents."), PROFILE)
+        self.assertEqual(result.screening_queue, "suppressed")
+        self.assertIn("cybersecurity", result.domain_conflicts)
+
+    def test_thin_security_operations_title_is_still_domain_suppressed(self):
+        result = evaluate(
+            job(
+                source="lever",
+                company="jobgether",
+                title="ICC - Security Operations Analyst - Cyber Defense",
+                description="How Jobgether works: applications are shared with the hiring company.",
+            ),
+            PROFILE,
+        )
+        self.assertEqual(result.screening_queue, "suppressed")
+        self.assertIn("cybersecurity", result.domain_conflicts)
+
+    def test_digital_assets_operations_is_domain_suppressed(self):
+        result = evaluate(job(title="Digital Assets Operations Analyst", description="Cryptocurrency market operations."), PROFILE)
+        self.assertEqual(result.screening_queue, "suppressed")
+        self.assertIn("crypto_digital_assets", result.domain_conflicts)
+
+    def test_finance_ar_bill_to_pay_is_domain_suppressed(self):
+        for title in ("Accounts Receivable Operations Specialist", "Bill to Pay Operations Analyst"):
+            with self.subTest(title=title):
+                result = evaluate(job(title=title, description="Own billing, payment reconciliation, and collections."), PROFILE)
+                self.assertEqual(result.screening_queue, "suppressed")
+                self.assertIn("finance_accounting", result.domain_conflicts)
+
+    def test_people_operations_is_outside_target(self):
+        result = evaluate(job(title="People Operations Coordinator", description="Support HR policies and employee programs."), PROFILE)
+        self.assertIn(result.screening_queue, ("review_queue", "suppressed"))
+        self.assertIn("people_hr", result.domain_conflicts)
+
+    def test_unsupported_leadership_role_is_suppressed(self):
+        result = evaluate(
+            job(title="Lead Data Operations Analyst", description="Lead a team of eight analysts with direct reports and hiring responsibility."),
+            PROFILE,
+        )
+        self.assertEqual(result.screening_queue, "suppressed")
+        self.assertIn("unsupported_people_leadership", result.exclusion_signals)
+
+    def test_senior_title_without_people_leadership_is_penalized_not_automatically_rejected(self):
+        base = evaluate(job(title="Sales Operations Analyst"), PROFILE)
+        senior = evaluate(job(title="Senior Sales Operations Analyst"), PROFILE)
+        self.assertFalse(senior.hard_excluded)
+        self.assertLess(senior.screening_score, base.screening_score)
+
+    def test_thin_aggregator_description_cannot_enter_strong_shortlist(self):
+        candidate = job(
+            source="lever",
+            company="jobgether",
+            title="Data Operations Analyst",
+            description="How Jobgether works: applications are matched and shared with the hiring company.",
+        )
+        result = evaluate(candidate, {**PROFILE, "minimum_fit_score": 0})
+        result.screening_score = 60
+        result.active_status = "active"
+        assign_screening_queue(result)
+        self.assertEqual(result.evidence_quality, "insufficient")
+        self.assertEqual(result.screening_queue, "review_queue")
+
+    def test_sparse_relevant_jd_goes_to_review_queue(self):
+        result = evaluate(job(title="Data Operations Analyst", description="Maintain operational data."), {**PROFILE, "minimum_fit_score": 0})
+        result.screening_score = 42
+        result.active_status = "active"
+        assign_screening_queue(result)
+        self.assertEqual(result.screening_queue, "review_queue")
+
+    def test_verified_45_plus_role_enters_strong_shortlist(self):
+        result = evaluate(job(description="Responsibilities include CRM data quality, Salesforce maintenance, Excel reporting, and documented quality review. Requirements include two years of operations experience."), PROFILE)
+        result.screening_score = 50
+        result.active_status = "active"
+        result.evidence_quality = "sufficient"
+        assign_screening_queue(result)
+        self.assertEqual(result.screening_queue, "strong_shortlist")
+
+    def test_unverified_45_plus_role_goes_to_review_queue(self):
+        result = evaluate(job(), PROFILE)
+        result.screening_score = 50
+        result.active_status = "unverified"
+        result.evidence_quality = "sufficient"
+        assign_screening_queue(result)
+        self.assertEqual(result.screening_queue, "review_queue")
+
+    def test_30_to_44_role_goes_to_review_queue(self):
+        result = evaluate(job(), PROFILE)
+        result.screening_score = 40
+        result.active_status = "active"
+        assign_screening_queue(result)
+        self.assertEqual(result.screening_queue, "review_queue")
+
+    def test_below_30_role_is_suppressed(self):
+        result = evaluate(job(), PROFILE)
+        result.screening_score = 29
+        result.active_status = "active"
+        assign_screening_queue(result)
+        self.assertEqual(result.screening_queue, "suppressed")
+
+    def test_mandatory_advanced_sql_role_is_rejected(self):
+        candidate = job(description="Salesforce operations. Advanced SQL is required for this role.")
+        result = evaluate(candidate, PROFILE)
+        self.assertTrue(result.hard_excluded)
+        self.assertEqual(result.screening_queue, "suppressed")
+
+    def test_preferred_advanced_sql_is_not_treated_as_mandatory(self):
+        candidate = job(description="Salesforce CRM data quality. Advanced SQL is preferred but not required.")
+        self.assertIsNotNone(evaluate(candidate, PROFILE))
 
     def test_cross_source_fingerprint_normalizes_bangalore(self):
         first = job(company="Example, Inc.", location="Bangalore", title="Sales Operations Analyst")

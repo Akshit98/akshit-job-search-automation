@@ -42,15 +42,38 @@ class Job:
     url: str
     employment_type: str = ""
     compensation: str = ""
+    compensation_source: str = "employer_posted"
     published_at: str = ""
     location_tier: str = ""
-    score: int = 0
-    score_reasons: list[str] | None = None
+    screening_score: int = 0
+    screening_reasons: list[str] | None = None
+    ats_similarity: int | None = None
+    ats_similarity_status: str = "not_assessed"
+    actual_hiring_fit: int | None = None
+    actual_hiring_fit_status: str = "not_assessed"
+    mandatory_gaps: list[str] | None = None
+    material_gaps: list[str] | None = None
+    career_value: str = "not_assessed"
+    compensation_assessment: str = "not_disclosed"
     monthly_inr: int | None = None
     annual_inr: int | None = None
     minimum_experience_years: int | None = None
     is_new: bool = False
     active_status: str = "unverified"
+    verification_reason: str = "not_checked"
+    verified_at: str = ""
+    final_url: str = ""
+    listing_age_days: int | None = None
+    freshness: str = "unknown"
+    screening_queue: str = "suppressed"
+    hard_excluded: bool = False
+    exclusion_signals: list[str] | None = None
+    domain_compatibility: str = "unknown"
+    domain_conflicts: list[str] | None = None
+    seniority_assessment: str = "individual_contributor_or_unknown"
+    evidence_quality: str = "insufficient"
+    title_relevance: list[str] | None = None
+    skill_overlap: list[str] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -135,7 +158,7 @@ def minimum_required_experience_years(text: str) -> int | None:
     return min(matches) if matches else None
 
 
-def score_job(job: Job, profile: dict[str, Any]) -> tuple[int, list[str]]:
+def screening_score(job: Job, profile: dict[str, Any]) -> tuple[int, list[str]]:
     title = job.title.lower()
     blob = f"{job.title} {job.description}".lower()
     primary_terms = profile.get("primary_role_terms", profile.get("role_terms", []))
@@ -154,6 +177,8 @@ def score_job(job: Job, profile: dict[str, Any]) -> tuple[int, list[str]]:
     ]
     title_primary_hits = [term for term in primary_terms if contains_term(title, term)]
     title_adjacent_hits = [term for term in adjacent_terms if contains_term(title, term)]
+    job.title_relevance = title_primary_hits or title_adjacent_hits
+    job.skill_overlap = strong_hits + supporting_hits
 
     if title_primary_hits:
         role_score = 34 + min(8, (len(primary_hits) - 1) * 4)
@@ -168,15 +193,10 @@ def score_job(job: Job, profile: dict[str, Any]) -> tuple[int, list[str]]:
     score += min(4, len(learning_hits))
     if any(term in title for term in profile.get("excluded_titles", [])):
         score -= 30
-    if job.location_tier in ("remote_india", "global_work_from_anywhere"):
-        score += 15
-    elif job.location_tier == "hyderabad":
-        score += 12
-    elif job.location_tier == "bengaluru":
-        score += 10
-    else:
-        score += 6
-
+    seniority_penalties = {"senior": 8, "lead": 12, "manager": 18, "director_or_head": 25}
+    score -= seniority_penalties.get(job.seniority_assessment, 0)
+    if job.domain_conflicts:
+        score -= 15
     preferred_years = int(profile.get("preferred_required_experience_years", 4))
     if job.minimum_experience_years is not None:
         if job.minimum_experience_years <= preferred_years:
@@ -184,36 +204,194 @@ def score_job(job: Job, profile: dict[str, Any]) -> tuple[int, list[str]]:
         else:
             score -= 6
 
-    if job.annual_inr is not None:
-        floor = float(profile.get("salary_floor_lpa", {}).get(job.location_tier, 0)) * 100_000
-        target = float(profile.get("salary_target_lpa", {}).get(job.location_tier, 0)) * 100_000
-        if target and job.annual_inr >= target:
+    if job.annual_inr is None:
+        job.compensation_assessment = "not_disclosed"
+    elif job.compensation_source == "aggregator_estimate":
+        job.compensation_assessment = "estimate_only"
+    else:
+        target = float(profile.get("full_time_salary_target_lpa", 10)) * 100_000
+        if job.annual_inr >= target:
+            job.compensation_assessment = "meets_target"
             score += 6
-        elif floor and job.annual_inr >= floor:
-            score += 3
-        elif floor and job.annual_inr < floor:
-            score -= 10
+        else:
+            job.compensation_assessment = "below_target"
+            score -= 8
 
     score -= min(16, len(gap_hits) * 4)
     reasons = []
-    if primary_hits:
-        reasons.append("primary role: " + ", ".join(primary_hits[:3]))
+    if title_primary_hits:
+        reasons.append("title/function relevance: primary — " + ", ".join(title_primary_hits[:3]))
+    elif title_adjacent_hits:
+        reasons.append("title/function relevance: adjacent — " + ", ".join(title_adjacent_hits[:3]))
+    elif primary_hits:
+        reasons.append("description relevance: primary — " + ", ".join(primary_hits[:3]))
     elif adjacent_hits:
-        reasons.append("adjacent role: " + ", ".join(adjacent_hits[:3]))
+        reasons.append("description relevance: adjacent — " + ", ".join(adjacent_hits[:3]))
     if strong_hits:
-        reasons.append("proven skills: " + ", ".join(strong_hits[:6]))
+        reasons.append("verified candidate-skill overlap: " + ", ".join(strong_hits[:6]))
     if supporting_hits:
-        reasons.append("supporting skills: " + ", ".join(supporting_hits[:4]))
+        reasons.append("supporting candidate-skill overlap: " + ", ".join(supporting_hits[:4]))
     if learning_hits:
         reasons.append("learning only: " + ", ".join(learning_hits[:3]))
     if gap_hits:
         reasons.append("experience gaps: " + ", ".join(gap_hits[:3]))
+    reasons.append("domain compatibility: " + ("conflict — " + ", ".join(job.domain_conflicts) if job.domain_conflicts else "compatible or unknown"))
+    reasons.append("seniority: " + job.seniority_assessment)
+    reasons.append("evidence quality: " + job.evidence_quality)
+    if job.exclusion_signals:
+        reasons.append("exclusion signals: " + ", ".join(job.exclusion_signals))
     if job.minimum_experience_years is not None:
         reasons.append(f"minimum experience: {job.minimum_experience_years} years")
-    if job.annual_inr is not None:
-        reasons.append(f"advertised lower-bound pay: INR {job.annual_inr:,}/year")
-    reasons.append("location: " + (job.location_tier or "rejected"))
+    if job.compensation_assessment == "meets_target":
+        reasons.append(f"employer-posted pay meets INR {float(profile.get('full_time_salary_target_lpa', 10)):.1f} LPA target")
+    elif job.compensation_assessment == "below_target":
+        reasons.append(f"employer-posted pay is below INR {float(profile.get('full_time_salary_target_lpa', 10)):.1f} LPA target")
+    elif job.compensation_assessment == "estimate_only":
+        reasons.append("aggregator pay estimate excluded from screening score")
+    else:
+        reasons.append("pay not disclosed; no score penalty")
+    reasons.append("eligible location: " + (job.location_tier or "rejected"))
     return max(0, min(100, score)), reasons
+
+
+def term_is_mandatory(text: str, term: str) -> bool:
+    """Conservatively identify a mandatory term without treating preferences as requirements."""
+    value = clean_text(text).lower()
+    for match in re.finditer(re.escape(term.lower()), value):
+        context = value[max(0, match.start() - 90):match.end() + 90]
+        if re.search(r"(?:preferred|nice to have|bonus|optional|not required).{0,50}" + re.escape(term.lower()), context):
+            continue
+        if re.search(re.escape(term.lower()) + r".{0,50}(?:preferred|nice to have|bonus|optional|not required)", context):
+            continue
+        if re.search(r"\b(?:required|must|mandatory|need(?:ed|s)?|minimum)\b", context):
+            return True
+    return False
+
+
+def evidence_quality(job: Job) -> str:
+    text = clean_text(job.description).lower()
+    if not text or len(text) < 120:
+        return "insufficient"
+    aggregator_boilerplate = (
+        "how jobgether works",
+        "our system identifies the top-fitting candidates",
+        "shortlist is then shared directly with the hiring company",
+    )
+    if any(marker in text for marker in aggregator_boilerplate):
+        return "insufficient"
+    responsibility_markers = (
+        "responsibilities", "you will", "your role", "what you'll do", "what you will do",
+        "responsible for", "duties", "day-to-day",
+    )
+    requirement_markers = (
+        "requirements", "qualifications", "experience", "required", "you have", "must have",
+    )
+    has_responsibilities = any(marker in text for marker in responsibility_markers)
+    has_requirements = any(marker in text for marker in requirement_markers)
+    if len(text) >= 500 and has_responsibilities and has_requirements:
+        return "sufficient"
+    return "partial"
+
+
+def outbound_responsibility_signals(job: Job) -> list[str]:
+    title = job.title.lower()
+    text = clean_text(job.description).lower()
+    title_terms = (
+        "sales development representative", "business development representative", "sdr", "bdr",
+        "outbound sales", "appointment setter", "business development executive",
+    )
+    if any(contains_term(title, term) for term in title_terms):
+        return ["outbound_sales"]
+    outbound_terms = (
+        "cold calling", "cold calls", "cold email", "outbound prospecting", "outbound lead generation",
+        "meeting setting", "setting meetings", "appointment setting", "quota-carrying",
+        "sales quota", "prospect conversion", "convert prospects", "recruiter outreach",
+        "candidate sourcing", "contacting candidates", "direct outreach",
+    )
+    hits = {term for term in outbound_terms if term in text}
+    responsibility_cues = (
+        "responsibilities", "you will", "your role", "responsible for", "duties", "focus on",
+        "role involves", "work includes", "conduct", "perform", "execute", "direct outreach",
+    )
+    if len(hits) >= 2 or (hits and any(cue in text for cue in responsibility_cues)):
+        return ["outbound_sales"]
+    return []
+
+
+def domain_conflict_signals(job: Job) -> list[str]:
+    title = job.title.lower()
+    text = clean_text(job.description).lower()
+    conflicts = []
+    title_patterns = {
+        "cybersecurity": ("security operations", "cyber defense", "cybersecurity", "soc analyst"),
+        "crypto_digital_assets": ("digital assets", "crypto operations", "cryptocurrency", "blockchain operations"),
+        "finance_accounting": (
+            "accounts receivable", "accounts payable", "bill to pay", "billing operations",
+            "payment operations", "finance operations", "accounting operations", "margin recovery",
+        ),
+        "people_hr": ("people operations", "human resources", "hr operations", "talent operations"),
+    }
+    evidence_terms = {
+        "cybersecurity": ("cyber threat", "security incident", "incident response", "security monitoring"),
+        "crypto_digital_assets": ("cryptocurrency", "digital assets", "crypto market", "blockchain"),
+        "finance_accounting": ("billing", "payments", "reconciliation", "collections", "accounts receivable", "bookkeeping"),
+        "people_hr": ("employee programs", "hr policies", "human resources", "people programs", "employee lifecycle"),
+    }
+    for name, patterns in title_patterns.items():
+        title_hits = [pattern for pattern in patterns if pattern in title]
+        evidence_hits = sum(term in text for term in evidence_terms[name])
+        if title_hits:
+            conflicts.append(name)
+        elif evidence_hits >= 2:
+            conflicts.append(name)
+    return conflicts
+
+
+def seniority_signals(job: Job) -> tuple[str, list[str]]:
+    title = job.title.lower()
+    text = clean_text(job.description).lower()
+    level = "individual_contributor_or_unknown"
+    if re.search(r"\b(?:director|head|vice president|vp)\b", title):
+        level = "director_or_head"
+    elif re.search(r"\bmanager\b", title):
+        level = "manager"
+    elif re.search(r"\blead\b", title):
+        level = "lead"
+    elif re.search(r"\b(?:senior|sr\.?)(?:\s|$)", title):
+        level = "senior"
+    leadership_terms = (
+        "direct reports", "people management", "manage a team", "manage the team", "lead a team",
+        "hiring responsibility", "performance management", "team of ", "build and lead",
+    )
+    exclusions = ["unsupported_people_leadership"] if any(term in text for term in leadership_terms) else []
+    if level == "director_or_head":
+        exclusions.append("unsupported_executive_seniority")
+    return level, exclusions
+
+
+def assign_screening_queue(job: Job, profile: dict[str, Any] | None = None) -> str:
+    thresholds = (profile or {}).get("screening_queue_thresholds", {})
+    strong_threshold = int(thresholds.get("strong_shortlist", 45))
+    review_threshold = int(thresholds.get("review_queue", 30))
+    if job.hard_excluded or job.exclusion_signals:
+        job.screening_queue = "suppressed"
+    elif job.screening_score < review_threshold:
+        job.screening_queue = "suppressed"
+    elif job.screening_score >= strong_threshold and job.active_status == "active" and job.evidence_quality != "insufficient":
+        job.screening_queue = "strong_shortlist"
+    else:
+        job.screening_queue = "review_queue"
+    dynamic_prefixes = ("freshness:", "verification:", "screening queue:")
+    job.screening_reasons = [
+        reason for reason in (job.screening_reasons or [])
+        if not reason.startswith(dynamic_prefixes)
+    ]
+    job.screening_reasons.extend([
+        f"freshness: {job.freshness}",
+        f"verification: {job.active_status}",
+        f"screening queue: {job.screening_queue}",
+    ])
+    return job.screening_queue
 
 
 def job_fingerprint(job: Job) -> str:
@@ -254,8 +432,27 @@ def evaluate(job: Job, profile: dict[str, Any]) -> Job | None:
         return None
     internship = is_internship(job)
     title = job.title.lower()
+    full_text = f"{job.title} {job.description}"
+    job.evidence_quality = evidence_quality(job)
+    job.exclusion_signals = []
+    job.domain_conflicts = domain_conflict_signals(job)
+    job.domain_compatibility = "conflict" if job.domain_conflicts else "compatible_or_unknown"
+    job.seniority_assessment, leadership_exclusions = seniority_signals(job)
+    job.exclusion_signals.extend(leadership_exclusions)
     if any(term in title for term in profile.get("excluded_titles", [])):
-        return None
+        job.exclusion_signals.append("excluded_title")
+    job.exclusion_signals.extend(outbound_responsibility_signals(job))
+    for term in profile.get("screening_exclusion_terms", []):
+        if contains_term(title, term) or term_is_mandatory(full_text, term):
+            job.exclusion_signals.append("excluded_responsibility")
+    for term in profile.get("mandatory_advanced_skill_terms", []):
+        if term_is_mandatory(full_text, term):
+            job.exclusion_signals.append("mandatory_unsupported_capability")
+    hard_domain_conflicts = {"cybersecurity", "crypto_digital_assets", "finance_accounting"}
+    if hard_domain_conflicts.intersection(job.domain_conflicts):
+        job.exclusion_signals.append("outside_target_domain")
+    job.exclusion_signals = sorted(set(job.exclusion_signals))
+    job.hard_excluded = bool(job.exclusion_signals)
     employment_type = f"{job.employment_type} {job.title}".lower()
     description_start = job.description[:700].lower()
     excluded_employment = profile.get(
@@ -271,7 +468,15 @@ def evaluate(job: Job, profile: dict[str, Any]) -> Job | None:
     job.annual_inr = annual_compensation_inr(f"{job.compensation} {job.description[:1200]}")
     if internship:
         job.monthly_inr = monthly_compensation_inr(f"{job.compensation} {job.description}")
-        if job.monthly_inr is None or job.monthly_inr < int(profile["internship_min_monthly_inr"]):
+        legacy_threshold = int(profile.get("internship_min_monthly_inr", 40000))
+        remote_threshold = int(profile.get("internship_min_monthly_inr_remote", legacy_threshold))
+        onsite_threshold = int(profile.get("internship_min_monthly_inr_onsite", legacy_threshold))
+        is_remote = job.location_tier in ("remote_india", "global_work_from_anywhere")
+        if job.monthly_inr is None:
+            return None
+        if is_remote and job.monthly_inr < remote_threshold:
+            return None
+        if not is_remote and job.monthly_inr <= onsite_threshold:
             return None
     else:
         if any(term in employment_type for term in excluded_employment):
@@ -285,15 +490,24 @@ def evaluate(job: Job, profile: dict[str, Any]) -> Job | None:
         )
         if "contract" in employment_type or any(term in description_start for term in contract_markers):
             return None
-    job.score, job.score_reasons = score_job(job, profile)
-    if job.score < int(profile["minimum_fit_score"]):
-        return None
+    job.screening_score, job.screening_reasons = screening_score(job, profile)
+    assign_screening_queue(job, profile)
     return job
 
 
 def sort_jobs(jobs: list[Job], priority: list[str]) -> list[Job]:
     rank = {tier: index for index, tier in enumerate(priority)}
-    return sorted(jobs, key=lambda j: (rank.get(j.location_tier, 99), -j.score, j.company.lower(), j.title.lower()))
+    freshness_rank = {"fresh": 0, "recent": 1, "older": 2, "unknown": 3}
+    return sorted(
+        jobs,
+        key=lambda j: (
+            -j.screening_score,
+            freshness_rank.get(j.freshness, 3),
+            rank.get(j.location_tier, 99),
+            j.company.lower(),
+            j.title.lower(),
+        ),
+    )
 
 
 def generated_at() -> str:

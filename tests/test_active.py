@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 from unittest.mock import patch
 
 from job_search.active import (
+    apply_freshness,
     classify_active_response,
     is_stale,
     published_datetime,
@@ -66,6 +67,15 @@ class ActiveStatusTests(unittest.TestCase):
         job = Job("1", "test", "Example", "Analyst", "India", "", "", "https://example.test", published_at="2024-01-01T00:00:00Z")
         now = datetime(2026, 8, 20, tzinfo=timezone.utc)
         self.assertFalse(is_stale(job, 0, now))
+
+    def test_freshness_bands_prefer_recent_without_rejecting_old(self):
+        now = datetime(2026, 8, 11, tzinfo=timezone.utc)
+        recent = Job("1", "test", "Example", "Analyst", "India", "", "", "https://example.test", published_at="2026-08-08T00:00:00Z")
+        older = Job("2", "test", "Example", "Analyst", "India", "", "", "https://example.test", published_at="2026-06-01T00:00:00Z")
+        apply_freshness(recent, preferred_age_days=7, now=now)
+        apply_freshness(older, preferred_age_days=7, now=now)
+        self.assertEqual(recent.freshness, "fresh")
+        self.assertEqual(older.freshness, "older")
 
     @patch("job_search.active.check_job_active", return_value="active")
     def test_old_but_verified_active_listing_is_retained(self, _check):
