@@ -5,6 +5,7 @@ import re
 from dataclasses import dataclass, asdict
 from datetime import datetime, timezone
 from typing import Any
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 
 INDIA_TERMS = (
@@ -67,9 +68,16 @@ class Job:
     minimum_experience_years: int | None = None
     is_new: bool = False
     active_status: str = "unverified"
-    verification_reason: str = "not_checked"
+    verification_reason: str = "verification_not_attempted"
     verified_at: str = ""
     final_url: str = ""
+    canonical_employer_url: str = ""
+    canonical_resolution_status: str = "verification_not_attempted"
+    canonical_location: str = ""
+    verification_original_host: str = ""
+    verification_attempted_host: str = ""
+    verification_stage: str = "not_attempted"
+    verification_http_class: str = ""
     listing_age_days: int | None = None
     freshness: str = "unknown"
     screening_queue: str = "suppressed"
@@ -91,23 +99,31 @@ class Job:
     description_retrieval_status: str = "not_attempted"
     description_retrieved_at: str = ""
     source_quality_confidence: str = "unknown"
+    source_id: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
 
 def location_tier(job: Job) -> str | None:
-    advertised = f"{job.location} {job.workplace}".lower()
+    advertised = f"{job.location} {job.workplace}".lower().strip()
+    canonical = clean_text(job.canonical_location).lower()
     description = job.description[:1600].lower()
-    blob = f"{advertised} {description}"
-    is_remote = any(term in advertised for term in REMOTE_TERMS) or any(term in description for term in REMOTE_TERMS)
-    is_india = any(re.search(rf"\b{re.escape(term)}\b", advertised) for term in INDIA_TERMS)
+    # Structured/source location is authoritative. Canonical employer metadata
+    # is the fallback; prose is used only when no location metadata exists.
+    location_text = advertised or canonical
+    inference_text = location_text or description
+    is_remote = any(term in location_text for term in REMOTE_TERMS)
+    if not location_text:
+        is_remote = any(term in description for term in REMOTE_TERMS)
+    is_india = any(re.search(rf"\b{re.escape(term)}\b", location_text) for term in INDIA_TERMS)
     explicitly_foreign = any(term in advertised for term in (
         "united states", "usa", "u.s.", "north america", "noram", "emea",
         "europe", "uk", "united kingdom", "canada", "latin america", "latam",
         "australia", "apac"
     ))
-    non_india_only = any(term in blob for term in (
+    restriction_text = f"{advertised} {description}"
+    non_india_only = any(term in restriction_text for term in (
         "latin america and the philippines", "latam and the philippines", "latam or the philippines",
         "philippines and latin america", "philippines or latin america", "philippines only",
         "hiring from latin america", "open only to candidates in latin america",
@@ -118,15 +134,79 @@ def location_tier(job: Job) -> str | None:
         return "remote_india"
     if explicitly_foreign and not any(term in advertised for term in GLOBAL_TERMS):
         return None
-    if is_remote and any(term in blob for term in GLOBAL_TERMS):
+    if is_remote and any(term in inference_text for term in GLOBAL_TERMS):
         return "global_work_from_anywhere"
-    if "hyderabad" in blob:
+    if "hyderabad" in location_text:
         return "hyderabad"
-    if "bengaluru" in blob or "bangalore" in blob:
+    if "bengaluru" in location_text or "bangalore" in location_text:
         return "bengaluru"
     if is_india:
         return "other_india"
+    # Description inference is intentionally last and cannot override an
+    # explicit source location such as Coimbatore or Pune.
+    if not location_text:
+        if "hyderabad" in description:
+            return "hyderabad"
+        if "bengaluru" in description or "bangalore" in description:
+            return "bengaluru"
+        if any(re.search(rf"\b{re.escape(term)}\b", description) for term in INDIA_TERMS):
+            return "other_india"
     return None
+
+
+SENSITIVE_URL_KEYS = (
+    "api_key", "apikey", "app_key", "token", "access_token", "auth",
+    "authorization", "credential", "password", "secret", "signature",
+)
+TRACKING_URL_KEYS = (
+    "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
+    "gclid", "fbclid", "msclkid", "ref", "referrer", "source",
+)
+
+
+def sanitize_public_url(value: str) -> str:
+    """Remove credentials and credential-like query values from a public URL."""
+    try:
+        parsed = urlsplit(str(value or "").strip())
+    except ValueError:
+        return ""
+    if parsed.scheme not in ("http", "https") or not parsed.hostname:
+        return ""
+    host = parsed.hostname.lower()
+    try:
+        default_port = 443 if parsed.scheme.lower() == "https" else 80
+        if parsed.port and parsed.port != default_port:
+            host += f":{parsed.port}"
+    except ValueError:
+        return ""
+    query = sorted(
+        (key, item)
+        for key, item in parse_qsl(parsed.query, keep_blank_values=True)
+        if not any(secret in key.lower() for secret in SENSITIVE_URL_KEYS)
+        and key.lower() not in TRACKING_URL_KEYS
+    )
+    return urlunsplit((parsed.scheme.lower(), host, parsed.path, urlencode(query), ""))
+
+
+def normalize_company_name(value: str) -> str:
+    """Conservative employer identity used only for matching and clustering."""
+    company = re.sub(r"[^a-z0-9]+", " ", clean_text(value).lower().replace("&", " and ")).strip()
+    safe_typos = {"priavte": "private", "limted": "limited", "ltded": "limited"}
+    company = " ".join(safe_typos.get(token, token) for token in company.split())
+    legal = r"\b(?:private|pvt|limited|ltd|llc|llp|incorporated|inc|corporation|corp|plc)\b"
+    return re.sub(r"\s+", " ", re.sub(legal, " ", company)).strip()
+
+
+def normalize_job_title(value: str) -> str:
+    title = f" {re.sub(r'[^a-z0-9]+', ' ', clean_text(value).lower()).strip()} "
+    aliases = {
+        " sr ": " senior ", " jr ": " junior ", " ops ": " operations ",
+        " revops ": " revenue operations ", " assoc ": " associate ",
+        " coord ": " coordinator ",
+    }
+    for alias, canonical in aliases.items():
+        title = title.replace(alias, canonical)
+    return re.sub(r"\s+", " ", title).strip()
 
 
 def is_internship(job: Job) -> bool:
@@ -423,34 +503,151 @@ def assign_screening_queue(job: Job, profile: dict[str, Any] | None = None) -> s
 
 def job_fingerprint(job: Job) -> str:
     """Cross-source deduplication key for the same advertised opening."""
+    # Boards frequently advertise the same remote opening as "Worldwide",
+    # "Remote", or a city. The evaluated tier is a safer cross-source key.
+    location = job.location_tier or re.sub(r"[^a-z0-9]+", " ", job.location.lower()).strip().replace("bangalore", "bengaluru")
+    return "|".join((normalize_company_name(job.company), normalize_job_title(job.title), location))
+
+
+def legacy_job_fingerprint(job: Job) -> str:
+    """Fingerprint written by the deployed pre-hardening implementation."""
     def normalize(value: str) -> str:
         return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
-
     company = normalize(job.company)
     company = re.sub(
         r"\b(?:private limited|pvt ltd|limited|ltd|incorporated|inc|corporation|corp|llc|plc)\b",
-        " ",
-        company,
+        " ", company,
     )
     company = re.sub(r"\s+", " ", company).strip()
-
     title = f" {normalize(job.title)} "
-    title_aliases = {
-        " sr ": " senior ",
-        " jr ": " junior ",
-        " ops ": " operations ",
-        " revops ": " revenue operations ",
-        " assoc ": " associate ",
+    for alias, canonical in {
+        " sr ": " senior ", " jr ": " junior ", " ops ": " operations ",
+        " revops ": " revenue operations ", " assoc ": " associate ",
         " coord ": " coordinator ",
-    }
-    for alias, canonical in title_aliases.items():
+    }.items():
         title = title.replace(alias, canonical)
     title = re.sub(r"\s+", " ", title).strip()
-
-    # Boards frequently advertise the same remote opening as "Worldwide",
-    # "Remote", or a city. The evaluated tier is a safer cross-source key.
     location = job.location_tier or normalize(job.location).replace("bangalore", "bengaluru")
     return "|".join((company, title, location))
+
+
+def seen_identity_keys(job: Job) -> set[str]:
+    """All stable and migration-compatible identities recognized as seen."""
+    current = job_fingerprint(job)
+    legacy = legacy_job_fingerprint(job)
+    return {job.id, f"fp:v2:{current}", f"fp:{current}", f"fp:{legacy}"}
+
+
+def _url_identity(value: str) -> str:
+    safe = sanitize_public_url(value)
+    if not safe:
+        return ""
+    parsed = urlsplit(safe)
+    query = f"?{parsed.query}" if parsed.query else ""
+    return f"{parsed.hostname or ''}{parsed.path.rstrip('/')}{query}".lower()
+
+
+def _description_similarity(left: str, right: str) -> float:
+    def tokens(value: str) -> set[str]:
+        return {
+            token for token in re.findall(r"[a-z0-9]{3,}", clean_text(value).lower())
+            if token not in {"the", "and", "for", "with", "this", "that", "from", "you", "your", "our"}
+        }
+    a, b = tokens(left), tokens(right)
+    if not a or not b or min(len(a), len(b)) < 8:
+        return 0.0
+    intersection = len(a & b)
+    return max(intersection / len(a | b), intersection / min(len(a), len(b)))
+
+
+def _description_token_count(value: str) -> int:
+    return len(re.findall(r"[a-z0-9]{3,}", clean_text(value).lower()))
+
+
+def _shared_description_passage_count(left: str, right: str, width: int = 8) -> int:
+    """Count distinct shared passages while ignoring isolated boilerplate."""
+    def shingles(value: str) -> set[tuple[str, ...]]:
+        words = re.findall(r"[a-z0-9]{3,}", clean_text(value).lower())
+        return {tuple(words[index:index + width]) for index in range(len(words) - width + 1)}
+    a, b = shingles(left), shingles(right)
+    return len(a.intersection(b)) if a and b else 0
+
+
+def _has_shared_description_passage(left: str, right: str, width: int = 8) -> bool:
+    """Require multiple passages plus broader content agreement."""
+    return _shared_description_passage_count(left, right, width) >= 3 and _description_similarity(left, right) >= 0.35
+
+
+def same_vacancy(left: Job, right: Job) -> bool:
+    """Conservatively cluster cross-source/location copies of one vacancy."""
+    left_url = _url_identity(left.canonical_employer_url)
+    right_url = _url_identity(right.canonical_employer_url)
+    if left_url and right_url:
+        # Two official vacancy identities are authoritative: similarity,
+        # boilerplate, and source priority cannot override a conflict.
+        return left_url == right_url
+    if left.id and left.id == right.id:
+        return True
+
+    company_matches = normalize_company_name(left.company) == normalize_company_name(right.company)
+    title_matches = normalize_job_title(left.title) == normalize_job_title(right.title)
+    if not company_matches or not title_matches:
+        return False
+
+    # Distinct direct-employer requisitions remain distinct unless their
+    # canonical application URL proves they are the same opening.
+    if left.source_type == right.source_type == "direct_employer" and left.id != right.id:
+        return False
+    substantial_content = min(
+        _description_token_count(left.description),
+        _description_token_count(right.description),
+    ) >= 40
+    if not substantial_content:
+        return False
+    similarity = _description_similarity(left.description, right.description)
+    if "direct_employer" in (left.source_type, right.source_type):
+        # Employer/title equality alone is not enough: companies can publish
+        # multiple live requisitions under the same title. Require matching
+        # content unless the canonical URL already proved identity above.
+        return similarity >= 0.72 or _has_shared_description_passage(left.description, right.description)
+    nationwide = {"remote_india", "global_work_from_anywhere"}
+    broad_location = (
+        left.location_tier in nationwide or right.location_tier in nationwide
+        or clean_text(left.location).lower() in ("india", "remote - india", "remote india")
+        or clean_text(right.location).lower() in ("india", "remote - india", "remote india")
+    )
+    return similarity >= (0.72 if broad_location else 0.86) or _has_shared_description_passage(left.description, right.description)
+
+
+def prefer_canonical_job(left: Job, right: Job) -> Job:
+    """Prefer an authoritative representative while preserving an employer JD."""
+    left_key = (left.source_priority, left.source_type == "direct_employer", len(left.description))
+    right_key = (right.source_priority, right.source_type == "direct_employer", len(right.description))
+    winner, other = (right, left) if right_key > left_key else (left, right)
+    # A representative is NEW only when every record in its duplicate group is
+    # new. This preserves seen state when the preferred source changes.
+    winner.is_new = winner.is_new and other.is_new
+    if len(other.description) > len(winner.description) and other.description_provenance in ("employer_payload", "employer_job_page"):
+        winner.description = other.description
+        winner.description_provenance = other.description_provenance
+    return winner
+
+
+def canonicalize_jobs(jobs: list[Job]) -> tuple[list[Job], list[tuple[Job, Job]]]:
+    """Select one human-facing representative and retain loser/winner pairs."""
+    representatives: list[Job] = []
+    duplicates: list[tuple[Job, Job]] = []
+    for candidate in jobs:
+        match_index = next((index for index, existing in enumerate(representatives) if same_vacancy(existing, candidate)), None)
+        if match_index is None:
+            representatives.append(candidate)
+            continue
+        existing = representatives[match_index]
+        winner = prefer_canonical_job(existing, candidate)
+        loser = candidate if winner is existing else existing
+        representatives[match_index] = winner
+        duplicates.append((loser, winner))
+    return representatives, duplicates
 
 
 def evaluate(job: Job, profile: dict[str, Any]) -> Job | None:

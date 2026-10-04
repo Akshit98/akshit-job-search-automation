@@ -5,7 +5,7 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from .core import Job, generated_at
+from .core import Job, generated_at, sanitize_public_url
 
 
 FIELDS = [
@@ -23,7 +23,9 @@ FIELDS = [
     "canonical_employer", "ats_board_id", "source_type", "source_priority",
     "original_source_url", "canonical_url", "description_provenance",
     "description_retrieval_status", "description_retrieved_at", "source_quality_confidence",
-    "url", "source", "published_at",
+    "canonical_employer_url", "canonical_resolution_status", "canonical_location",
+    "verification_original_host", "verification_attempted_host", "verification_stage", "verification_http_class",
+    "source_id", "url", "source", "published_at",
 ]
 
 
@@ -36,6 +38,16 @@ PUBLIC_DIAGNOSTIC_REASONS = {
     "http_failure": "network request failed",
     "malformed_response": "response was not valid JSON",
     "schema_parser_error": "response schema was incompatible",
+}
+
+PUBLIC_VERIFICATION_REASONS = {
+    "verified_active", "verified_closed", "canonical_employer_url_missing",
+    "canonical_destination_unresolved", "aggregator_page_only",
+    "redirect_to_generic_index", "http_blocked", "http_not_found", "timeout",
+    "page_inaccessible", "no_structured_job_description", "page_too_large",
+    "malformed_page", "unsupported_verification_source",
+    "verification_not_attempted", "verification_budget_exhausted",
+    "unsafe_destination", "other_sanitized_failure",
 }
 
 
@@ -63,6 +75,19 @@ def _public_errors(errors: list[str]) -> list[str]:
     return list(dict.fromkeys(safe))
 
 
+def _public_job_dict(job: Job) -> dict:
+    payload = job.to_dict()
+    for field in ("url", "original_source_url", "final_url", "canonical_url", "canonical_employer_url"):
+        payload[field] = sanitize_public_url(str(payload.get(field) or ""))
+    if payload.get("verification_reason") not in PUBLIC_VERIFICATION_REASONS:
+        payload["verification_reason"] = "other_sanitized_failure"
+    return payload
+
+
+def _public_verification_reason(job: Job) -> str:
+    return job.verification_reason if job.verification_reason in PUBLIC_VERIFICATION_REASONS else "other_sanitized_failure"
+
+
 def write_reports(
     jobs: list[Job],
     needs_verification: list[Job],
@@ -76,6 +101,23 @@ def write_reports(
     source_diagnostics = _public_diagnostics(source_diagnostics)
     errors = _public_errors(errors)
     source_counts = dict(sorted(Counter(job.source for job in all_reported).items()))
+    verification_outcomes = dict(sorted(Counter(_public_verification_reason(job) for job in all_reported).items()))
+    def age_band(job: Job) -> str:
+        days = job.listing_age_days
+        if days is None: return "unknown"
+        if days <= 30: return "0-30"
+        if days <= 60: return "31-60"
+        if days <= 90: return "61-90"
+        if days <= 365: return "91-365"
+        return ">365"
+    freshness_by_verification = {
+        "verified_active": dict(Counter(age_band(job) for job in all_reported if job.active_status == "active")),
+        "unverified": dict(Counter(age_band(job) for job in all_reported if job.active_status == "unverified")),
+        "stale_unverified_aggregator": dict(Counter(
+            age_band(job) for job in all_reported
+            if job.source_type == "aggregator" and job.active_status == "unverified"
+        )),
+    }
     payload = {
         "generated_at": generated_at(),
         "count": len(jobs),
@@ -97,16 +139,23 @@ def write_reports(
             "sufficient_fit_evidence": sum(job.evidence_quality == "sufficient" for job in all_reported),
             "numerical_hiring_fit": sum(job.actual_hiring_fit_status == "assessed" for job in all_reported),
         },
-        "jobs": [job.to_dict() for job in jobs],
-        "needs_verification": [job.to_dict() for job in needs_verification],
-        "strong_shortlist": [job.to_dict() for job in jobs],
-        "review_queue": [job.to_dict() for job in needs_verification],
+        "verification_health": {
+            "verified_active": sum(job.active_status == "active" for job in all_reported),
+            "verified_closed": sum(job.active_status == "closed" for job in all_reported),
+            "verification_unresolved": sum(job.active_status == "unverified" for job in all_reported),
+            "outcomes": verification_outcomes,
+            "freshness_by_verification": freshness_by_verification,
+        },
+        "jobs": [_public_job_dict(job) for job in jobs],
+        "needs_verification": [_public_job_dict(job) for job in needs_verification],
+        "strong_shortlist": [_public_job_dict(job) for job in jobs],
+        "review_queue": [_public_job_dict(job) for job in needs_verification],
     }
     (output_dir / "jobs.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     with (output_dir / "jobs.csv").open("w", newline="", encoding="utf-8-sig") as handle:
         writer = csv.DictWriter(handle, fieldnames=FIELDS, extrasaction="ignore")
         writer.writeheader()
-        writer.writerows(job.to_dict() for job in all_reported)
+        writer.writerows(_public_job_dict(job) for job in all_reported)
     lines = [
         "# Latest matching jobs",
         "",
@@ -124,7 +173,22 @@ def write_reports(
         lines += ["## Run notes", ""] + [f"- {error}" for error in errors] + [""]
     if source_diagnostics:
         lines += ["## Source health", ""]
-        lines += [f"- {item.get('source_id')}: {item.get('status')} — {item.get('jobs_returned', 0)} jobs" + (f" ({item.get('reason')})" if item.get('reason') else "") for item in source_diagnostics]
+        lines += [
+            f"- {item.get('source_id')}: {item.get('status')} — "
+            f"collection(raw {item.get('jobs_returned', 0)}, exact-ID duplicates {item.get('exact_id_duplicates', 0)}); "
+            f"eligibility(eligible {item.get('passed_basic_eligibility', 0)}, rejected {item.get('rejected_by_eligibility', 0)}, hard exclusions subset {item.get('hard_excluded', 0)}); "
+            f"canonical dedup(non-canonical {item.get('duplicate_non_canonical', 0)}); "
+            f"verification(submitted {item.get('submitted_for_verification', 0)}, active {item.get('verified_active', 0)}, closed {item.get('verified_closed', 0)}, unresolved {item.get('verification_unresolved', 0)}); "
+            f"final(strong {item.get('strong_shortlist', 0)}, review {item.get('review_queue', 0)}, visible {item.get('final_human_visible', 0)}, suppressed raw-minus-visible {item.get('suppressed', 0)})"
+            + (f" ({item.get('reason')})" if item.get('reason') else "")
+            for item in source_diagnostics
+        ]
+        lines += [""]
+    if verification_outcomes:
+        lines += ["## Verification health", ""]
+        lines += [f"- {reason}: {count}" for reason, count in verification_outcomes.items()]
+        for label, counts in freshness_by_verification.items():
+            lines += [f"- {label.replace('_', ' ').title()} freshness: " + ", ".join(f"{band}: {count}" for band, count in sorted(counts.items()))]
         lines += [""]
     def append_jobs(title: str, section_jobs: list[Job]) -> None:
         lines.extend([f"## {title}", ""])
@@ -176,7 +240,7 @@ def write_reports(
                 if job.ats_similarity is not None else "ATS/Resume Similarity: Not assessed"
             )
             lines.extend([
-                f"### {marker}[{job.title}]({job.url})",
+                f"### {marker}[{job.title}]({sanitize_public_url(job.url)})",
                 "",
                 f"{job.company} | Source: {job.source} | {job.location} | {job.location_tier} | Screening {job.screening_score}/100 | {job.active_status}{age} | {pay}{experience}",
                 "",
