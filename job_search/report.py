@@ -17,7 +17,8 @@ FIELDS = [
     "fit_category_scores", "requirement_coverage_confidence", "unclassified_material_requirements",
     "career_value", "compensation_assessment", "active_status",
     "verification_reason", "verified_at", "listing_age_days", "freshness",
-    "screening_queue", "hard_excluded", "evidence_quality", "domain_compatibility",
+    "screening_queue", "review_disposition", "verification_schedule_status",
+    "hard_excluded", "evidence_quality", "domain_compatibility",
     "domain_conflicts", "exclusion_signals", "seniority_assessment", "title_relevance",
     "skill_overlap",
     "canonical_employer", "ats_board_id", "source_type", "source_priority",
@@ -47,7 +48,7 @@ PUBLIC_VERIFICATION_REASONS = {
     "page_inaccessible", "no_structured_job_description", "page_too_large",
     "malformed_page", "unsupported_verification_source",
     "verification_not_attempted", "verification_budget_exhausted",
-    "unsafe_destination", "other_sanitized_failure",
+    "unsafe_destination", "other_sanitized_failure", "cached_verified_active",
 }
 
 
@@ -95,6 +96,10 @@ def write_reports(
     output_dir: Path,
     suppressed_count: int = 0,
     source_diagnostics: list[dict] | None = None,
+    human_review: list[Job] | None = None,
+    verification_backlog: list[Job] | None = None,
+    cold_verification_backlog: list[Job] | None = None,
+    operational_metrics: dict | None = None,
 ) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     all_reported = jobs + needs_verification
@@ -102,6 +107,13 @@ def write_reports(
     errors = _public_errors(errors)
     source_counts = dict(sorted(Counter(job.source for job in all_reported).items()))
     verification_outcomes = dict(sorted(Counter(_public_verification_reason(job) for job in all_reported).items()))
+    if human_review is None:
+        human_review = list(needs_verification)
+    if verification_backlog is None:
+        verification_backlog = []
+    if cold_verification_backlog is None:
+        cold_verification_backlog = []
+    operational_metrics = dict(operational_metrics or {})
     def age_band(job: Job) -> str:
         days = job.listing_age_days
         if days is None: return "unknown"
@@ -146,10 +158,15 @@ def write_reports(
             "outcomes": verification_outcomes,
             "freshness_by_verification": freshness_by_verification,
         },
+        "operational_metrics": operational_metrics,
+        "queue_health": operational_metrics.get("queue_health", {}),
         "jobs": [_public_job_dict(job) for job in jobs],
         "needs_verification": [_public_job_dict(job) for job in needs_verification],
         "strong_shortlist": [_public_job_dict(job) for job in jobs],
         "review_queue": [_public_job_dict(job) for job in needs_verification],
+        "human_review": [_public_job_dict(job) for job in human_review],
+        "verification_backlog": [_public_job_dict(job) for job in verification_backlog],
+        "cold_verification_backlog": [_public_job_dict(job) for job in cold_verification_backlog],
     }
     (output_dir / "jobs.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     with (output_dir / "jobs.csv").open("w", newline="", encoding="utf-8-sig") as handle:
@@ -162,6 +179,9 @@ def write_reports(
         f"Generated: {payload['generated_at']}",
         f"Strong shortlist: {len(jobs)} ({payload['new_count']} NEW)",
         f"Review queue: {len(needs_verification)}",
+        f"Human review: {len(human_review)}",
+        f"Verification backlog: {len(verification_backlog)}",
+        f"Cold verification backlog: {len(cold_verification_backlog)}",
         f"Suppressed: {suppressed_count}",
         "",
         "Screening scores are automated prioritization signals. Actual Hiring Fit is a separate evidence-based assessment and is shown only when the job description contains sufficient detail.",
@@ -190,6 +210,33 @@ def write_reports(
         for label, counts in freshness_by_verification.items():
             lines += [f"- {label.replace('_', ' ').title()} freshness: " + ", ".join(f"{band}: {count}" for band, count in sorted(counts.items()))]
         lines += [""]
+    if operational_metrics:
+        verification = operational_metrics.get("verification", {})
+        deduplication = operational_metrics.get("deduplication", {})
+        lines += ["## Production metrics", ""]
+        lines += [
+            "- Verification: " + ", ".join(
+                f"{label} {verification.get(key, 0)}" for key, label in (
+                    ("verification_candidates_total", "candidates"),
+                    ("jobs_submitted", "submitted"),
+                    ("jobs_deferred_by_cap", "deferred by cap"),
+                    ("jobs_skipped_by_backoff", "skipped by backoff"),
+                    ("cached_verified_active", "cached active"),
+                    ("requests_attempted", "HTTP requests"),
+                    ("redirects_followed", "redirects"),
+                    ("unsafe_destinations_rejected", "unsafe destinations rejected"),
+                )
+            ),
+            "- Deduplication: " + ", ".join(
+                f"{label} {deduplication.get(key, 0)}" for key, label in (
+                    ("raw_records", "raw"),
+                    ("exact_id_duplicates_removed", "exact-ID removed"),
+                    ("canonical_duplicates_removed", "canonical removed"),
+                    ("distinct_duplicate_groups", "groups"),
+                )
+            ),
+            "",
+        ]
     def append_jobs(title: str, section_jobs: list[Job]) -> None:
         lines.extend([f"## {title}", ""])
         if not section_jobs:
@@ -252,5 +299,20 @@ def write_reports(
             ])
 
     append_jobs("Strong shortlist", jobs)
-    append_jobs("Review queue", needs_verification)
+    append_jobs("Human review", human_review[:20])
+    backlog_all = verification_backlog + cold_verification_backlog
+    if backlog_all:
+        backlog_freshness = Counter(age_band(job) for job in backlog_all)
+        lines += ["## Verification backlog", ""]
+        lines += [
+            f"- Total: {len(backlog_all)}",
+            f"- NEW: {sum(job.is_new for job in backlog_all)}",
+            f"- Awaiting retry: {sum(job.verification_schedule_status == 'backoff' for job in backlog_all)}",
+            f"- Budget deferred: {sum(job.verification_reason == 'verification_budget_exhausted' for job in backlog_all)}",
+            f"- Cold stale aggregator: {len(cold_verification_backlog)}",
+            "- Freshness: " + ", ".join(f"{band}: {count}" for band, count in sorted(backlog_freshness.items())),
+            "",
+            "Full backlog records remain available in JSON and CSV.",
+            "",
+        ]
     (output_dir / "latest.md").write_text("\n".join(lines), encoding="utf-8")
