@@ -12,7 +12,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 
-from .core import Job, clean_text
+from .core import Job, clean_text, prefer_canonical_job, sanitize_public_url
 
 
 USER_AGENT = "AkshitJobSearch/2.0 (+personal job research)"
@@ -28,6 +28,19 @@ class SourceDiagnostic:
     jobs_returned: int = 0
     jobs_retained: int = 0
     reason: str = ""
+    exact_id_duplicates: int = 0
+    passed_basic_eligibility: int = 0
+    rejected_by_eligibility: int = 0
+    hard_excluded: int = 0
+    duplicate_non_canonical: int = 0
+    submitted_for_verification: int = 0
+    verified_active: int = 0
+    verified_closed: int = 0
+    verification_unresolved: int = 0
+    strong_shortlist: int = 0
+    review_queue: int = 0
+    suppressed: int = 0
+    final_human_visible: int = 0
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -48,6 +61,7 @@ def _queries(value: str | dict[str, Any]) -> tuple[str, ...]:
 def _apply_metadata(jobs: list[Job], metadata: str | dict[str, Any], source_name: str) -> list[Job]:
     meta = metadata if isinstance(metadata, dict) else {}
     board_id = _identifier(metadata)
+    source_id = str(meta.get("id") or f"{source_name}/{board_id or 'public'}")
     for job in jobs:
         default_type = "direct_employer" if source_name in ("greenhouse", "lever", "ashby") else "aggregator" if source_name in ("adzuna", "jooble") else "job_board"
         job.source_type = str(meta.get("source_type") or default_type)
@@ -58,12 +72,21 @@ def _apply_metadata(jobs: list[Job], metadata: str | dict[str, Any], source_name
         if provider:
             job.source = provider
         job.canonical_employer = job.company
+        job.source_id = source_id
         job.ats_board_id = board_id if source_name in ("greenhouse", "lever", "ashby") else ""
         job.source_priority = int(meta.get("source_priority", 100 if job.source_type == "direct_employer" else 50 if job.source_type == "job_board" else 20))
         if meta.get("compensation_provenance"):
             job.compensation_source = str(meta["compensation_provenance"])
+        job.url = sanitize_public_url(job.url)
         job.original_source_url = job.url
         job.canonical_url = job.url
+        if job.source_type == "direct_employer":
+            job.canonical_employer_url = job.url
+            job.canonical_resolution_status = "resolved_employer_page"
+        elif job.source_type == "aggregator":
+            job.canonical_resolution_status = "aggregator_page_only"
+        else:
+            job.canonical_resolution_status = "canonical_destination_unresolved"
         job.description_provenance = "employer_payload" if job.source_type == "direct_employer" else "aggregator_excerpt" if job.source_type == "aggregator" else "job_board_payload"
         job.source_quality_confidence = "high" if job.source_type == "direct_employer" else "medium" if job.source_type == "job_board" else "low"
     return jobs
@@ -375,13 +398,7 @@ def jooble(_: str) -> list[Job]:
 
 def prefer_source_job(existing: Job, candidate: Job) -> Job:
     """Choose the more authoritative duplicate and preserve the fuller employer JD."""
-    existing_key = (existing.source_priority, existing.source_type == "direct_employer", len(existing.description))
-    candidate_key = (candidate.source_priority, candidate.source_type == "direct_employer", len(candidate.description))
-    winner, other = (candidate, existing) if candidate_key > existing_key else (existing, candidate)
-    if len(other.description) > len(winner.description) and other.description_provenance in ("employer_payload", "employer_job_page"):
-        winner.description = other.description
-        winner.description_provenance = other.description_provenance
-    return winner
+    return prefer_canonical_job(existing, candidate)
 
 
 def _legacy_sources(config: dict[str, Any]) -> list[dict[str, Any]]:

@@ -8,9 +8,83 @@ from unittest.mock import patch
 
 from job_search import cli
 from job_search.core import Job
+from job_search.sources import SourceDiagnostic
 
 
 class WorkflowSafetyTests(unittest.TestCase):
+    def test_same_fingerprint_never_bypasses_conservative_vacancy_identity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "config").mkdir(); (root / "data").mkdir()
+            profile = {
+                "maximum_required_experience_years": 5,
+                "primary_role_terms": ["operations analyst"], "strong_skills": [],
+                "supporting_skills": [], "learning_skills": [], "excluded_titles": [],
+                "screening_exclusion_terms": [], "mandatory_advanced_skill_terms": [],
+                "screening_queue_thresholds": {"strong_shortlist": 45, "review_queue": 30},
+                "location_preference": ["remote_india"],
+            }
+            (root / "config" / "profile.json").write_text(json.dumps(profile), encoding="utf-8")
+            (root / "config" / "sources.json").write_text("{}", encoding="utf-8")
+            (root / "data" / "seen_jobs.json").write_text("[]", encoding="utf-8")
+            first = Job("lever:1", "lever", "Example", "Operations Analyst", "Remote - India", "Remote", "Customer CRM reporting and data maintenance.", "https://jobs.example/1", source_type="direct_employer", source_id="lever/example")
+            second = Job("lever:2", "lever", "Example", "Operations Analyst", "Remote - India", "Remote", "Partner implementation planning and service delivery.", "https://jobs.example/2", source_type="direct_employer", source_id="lever/example")
+            diagnostic = SourceDiagnostic("lever/example", "direct_employer", "successful", True, 2, 2)
+            output = io.StringIO()
+            with (
+                patch.object(cli, "ROOT", root), patch.object(cli, "load_evidence", return_value={}),
+                patch.object(cli, "collect", return_value=([first, second], [], [diagnostic])),
+                patch.object(cli, "retain_active_jobs", return_value=([first, second], 0, 2)),
+                patch("sys.stdout", output),
+            ):
+                self.assertEqual(cli.run(dry_run=True), 0)
+            self.assertIn("review queue 2", output.getvalue())
+            self.assertIn("duplicate records removed from human-facing output: 0", output.getvalue())
+
+    def test_dry_run_reports_reconciled_post_filter_source_funnel(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "config").mkdir()
+            (root / "data").mkdir()
+            profile = {
+                "maximum_required_experience_years": 5,
+                "primary_role_terms": ["operations analyst"],
+                "strong_skills": ["data quality", "reporting", "salesforce"],
+                "supporting_skills": [], "learning_skills": [],
+                "excluded_titles": [], "screening_exclusion_terms": [],
+                "mandatory_advanced_skill_terms": [],
+                "screening_queue_thresholds": {"strong_shortlist": 45, "review_queue": 30},
+                "location_preference": ["remote_india", "other_india"],
+            }
+            (root / "config" / "profile.json").write_text(json.dumps(profile), encoding="utf-8")
+            (root / "config" / "sources.json").write_text("{}", encoding="utf-8")
+            (root / "data" / "seen_jobs.json").write_text("[]", encoding="utf-8")
+            found = Job(
+                "1", "lever", "Example", "Operations Analyst", "Remote - India", "Remote",
+                "Responsibilities: maintain Salesforce data quality and reporting. Requirements: operational reporting experience.",
+                "https://jobs.example.test/1", source_id="lever/example", source_type="direct_employer", source_priority=100,
+            )
+            diagnostic = SourceDiagnostic("lever/example", "direct_employer", "successful", True, 1, 1)
+
+            def verify(jobs, **kwargs):
+                jobs[0].active_status = "active"
+                jobs[0].verification_reason = "verified_active"
+                return jobs, 0, 0
+
+            output = io.StringIO()
+            with (
+                patch.object(cli, "ROOT", root),
+                patch.object(cli, "load_evidence", return_value={}),
+                patch.object(cli, "collect", return_value=([found], [], [diagnostic])),
+                patch.object(cli, "retain_active_jobs", side_effect=verify),
+                patch("sys.stdout", output),
+            ):
+                self.assertEqual(cli.run(dry_run=True), 0)
+            text = output.getvalue()
+            self.assertIn("collection: raw=1, exact_id_duplicates=0", text)
+            self.assertIn("eligibility: eligible=1, rejected=0", text)
+            self.assertIn("active=1", text)
+            self.assertIn("visible=1", text)
     def test_workflow_stages_only_approved_public_artifacts(self):
         workflow = (Path(__file__).parents[1] / ".github" / "workflows" / "job-search.yml").read_text(encoding="utf-8")
         self.assertIn("git add -- output/latest.md output/jobs.json output/jobs.csv data/seen_jobs.json", workflow)
