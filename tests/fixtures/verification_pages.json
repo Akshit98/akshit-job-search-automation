@@ -1,0 +1,7 @@
+{
+  "aggregator_with_employer_link": "<a class=\"apply-button\" href=\"https://careers.example.test/jobs/123\">Apply for this job</a>",
+  "aggregator_only": "<html><body><p>Apply now</p><p>This listing has no canonical employer destination.</p></body></html>",
+  "canonical_employer": "<script type=\"application/ld+json\">{\"@type\":\"JobPosting\",\"description\":\"Responsibilities: maintain CRM records and reports. Requirements: Salesforce experience.\",\"hiringOrganization\":{\"name\":\"Example Employer\"},\"jobLocation\":{\"address\":{\"addressLocality\":\"Pune\",\"addressCountry\":\"India\"}}}</script><p>Apply now</p>",
+  "generic_jobs_index": "<html><body><h1>Browse all jobs</h1></body></html>",
+  "malformed_empty_page": ""
+}

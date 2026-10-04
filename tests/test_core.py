@@ -4,12 +4,18 @@ from job_search.core import (
     Job,
     assign_screening_queue,
     annual_compensation_inr,
+    canonicalize_jobs,
     contains_term,
     evaluate,
     job_fingerprint,
+    legacy_job_fingerprint,
     location_tier,
     minimum_required_experience_years,
     monthly_compensation_inr,
+    normalize_company_name,
+    same_vacancy,
+    sanitize_public_url,
+    seen_identity_keys,
 )
 
 
@@ -33,6 +39,18 @@ def job(**kwargs):
 
 
 class LocationTests(unittest.TestCase):
+    def test_explicit_coimbatore_is_not_overridden_by_bangalore_in_description(self):
+        listing = job(
+            location="Coimbatore, Tamil Nadu",
+            workplace="On-site",
+            description="The company also has offices in Chennai and Bangalore.",
+        )
+        self.assertEqual(location_tier(listing), "other_india")
+
+    def test_canonical_location_is_used_only_when_source_location_is_missing(self):
+        listing = job(location="", workplace="", canonical_location="Hyderabad, India", description="Office list: Bangalore")
+        self.assertEqual(location_tier(listing), "hyderabad")
+
     def test_remote_role_limited_to_non_india_regions_is_rejected(self):
         job = Job(
             "restricted", "test", "Example", "Operations Coordinator",
@@ -47,6 +65,105 @@ class LocationTests(unittest.TestCase):
 
     def test_global_anywhere(self):
         self.assertEqual(location_tier(job(location="Anywhere", description="Work from anywhere worldwide")), "global_work_from_anywhere")
+
+
+class IdentityTests(unittest.TestCase):
+    def test_legal_suffixes_and_safe_typo_normalize_together(self):
+        variants = (
+            "Alphacom Systems and Solutions Priavte Limited",
+            "Alphacom Systems & Solutions Pvt. Ltd.",
+            "Alphacom Systems and Solutions Private Limited",
+        )
+        self.assertEqual(len({normalize_company_name(value) for value in variants}), 1)
+
+    def test_different_employers_do_not_collapse(self):
+        self.assertNotEqual(normalize_company_name("Alpha Systems Pvt Ltd"), normalize_company_name("Alphacom Systems Pvt Ltd"))
+
+    def test_sensitive_url_parameters_are_removed(self):
+        safe = sanitize_public_url("https://jobs.example.test/opening?id=7&api_key=SENTINEL&token=SECRET&utm_source=test")
+        self.assertEqual(safe, "https://jobs.example.test/opening?id=7")
+        self.assertNotIn("SENTINEL", safe)
+
+    def test_meaningful_job_query_is_preserved_and_sorted(self):
+        safe = sanitize_public_url("https://jobs.example.test/opening?team=ops&job_id=7&utm_source=board")
+        self.assertEqual(safe, "https://jobs.example.test/opening?job_id=7&team=ops")
+
+    def test_tracking_differences_share_canonical_url_identity(self):
+        left = job(id="a", canonical_employer_url="https://jobs.example.test/opening/7?utm_source=one")
+        right = job(id="b", canonical_employer_url="https://jobs.example.test/opening/7?utm_medium=two")
+        self.assertTrue(same_vacancy(left, right))
+
+    def test_different_query_requisition_ids_do_not_share_url_identity(self):
+        left = job(id="a", source_type="direct_employer", canonical_employer_url="https://jobs.example.test/opening?job_id=7")
+        right = job(id="b", source_type="direct_employer", canonical_employer_url="https://jobs.example.test/opening?job_id=8")
+        self.assertFalse(same_vacancy(left, right))
+
+    def test_cross_location_aggregator_copies_cluster_when_content_matches(self):
+        description = "Responsibilities include CRM data quality reporting and operational support for partner teams."
+        left = job(id="a", company="Example Pvt Ltd", location="Bengaluru", location_tier="bengaluru", description=description, source_type="aggregator", source_priority=20)
+        right = job(id="b", company="Example Private Limited", location="Hyderabad", location_tier="hyderabad", description=description, source_type="aggregator", source_priority=20)
+        self.assertTrue(same_vacancy(left, right))
+        representatives, duplicates = canonicalize_jobs([left, right])
+        self.assertEqual(len(representatives), 1)
+        self.assertEqual(len(duplicates), 1)
+
+    def test_shifted_aggregator_excerpts_with_shared_jd_passage_cluster(self):
+        shared = "responsible for managing key aspects of process governance and operations for the global professional services operations team"
+        left = job(id="a", company="Example Ltd", title="Services Operations Analyst", location="India", source_type="aggregator", description=f"Company introduction and benefits. {shared}. Reporting and CRM support.")
+        right = job(id="b", company="Example", title="Services Operations Analyst", location="Hyderabad", source_type="aggregator", description=f"Inclusive employer notice. Please contact us. {shared}. Partner support.")
+        self.assertTrue(same_vacancy(left, right))
+
+    def test_direct_employer_outranks_aggregator_copy(self):
+        description = "Responsibilities include CRM data quality reporting and operational support for partner teams."
+        direct = job(id="lever:1", company="Example", source="lever", source_type="direct_employer", source_priority=100, canonical_employer_url="https://jobs.example.test/1", description=description)
+        aggregator = job(id="adzuna:1", company="Example", source="Adzuna", source_type="aggregator", source_priority=20, description=description)
+        representatives, _ = canonicalize_jobs([aggregator, direct])
+        self.assertEqual(representatives[0].id, "lever:1")
+
+    def test_direct_and_aggregator_same_title_need_corroborating_content(self):
+        direct = job(id="lever:1", company="Example", source_type="direct_employer", description="Maintain CRM records and customer operations reporting for enterprise teams.")
+        aggregator = job(id="adzuna:1", company="Example", source_type="aggregator", description="Own quota plans, billing forecasts, and sales commissions for regional leaders.")
+        self.assertFalse(same_vacancy(direct, aggregator))
+
+    def test_distinct_direct_requisition_ids_are_preserved(self):
+        left = job(id="lever:1", source_type="direct_employer", source_priority=100, description="CRM reporting for customer operations")
+        right = job(id="lever:2", source_type="direct_employer", source_priority=100, description="CRM reporting for partner operations")
+        self.assertFalse(same_vacancy(left, right))
+
+    def test_same_employer_title_tier_separate_direct_openings_are_preserved(self):
+        left = job(id="lever:1", source_type="direct_employer", location_tier="remote_india", description="Customer operations reporting and CRM data maintenance.")
+        right = job(id="lever:2", source_type="direct_employer", location_tier="remote_india", description="Partner onboarding, implementation planning, and service delivery.")
+        representatives, duplicates = canonicalize_jobs([left, right])
+        self.assertEqual(len(representatives), 2)
+        self.assertEqual(duplicates, [])
+
+    def test_same_title_with_materially_different_descriptions_is_preserved(self):
+        left = job(id="a", source_type="aggregator", description="Maintain CRM records and prepare weekly operations reports for partner teams.", location="Pune", location_tier="other_india")
+        right = job(id="b", source_type="aggregator", description="Own billing forecasts, revenue accounting, quota administration, and commission plans.", location="Pune", location_tier="other_india")
+        self.assertFalse(same_vacancy(left, right))
+
+    def test_seen_identity_accepts_source_legacy_and_versioned_fingerprints(self):
+        candidate = job(id="lever:7", location_tier="remote_india")
+        keys = seen_identity_keys(candidate)
+        self.assertIn("lever:7", keys)
+        self.assertIn(f"fp:{legacy_job_fingerprint(candidate)}", keys)
+        self.assertIn(f"fp:v2:{job_fingerprint(candidate)}", keys)
+
+    def test_canonical_representative_inherits_seen_status(self):
+        description = "Responsibilities include CRM data quality reporting and operational support for partner teams."
+        aggregator = job(id="adzuna:1", source_type="aggregator", source_priority=20, description=description, is_new=False)
+        direct = job(id="lever:1", source_type="direct_employer", source_priority=100, description=description, is_new=True)
+        representatives, _ = canonicalize_jobs([aggregator, direct])
+        self.assertEqual(representatives[0].id, "lever:1")
+        self.assertFalse(representatives[0].is_new)
+
+    def test_stable_source_id_protects_normalization_and_location_migrations(self):
+        changed = job(id="adzuna:7", company="Example Private Limited", location_tier="other_india")
+        self.assertFalse(seen_identity_keys(changed).isdisjoint({"adzuna:7"}))
+
+    def test_genuinely_new_vacancy_has_no_seen_identity(self):
+        candidate = job(id="lever:new", location_tier="remote_india")
+        self.assertTrue(seen_identity_keys(candidate).isdisjoint({"lever:old", "fp:unrelated"}))
 
     def test_hyderabad_before_other_india(self):
         self.assertEqual(location_tier(job(location="Hyderabad", workplace="Hybrid")), "hyderabad")
