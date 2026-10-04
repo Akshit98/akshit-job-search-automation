@@ -91,7 +91,7 @@ class OutboundSafetyTests(unittest.TestCase):
         targets = (
             "http://localhost/job", "http://127.0.0.1/job", "http://10.0.0.1/job",
             "http://169.254.169.254/latest", "http://[::1]/job", "http://[fc00::1]/job",
-            "file:///etc/passwd",
+            "file:///etc/passwd", "https://user:pass@example.com/job",
         )
         for target in targets:
             with self.subTest(target=target):

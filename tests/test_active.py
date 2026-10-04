@@ -28,6 +28,16 @@ class ActiveStatusTests(unittest.TestCase):
     def response(body: str, url: str, code: int = 200):
         return SafeResponse(code, body, url, urlsplit(url).hostname or "", 0)
 
+    @staticmethod
+    def respond_with_hosts(body: str, final_url: str, hosts: list[str], code: int = 200):
+        def effect(_url, **kwargs):
+            callback = kwargs.get("on_validated")
+            for hop, host in enumerate(hosts):
+                if callback:
+                    callback(host, hop)
+            return SafeResponse(code, body, final_url, hosts[-1], max(0, len(hosts) - 1))
+        return effect
+
     def test_full_employer_jd_replaces_thin_aggregator_excerpt(self):
         html = (Path(__file__).parent / "fixtures" / "job_page.html").read_text(encoding="utf-8")
         job = Job("1", "Adzuna", "Example", "Analyst", "India", "", "Thin excerpt", "https://example.test", source_type="aggregator", description_provenance="aggregator_excerpt")
@@ -81,6 +91,75 @@ class ActiveStatusTests(unittest.TestCase):
         self.assertEqual(check_job_active(job), "unverified")
         self.assertEqual(job.verification_reason, "aggregator_page_only")
         self.assertEqual(job.canonical_resolution_status, "canonical_employer_url_missing")
+
+    @patch("job_search.active.safe_http_get")
+    def test_credential_bearing_outbound_links_are_never_requested(self, mock_fetch):
+        for outbound in ("https://user:pass@example.com/job", "https://user@example.com/job"):
+            with self.subTest(outbound=outbound):
+                html = f'<a href="{outbound}">Apply now</a>'
+                mock_fetch.reset_mock()
+                mock_fetch.side_effect = self.respond_with_hosts(html, "https://aggregator.test/details/1", ["aggregator.test"])
+                job = Job("1", "Aggregator", "Example", "Analyst", "India", "", "Thin", "https://aggregator.test/details/1", source_type="aggregator")
+                self.assertEqual(check_job_active(job), "unverified")
+                self.assertEqual(job.verification_reason, "aggregator_page_only")
+                self.assertEqual(mock_fetch.call_count, 1)
+
+    @patch("job_search.active.safe_http_get")
+    def test_normal_tracking_outbound_link_is_requested_without_tracking(self, mock_fetch):
+        html = '<a href="https://careers.example.com/job/7?utm_source=board">Apply now</a>'
+        mock_fetch.side_effect = [
+            self.respond_with_hosts(html, "https://aggregator.test/details/1", ["aggregator.test"]),
+            self.respond_with_hosts("Apply now", "https://careers.example.com/job/7", ["careers.example.com"]),
+        ]
+        # Invoke callable side effects in sequence.
+        effects = list(mock_fetch.side_effect)
+        mock_fetch.side_effect = lambda *args, **kwargs: effects.pop(0)(*args, **kwargs)
+        job = Job("1", "Aggregator", "Example", "Analyst", "India", "", "Thin", "https://aggregator.test/details/1", source_type="aggregator")
+        self.assertEqual(check_job_active(job), "active")
+        self.assertEqual(mock_fetch.call_args_list[1].args[0], "https://careers.example.com/job/7")
+
+    @patch("job_search.active.safe_http_get")
+    def test_original_host_is_preserved_across_public_redirect(self, mock_fetch):
+        mock_fetch.side_effect = self.respond_with_hosts("Apply now", "https://employer.test/jobs/7", ["aggregator.test", "employer.test"])
+        job = Job("1", "Board", "Example", "Analyst", "India", "", "Thin", "https://aggregator.test/jobs/7", source_type="direct_employer")
+        self.assertEqual(check_job_active(job), "active")
+        self.assertEqual(job.verification_original_host, "aggregator.test")
+        self.assertEqual(job.verification_attempted_host, "employer.test")
+        self.assertEqual(job.verification_stage, "source")
+
+    @patch("job_search.active.safe_http_get")
+    def test_direct_employer_host_telemetry(self, mock_fetch):
+        mock_fetch.side_effect = self.respond_with_hosts("Apply now", "https://employer.test/jobs/7", ["employer.test"])
+        job = Job("1", "ATS", "Example", "Analyst", "India", "", "Thin", "https://employer.test/jobs/7", source_type="direct_employer")
+        self.assertEqual(check_job_active(job), "active")
+        self.assertEqual(job.verification_original_host, "employer.test")
+        self.assertEqual(job.verification_attempted_host, "employer.test")
+
+    @patch("job_search.active.safe_http_get")
+    def test_unsafe_redirect_keeps_only_original_safe_host(self, mock_fetch):
+        def unsafe(_url, **kwargs):
+            kwargs["on_validated"]("aggregator.test", 0)
+            raise UnsafeDestination("private target")
+        mock_fetch.side_effect = unsafe
+        job = Job("1", "Board", "Example", "Analyst", "India", "", "Thin", "https://aggregator.test/jobs/7", source_type="job_board")
+        self.assertEqual(check_job_active(job), "unverified")
+        self.assertEqual(job.verification_reason, "unsafe_destination")
+        self.assertEqual(job.verification_original_host, "aggregator.test")
+        self.assertEqual(job.verification_attempted_host, "aggregator.test")
+
+    @patch("job_search.active.safe_http_get")
+    def test_canonical_outbound_host_telemetry(self, mock_fetch):
+        html = '<a href="https://employer.test/jobs/7">Apply now</a>'
+        effects = [
+            self.respond_with_hosts(html, "https://aggregator.test/details/1", ["aggregator.test"]),
+            self.respond_with_hosts("Apply now", "https://employer.test/jobs/7", ["employer.test"]),
+        ]
+        mock_fetch.side_effect = lambda *args, **kwargs: effects.pop(0)(*args, **kwargs)
+        job = Job("1", "Aggregator", "Example", "Analyst", "India", "", "Thin", "https://aggregator.test/details/1", source_type="aggregator")
+        self.assertEqual(check_job_active(job), "active")
+        self.assertEqual(job.verification_original_host, "aggregator.test")
+        self.assertEqual(job.verification_attempted_host, "employer.test")
+        self.assertEqual(job.verification_stage, "canonical")
 
     @patch("job_search.active.safe_http_get", return_value=SafeResponse(403, "blocked-token", "https://example.test", "example.test", 0))
     def test_http_blocked_is_sanitized(self, _mock_fetch):

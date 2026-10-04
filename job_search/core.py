@@ -174,7 +174,8 @@ def sanitize_public_url(value: str) -> str:
         return ""
     host = parsed.hostname.lower()
     try:
-        if parsed.port:
+        default_port = 443 if parsed.scheme.lower() == "https" else 80
+        if parsed.port and parsed.port != default_port:
             host += f":{parsed.port}"
     except ValueError:
         return ""
@@ -559,22 +560,33 @@ def _description_similarity(left: str, right: str) -> float:
     return max(intersection / len(a | b), intersection / min(len(a), len(b)))
 
 
-def _has_shared_description_passage(left: str, right: str, width: int = 8) -> bool:
-    """Detect the same JD excerpt even when board boilerplate shifts its start."""
+def _description_token_count(value: str) -> int:
+    return len(re.findall(r"[a-z0-9]{3,}", clean_text(value).lower()))
+
+
+def _shared_description_passage_count(left: str, right: str, width: int = 8) -> int:
+    """Count distinct shared passages while ignoring isolated boilerplate."""
     def shingles(value: str) -> set[tuple[str, ...]]:
         words = re.findall(r"[a-z0-9]{3,}", clean_text(value).lower())
         return {tuple(words[index:index + width]) for index in range(len(words) - width + 1)}
     a, b = shingles(left), shingles(right)
-    return bool(a and b and a.intersection(b))
+    return len(a.intersection(b)) if a and b else 0
+
+
+def _has_shared_description_passage(left: str, right: str, width: int = 8) -> bool:
+    """Require multiple passages plus broader content agreement."""
+    return _shared_description_passage_count(left, right, width) >= 3 and _description_similarity(left, right) >= 0.35
 
 
 def same_vacancy(left: Job, right: Job) -> bool:
     """Conservatively cluster cross-source/location copies of one vacancy."""
-    if left.id and left.id == right.id:
-        return True
     left_url = _url_identity(left.canonical_employer_url)
     right_url = _url_identity(right.canonical_employer_url)
-    if left_url and right_url and left_url == right_url:
+    if left_url and right_url:
+        # Two official vacancy identities are authoritative: similarity,
+        # boilerplate, and source priority cannot override a conflict.
+        return left_url == right_url
+    if left.id and left.id == right.id:
         return True
 
     company_matches = normalize_company_name(left.company) == normalize_company_name(right.company)
@@ -585,6 +597,12 @@ def same_vacancy(left: Job, right: Job) -> bool:
     # Distinct direct-employer requisitions remain distinct unless their
     # canonical application URL proves they are the same opening.
     if left.source_type == right.source_type == "direct_employer" and left.id != right.id:
+        return False
+    substantial_content = min(
+        _description_token_count(left.description),
+        _description_token_count(right.description),
+    ) >= 40
+    if not substantial_content:
         return False
     similarity = _description_similarity(left.description, right.description)
     if "direct_employer" in (left.source_type, right.source_type):

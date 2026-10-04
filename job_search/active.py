@@ -5,7 +5,7 @@ import json
 import re
 import socket
 from datetime import datetime, timedelta, timezone
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, urlsplit
 
 from .core import Job, clean_text, sanitize_public_url
 from .http_safe import (
@@ -111,7 +111,14 @@ def _candidate_outbound_urls(body: str, base_url: str) -> list[str]:
             candidates.append(match.group(2))
     result = []
     for candidate in candidates:
-        safe = sanitize_public_url(urljoin(base_url, candidate))
+        resolved = urljoin(base_url, candidate)
+        try:
+            parsed = urlsplit(resolved)
+            if parsed.username is not None or parsed.password is not None:
+                continue
+        except ValueError:
+            continue
+        safe = sanitize_public_url(resolved)
         if safe and safe != sanitize_public_url(base_url) and safe not in result:
             result.append(safe)
     return result
@@ -205,6 +212,12 @@ def check_job_active(job: Job, timeout: int = DEFAULT_TIMEOUT_SECONDS, budget: R
 
     def fetch(url: str, stage: str) -> tuple[int, str, str]:
         job.verification_stage = stage
+
+        def record_validated_host(hostname: str, hop: int) -> None:
+            if stage == "source" and hop == 0:
+                job.verification_original_host = hostname
+            job.verification_attempted_host = hostname
+
         response = safe_http_get(
             url,
             headers={
@@ -215,11 +228,9 @@ def check_job_active(job: Job, timeout: int = DEFAULT_TIMEOUT_SECONDS, budget: R
             budget=budget,
             timeout=timeout,
             maximum_bytes=MAX_JOB_PAGE_BYTES,
+            on_validated=record_validated_host,
         )
-        job.verification_attempted_host = response.final_hostname
         job.verification_http_class = f"{response.status // 100}xx"
-        if stage == "source":
-            job.verification_original_host = response.final_hostname
         return response.status, response.body, response.final_url
 
     try:

@@ -93,13 +93,36 @@ class IdentityTests(unittest.TestCase):
         right = job(id="b", canonical_employer_url="https://jobs.example.test/opening/7?utm_medium=two")
         self.assertTrue(same_vacancy(left, right))
 
+    def test_equivalent_official_urls_merge(self):
+        left = job(id="a", canonical_employer_url="https://jobs.example.test:443/opening/7/?utm_source=one")
+        right = job(id="b", canonical_employer_url="https://jobs.example.test/opening/7")
+        self.assertTrue(same_vacancy(left, right))
+
     def test_different_query_requisition_ids_do_not_share_url_identity(self):
         left = job(id="a", source_type="direct_employer", canonical_employer_url="https://jobs.example.test/opening?job_id=7")
         right = job(id="b", source_type="direct_employer", canonical_employer_url="https://jobs.example.test/opening?job_id=8")
         self.assertFalse(same_vacancy(left, right))
 
+    def test_conflicting_official_urls_override_highly_similar_content(self):
+        description = "Responsibilities include CRM data quality reporting and operational support for partner teams." * 4
+        left = job(id="a", canonical_employer_url="https://jobs.example.test/opening/7", description=description)
+        right = job(id="b", canonical_employer_url="https://jobs.example.test/opening/8", description=description)
+        self.assertFalse(same_vacancy(left, right))
+
+    def test_conflicting_official_urls_override_shared_boilerplate(self):
+        shared = "we are an equal opportunity employer committed to an inclusive workplace for everyone"
+        left = job(id="a", canonical_employer_url="https://jobs.example.test/opening/7", description=f"{shared}. Maintain CRM data quality.")
+        right = job(id="b", canonical_employer_url="https://jobs.example.test/opening/8", description=f"{shared}. Own billing and quota forecasts.")
+        self.assertFalse(same_vacancy(left, right))
+
+    def test_direct_and_aggregator_conflicting_official_requisitions_stay_separate(self):
+        description = "Responsibilities include CRM data quality reporting and operational support for partner teams." * 3
+        direct = job(id="lever:7", source_type="direct_employer", canonical_employer_url="https://jobs.example.test/opening/7", description=description)
+        aggregator = job(id="adzuna:8", source_type="aggregator", canonical_employer_url="https://jobs.example.test/opening/8", description=description)
+        self.assertFalse(same_vacancy(direct, aggregator))
+
     def test_cross_location_aggregator_copies_cluster_when_content_matches(self):
-        description = "Responsibilities include CRM data quality reporting and operational support for partner teams."
+        description = "Responsibilities include CRM data quality reporting and operational support for partner teams. " * 6
         left = job(id="a", company="Example Pvt Ltd", location="Bengaluru", location_tier="bengaluru", description=description, source_type="aggregator", source_priority=20)
         right = job(id="b", company="Example Private Limited", location="Hyderabad", location_tier="hyderabad", description=description, source_type="aggregator", source_priority=20)
         self.assertTrue(same_vacancy(left, right))
@@ -108,13 +131,25 @@ class IdentityTests(unittest.TestCase):
         self.assertEqual(len(duplicates), 1)
 
     def test_shifted_aggregator_excerpts_with_shared_jd_passage_cluster(self):
-        shared = "responsible for managing key aspects of process governance and operations for the global professional services operations team"
-        left = job(id="a", company="Example Ltd", title="Services Operations Analyst", location="India", source_type="aggregator", description=f"Company introduction and benefits. {shared}. Reporting and CRM support.")
-        right = job(id="b", company="Example", title="Services Operations Analyst", location="Hyderabad", source_type="aggregator", description=f"Inclusive employer notice. Please contact us. {shared}. Partner support.")
+        shared = "responsible for managing key aspects of process governance and operations for the global professional services operations team including reporting analytics ownership maintenance of CRM systems stakeholder coordination recurring quality reviews issue tracking process documentation and tactical support"
+        left = job(id="a", company="Example Ltd", title="Services Operations Analyst", location="India", source_type="aggregator", description=f"Company introduction and benefits. {shared}. Reporting and CRM support with documented weekly reviews and partner coordination.")
+        right = job(id="b", company="Example", title="Services Operations Analyst", location="Hyderabad", source_type="aggregator", description=f"Inclusive employer notice. Please contact us. {shared}. Partner support with documented weekly reviews and customer coordination.")
         self.assertTrue(same_vacancy(left, right))
 
+    def test_single_company_introduction_passage_does_not_merge_jobs(self):
+        shared = "our company builds trusted software products for customers around the world every day"
+        left = job(id="a", source_type="aggregator", description=f"{shared}. Maintain CRM records and prepare operations reports.")
+        right = job(id="b", source_type="aggregator", description=f"{shared}. Manage billing forecasts and sales commissions.")
+        self.assertFalse(same_vacancy(left, right))
+
+    def test_shared_eeo_and_benefits_boilerplate_does_not_merge_jobs(self):
+        shared = "equal opportunity employer offering health insurance paid leave and employee wellness benefits"
+        left = job(id="a", source_type="aggregator", description=f"Maintain customer data and validate CRM records. {shared}.")
+        right = job(id="b", source_type="aggregator", description=f"Develop software services and own production deployments. {shared}.")
+        self.assertFalse(same_vacancy(left, right))
+
     def test_direct_employer_outranks_aggregator_copy(self):
-        description = "Responsibilities include CRM data quality reporting and operational support for partner teams."
+        description = "Responsibilities include CRM data quality reporting and operational support for partner teams. " * 6
         direct = job(id="lever:1", company="Example", source="lever", source_type="direct_employer", source_priority=100, canonical_employer_url="https://jobs.example.test/1", description=description)
         aggregator = job(id="adzuna:1", company="Example", source="Adzuna", source_type="aggregator", source_priority=20, description=description)
         representatives, _ = canonicalize_jobs([aggregator, direct])
@@ -150,7 +185,7 @@ class IdentityTests(unittest.TestCase):
         self.assertIn(f"fp:v2:{job_fingerprint(candidate)}", keys)
 
     def test_canonical_representative_inherits_seen_status(self):
-        description = "Responsibilities include CRM data quality reporting and operational support for partner teams."
+        description = "Responsibilities include CRM data quality reporting and operational support for partner teams. " * 6
         aggregator = job(id="adzuna:1", source_type="aggregator", source_priority=20, description=description, is_new=False)
         direct = job(id="lever:1", source_type="direct_employer", source_priority=100, description=description, is_new=True)
         representatives, _ = canonicalize_jobs([aggregator, direct])

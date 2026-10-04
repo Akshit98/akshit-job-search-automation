@@ -6,6 +6,7 @@ import socket
 import ssl
 import threading
 from dataclasses import dataclass
+from typing import Callable
 from urllib.parse import urljoin, urlsplit, urlunsplit
 
 
@@ -156,6 +157,7 @@ def safe_http_get(
     timeout: int = DEFAULT_TIMEOUT_SECONDS,
     maximum_bytes: int = MAX_RESPONSE_BYTES,
     maximum_redirects: int = MAX_REDIRECTS,
+    on_validated: Callable[[str, int], None] | None = None,
 ) -> SafeResponse:
     current = url
     visited: set[str] = set()
@@ -166,6 +168,8 @@ def safe_http_get(
         except UnsafeDestination:
             budget.record_unsafe()
             raise
+        if on_validated is not None:
+            on_validated(target.hostname, redirects)
         if target.url in visited:
             raise RedirectLoop("redirect loop")
         visited.add(target.url)
