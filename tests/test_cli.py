@@ -87,8 +87,9 @@ class WorkflowSafetyTests(unittest.TestCase):
             self.assertIn("visible=1", text)
     def test_workflow_stages_only_approved_public_artifacts(self):
         workflow = (Path(__file__).parents[1] / ".github" / "workflows" / "job-search.yml").read_text(encoding="utf-8")
-        self.assertIn("git add -- output/latest.md output/jobs.json output/jobs.csv data/seen_jobs.json", workflow)
+        self.assertIn("git add -- output/latest.md output/jobs.json output/jobs.csv data/seen_jobs.json data/verification_state.json", workflow)
         self.assertNotIn("git add output ", workflow)
+        self.assertNotIn('paths:\n      - "output/**"', workflow)
 
     def test_enriched_jobs_are_fully_reassessed(self):
         profile = {
@@ -149,6 +150,28 @@ class WorkflowSafetyTests(unittest.TestCase):
                 self.assertEqual(cli.run(), 2)
             self.assertEqual(report.read_text(encoding="utf-8"), "previous good report")
 
+    def test_malformed_verification_state_stops_before_collection_or_writes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "config").mkdir(); (root / "data").mkdir(); (root / "output").mkdir()
+            (root / "config" / "profile.json").write_text("{}", encoding="utf-8")
+            (root / "config" / "sources.json").write_text("{}", encoding="utf-8")
+            (root / "data" / "seen_jobs.json").write_text("[]", encoding="utf-8")
+            state = root / "data" / "verification_state.json"
+            state.write_text("{broken", encoding="utf-8")
+            report = root / "output" / "latest.md"; report.write_text("previous", encoding="utf-8")
+            with (
+                patch.object(cli, "ROOT", root),
+                patch.object(cli, "load_evidence", return_value={}),
+                patch.object(cli, "collect") as collect_mock,
+                patch("sys.stdout", new_callable=io.StringIO) as stdout,
+            ):
+                self.assertEqual(cli.run(), 3)
+            collect_mock.assert_not_called()
+            self.assertEqual(state.read_text(encoding="utf-8"), "{broken")
+            self.assertEqual(report.read_text(encoding="utf-8"), "previous")
+            self.assertNotIn("broken", stdout.getvalue())
+
     def test_dry_run_does_not_write_reports_or_seen_state(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -171,6 +194,8 @@ class WorkflowSafetyTests(unittest.TestCase):
             (root / "config" / "sources.json").write_text("{}", encoding="utf-8")
             seen = root / "data" / "seen_jobs.json"
             seen.write_text("[]", encoding="utf-8")
+            verification_state = root / "data" / "verification_state.json"
+            verification_state.write_text('{"schema_version":2,"jobs":{},"aliases":{}}', encoding="utf-8")
             report = root / "output" / "latest.md"
             report.write_text("previous report", encoding="utf-8")
             from job_search.core import Job
@@ -185,6 +210,7 @@ class WorkflowSafetyTests(unittest.TestCase):
                 self.assertEqual(cli.run(dry_run=True), 0)
             self.assertEqual(report.read_text(encoding="utf-8"), "previous report")
             self.assertEqual(seen.read_text(encoding="utf-8"), "[]")
+            self.assertEqual(verification_state.read_text(encoding="utf-8"), '{"schema_version":2,"jobs":{},"aliases":{}}')
 
     def test_dry_run_evidence_counts_use_post_enrichment_reassessment(self):
         with tempfile.TemporaryDirectory() as directory:

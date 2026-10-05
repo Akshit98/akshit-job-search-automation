@@ -111,6 +111,46 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(payload["verification_health"]["freshness_by_verification"]["stale_unverified_aggregator"][">365"], 1)
         self.assertIn("eligible 4", markdown)
 
+    def test_markdown_limits_human_review_but_json_and_csv_keep_backlogs(self):
+        strong = Job("strong", "lever", "Direct", "Strong Role", "India", "", "Role", "https://example.test/strong", screening_score=60)
+        human = [Job(f"h-{index}", "test", "Example", f"Human Role {index}", "India", "", "Role", f"https://example.test/h/{index}", screening_score=40, review_disposition="human_review") for index in range(25)]
+        backlog = Job("backlog", "test", "Example", "Backlog Role", "India", "", "Role", "https://example.test/backlog", review_disposition="verification_backlog")
+        cold = Job("cold", "test", "Example", "Cold Role", "India", "", "Role", "https://example.test/cold", source_type="aggregator", listing_age_days=500, review_disposition="cold_verification_backlog")
+        review = human + [backlog, cold]
+        metrics = {
+            "verification": {"verification_candidates_total": 27, "jobs_submitted": 10, "requests_attempted": 10},
+            "deduplication": {"raw_records": 30, "exact_id_duplicates_removed": 1, "canonical_duplicates_removed": 2, "distinct_duplicate_groups": 3},
+            "queue_health": {"human_review": 25, "verification_backlog": 1, "cold_verification_backlog": 1},
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            write_reports([strong], review, [], output, human_review=human, verification_backlog=[backlog], cold_verification_backlog=[cold], operational_metrics=metrics)
+            markdown = (output / "latest.md").read_text(encoding="utf-8")
+            payload = json.loads((output / "jobs.json").read_text(encoding="utf-8"))
+            csv_text = (output / "jobs.csv").read_text(encoding="utf-8-sig")
+        self.assertIn("Strong Role", markdown)
+        self.assertEqual(markdown.count("### [Human Role"), 20)
+        self.assertNotIn("### [Backlog Role", markdown)
+        self.assertNotIn("### [Cold Role", markdown)
+        self.assertEqual(len(payload["review_queue"]), 27)
+        self.assertEqual(payload["verification_backlog"][0]["id"], "backlog")
+        self.assertEqual(payload["cold_verification_backlog"][0]["id"], "cold")
+        self.assertIn("verification_backlog", csv_text)
+        self.assertEqual(payload["operational_metrics"]["verification"]["requests_attempted"], 10)
+        self.assertIn("HTTP requests 10", markdown)
+
+    def test_operational_metrics_do_not_expose_sensitive_network_details(self):
+        metrics = {
+            "verification": {"requests_attempted": 2, "unsafe_destinations_rejected": 1},
+            "deduplication": {}, "queue_health": {},
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            write_reports([], [], [], output, operational_metrics=metrics)
+            combined = (output / "latest.md").read_text(encoding="utf-8") + (output / "jobs.json").read_text(encoding="utf-8")
+        self.assertNotIn("127.0.0.1", combined)
+        self.assertNotIn("redirect_targets", combined)
+
 
 if __name__ == "__main__":
     unittest.main()

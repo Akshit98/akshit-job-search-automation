@@ -2,6 +2,8 @@
 
 A transparent, human-in-the-loop job finder tailored to Akshit Didla's verified background. It collects public openings from ATS career pages, public job-board feeds, and optional aggregators; checks eligibility; assigns an automated screening score; removes duplicates; verifies application pages; and writes Markdown/CSV/JSON reports.
 
+Verification is scheduled deterministically by application value rather than source arrival order. Public-safe retry metadata lives in `data/verification_state.json`; schema v2 contains only hashed vacancy identities and aliases, sanitized outcome classes, bounded counters, and timestamps. Aliases are established only when conservative canonical deduplication has already proved two records represent the same vacancy. Equivalent jobs rotate by scheduling age after application-value factors, and closed vacancies receive a low-priority recheck after 60 days. State writes are atomic; malformed top-level state stops the run rather than silently replacing retry history. The Markdown report shows all strong-shortlist jobs and at most 20 human-review jobs, while JSON and CSV retain the complete review and verification backlogs. State pruning remains a deferred maintenance enhancement because expected one-year growth is manageable.
+
 ## Search priority
 
 Eligible full-time roles across India and global/remote roles that explicitly support hiring in India are accepted. Location is primarily an eligibility check, not a hiring-fit bonus. When otherwise comparable roles have the same screening score and freshness, remote roles and Hyderabad are preferred as tie-breakers; Bengaluru and other Indian locations are not downgraded in the score.

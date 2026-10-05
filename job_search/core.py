@@ -100,6 +100,8 @@ class Job:
     description_retrieved_at: str = ""
     source_quality_confidence: str = "unknown"
     source_id: str = ""
+    review_disposition: str = ""
+    verification_schedule_status: str = "not_scheduled"
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
