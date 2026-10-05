@@ -9,7 +9,7 @@ from job_search.core import Job
 from job_search.verification_state import (
     ALLOWED_ENTRY_FIELDS, MAX_COUNTER, SAFE_URL_SENTINEL, VerificationStateError,
     _safe_state_url, assign_review_dispositions, atomic_write_json, empty_state,
-    job_alias_hashes, load_verification_state, plan_verification,
+    job_alias_hashes, load_verification_state, official_url_alias_hash, plan_verification,
     register_duplicate_aliases, source_signature_hash, stable_identity_hash,
     update_verification_state, verification_priority_key, write_verification_state,
 )
@@ -127,10 +127,7 @@ class RetryStateTests(unittest.TestCase):
         job.verification_reason = "unsafe_destination"
         update_verification_state(state, attempted=[job], deferred=[], now=NOW)
         self.assertEqual(plan_verification([job], state, now=NOW + timedelta(days=1))["backoff"][0].id, "unsafe")
-        job.source_type = "direct_employer"
-        job.canonical_resolution_status = "resolved_employer_page"
-        job.original_source_url = "https://example.test/jobs/unsafe-v2"
-        job.url = job.original_source_url
+        job.source_id = "source/changed"
         self.assertEqual(plan_verification([job], state, now=NOW + timedelta(days=100))["selected"][0].id, "unsafe")
 
     def test_unsafe_destination_rechecks_at_thirty_day_boundary(self):
@@ -186,10 +183,7 @@ class RetryStateTests(unittest.TestCase):
         state = empty_state()
         job.verification_reason = "http_blocked"
         update_verification_state(state, attempted=[job], deferred=[], now=NOW)
-        job.source_type = "direct_employer"
-        job.canonical_resolution_status = "resolved_employer_page"
-        job.original_source_url = "https://example.test/jobs/changed-new"
-        job.url = job.original_source_url
+        job.source_id = "source/changed"
         plan = plan_verification([job], state, now=NOW + timedelta(days=1))
         self.assertEqual(plan["selected"][0].id, "changed")
 
@@ -199,6 +193,34 @@ class RetryStateTests(unittest.TestCase):
         update_verification_state(state, attempted=[job], deferred=[], now=NOW)
         self.assertEqual(len(plan_verification([job], state, now=NOW + timedelta(days=6))["cached_active"]), 1)
         self.assertEqual(len(plan_verification([job], state, now=NOW + timedelta(days=7))["selected"]), 1)
+
+    def test_direct_ats_active_cache_survives_fresh_daily_objects(self):
+        def fresh(identifier="req-cache"):
+            job = make_job(identifier, source_type="direct_employer")
+            job.source_id = "lever/board"
+            job.ats_board_id = "board"
+            job.url = job.original_source_url = job.canonical_employer_url = "https://jobs.example.test/req-cache"
+            job.canonical_resolution_status = "resolved_employer_page"
+            return job
+
+        verified = fresh()
+        pre_signature = source_signature_hash(verified)
+        verified.verification_reason = "verified_active"
+        verified.active_status = "active"
+        verified.verification_stage = "source"
+        verified.verification_attempted_host = "jobs.example.test"
+        verified.verified_at = NOW.isoformat()
+        self.assertEqual(source_signature_hash(verified), pre_signature)
+        state = empty_state()
+        update_verification_state(state, attempted=[verified], deferred=[], now=NOW)
+        for day in (1, 6):
+            current = fresh()
+            self.assertEqual(source_signature_hash(current), pre_signature)
+            self.assertEqual(len(plan_verification([current], state, now=NOW + timedelta(days=day))["cached_active"]), 1)
+        self.assertEqual(len(plan_verification([fresh()], state, now=NOW + timedelta(days=7))["selected"]), 1)
+        changed = fresh("req-cache-2")
+        self.assertNotEqual(stable_identity_hash(changed, state), stable_identity_hash(verified, state))
+        self.assertEqual(len(plan_verification([changed], state, now=NOW + timedelta(days=1))["selected"]), 1)
 
     def test_closed_is_dormant_then_due_after_sixty_days(self):
         closed = make_job("closed"); state = empty_state(); closed.verification_reason = "verified_closed"
@@ -320,6 +342,23 @@ class IdentityAliasTests(unittest.TestCase):
         second.url = second.original_source_url = second.canonical_employer_url + "?utm_source=x"
         self.assertEqual(source_signature_hash(first), source_signature_hash(second))
 
+    def test_direct_ats_identity_does_not_require_validated_url(self):
+        first = self.direct("req-1", "lever-board")
+        first.url = first.original_source_url = first.canonical_employer_url = "https://internal.corp/jobs/123"
+        second = self.direct("req-1", "lever-board")
+        second.url = second.original_source_url = second.canonical_employer_url = "https://intranet/job"
+        self.assertEqual(stable_identity_hash(first), stable_identity_hash(second))
+        self.assertEqual(source_signature_hash(first), source_signature_hash(second))
+        self.assertNotIn(official_url_alias_hash(first), job_alias_hashes(first))
+
+    def test_runtime_validated_official_url_alias_requires_explicit_evidence(self):
+        job = self.direct()
+        self.assertEqual(official_url_alias_hash(job), "")
+        job.verification_stage = "source"
+        job.verification_attempted_host = "jobs.acme.test"
+        job.verified_at = NOW.isoformat()
+        self.assertTrue(official_url_alias_hash(job))
+
 
 class SignatureSafetyTests(unittest.TestCase):
     def test_unsafe_urls_use_fixed_sentinel(self):
@@ -335,6 +374,24 @@ class SignatureSafetyTests(unittest.TestCase):
     def test_unvalidated_hostname_uses_sentinel(self):
         self.assertEqual(_safe_state_url("https://private.example/job", validated=False), SAFE_URL_SENTINEL)
 
+    def test_direct_source_metadata_is_not_runtime_validation(self):
+        for value in (
+            "https://internal.corp/jobs/123", "https://internal.example.local/job",
+            "https://corp.internal/job", "https://intranet/job",
+        ):
+            with self.subTest(value=value):
+                job = make_job("direct", source_type="direct_employer")
+                job.ats_board_id = "lever-board"
+                job.url = job.original_source_url = job.canonical_employer_url = value
+                job.canonical_resolution_status = "resolved_employer_page"
+                self.assertEqual(official_url_alias_hash(job), "")
+                self.assertEqual(_safe_state_url(value, validated=False), SAFE_URL_SENTINEL)
+                state = empty_state(); job.verification_reason = "http_blocked"
+                update_verification_state(state, attempted=[job], deferred=[], now=NOW)
+                serialized = json.dumps(state)
+                for raw in ("internal.corp", "internal.example.local", "corp.internal", "intranet", "/job", "https://"):
+                    self.assertNotIn(raw, serialized)
+
     def test_secret_and_tracking_parameters_are_removed_before_hashing(self):
         base = make_job("safe", source_type="direct_employer")
         base.canonical_resolution_status = "resolved_employer_page"
@@ -344,7 +401,7 @@ class SignatureSafetyTests(unittest.TestCase):
         changed.original_source_url = "https://jobs.example.test/job/1?utm_source=x&token=SECRET"
         self.assertEqual(source_signature_hash(base), source_signature_hash(changed))
         changed.original_source_url = "https://jobs.example.test/job/2"
-        self.assertNotEqual(source_signature_hash(base), source_signature_hash(changed))
+        self.assertEqual(source_signature_hash(base), source_signature_hash(changed))
 
 
 class LoaderAndAtomicWriteTests(unittest.TestCase):
@@ -432,7 +489,7 @@ class FairnessAndClosedTests(unittest.TestCase):
         job.original_source_url = "https://jobs.example.test/closed"
         state = empty_state(); job.verification_reason = "verified_closed"
         update_verification_state(state, attempted=[job], deferred=[], now=NOW)
-        job.original_source_url = "https://jobs.example.test/reopened"
+        job.source_id = "source/reopened"
         self.assertEqual(len(plan_verification([job], state, now=NOW + timedelta(days=2))["selected"]), 1)
 
 

@@ -99,8 +99,18 @@ def _safe_state_url(value: str, *, validated: bool) -> str:
 
 def _official_url(job: Job) -> str:
     value = job.canonical_employer_url or (job.url if job.source_type == "direct_employer" else "")
-    validated = bool(value) and (
-        job.source_type == "direct_employer" or job.canonical_resolution_status == "resolved_employer_page"
+    try:
+        hostname = (urlsplit(value).hostname or "").casefold()
+    except ValueError:
+        hostname = ""
+    # Collection-time source authority and canonical metadata are not network
+    # validation. The verifier records the host only after safe_http_get has
+    # accepted it as a public destination; retain_active_jobs then timestamps
+    # that attempt. Freshly collected jobs intentionally have neither field.
+    validated = bool(
+        value and hostname and job.verified_at
+        and job.verification_stage in {"source", "canonical"}
+        and clean_text(job.verification_attempted_host).casefold() == hostname
     )
     safe = _safe_state_url(value, validated=validated)
     return "" if safe == SAFE_URL_SENTINEL else safe
@@ -139,8 +149,10 @@ def stable_identity_hash(job: Job, state: dict[str, Any] | None = None) -> str:
 
 
 def source_signature_hash(job: Job) -> str:
-    validated = job.source_type == "direct_employer" or job.canonical_resolution_status == "resolved_employer_page"
-    safe_url = _safe_state_url(job.original_source_url or job.url or job.canonical_url, validated=validated)
+    # Runtime URL-validation evidence is deliberately not part of the source
+    # signature: it is absent on the next day's fresh source object. Keeping the
+    # sentinel here prevents both raw URL hashing and cache self-invalidation.
+    safe_url = _safe_state_url(job.original_source_url or job.url or job.canonical_url, validated=False)
     return _sha256("|".join((
         "signature:v2", clean_text(job.source_id or job.source).casefold(),
         clean_text(job.id).casefold(), safe_url, clean_text(job.ats_board_id).casefold(),
