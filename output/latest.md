@@ -1,52 +1,53 @@
 # Latest matching jobs
 
-Generated: 2026-10-14T15:56:23+00:00
+Generated: 2026-10-15T08:33:46+00:00
 Strong shortlist: 4 (0 NEW)
-Review queue: 192
+Review queue: 187
 Human review: 20
-Verification backlog: 149
+Verification backlog: 144
 Cold verification backlog: 23
-Suppressed: 6484
+Suppressed: 6202
 
 Screening scores are automated prioritization signals. Actual Hiring Fit is a separate evidence-based assessment and is shown only when the job description contains sufficient detail.
 
 ## Source coverage
 
-Adzuna: 178 | Jobgether: 13 | Jooble: 1 | lever: 4
+Adzuna: 174 | Jobgether: 12 | Jooble: 1 | lever: 4
 
 ## Run notes
 
-- Could not independently verify 192 application page(s); retained only in the review queue.
+- A configured source failed; see the categorized source-health entry.
+- Could not independently verify 187 application page(s); retained only in the review queue.
 
 ## Source health
 
-- greenhouse/remote: zero_results — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0)
+- greenhouse/remote: http_failure — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0) (HTTP 404)
 - lever/sprinto: successful — collection(raw 34, exact-ID duplicates 0); eligibility(eligible 25, rejected 9, hard exclusions subset 13); canonical dedup(non-canonical 0); verification(submitted 0, active 2, closed 0, unresolved 0); final(strong 2, review 0, visible 2, suppressed raw-minus-visible 32)
 - lever/cprime: successful — collection(raw 19, exact-ID duplicates 0); eligibility(eligible 9, rejected 10, hard exclusions subset 3); canonical dedup(non-canonical 0); verification(submitted 0, active 1, closed 0, unresolved 0); final(strong 1, review 0, visible 1, suppressed raw-minus-visible 18)
 - lever/jumpcloud: successful — collection(raw 31, exact-ID duplicates 0); eligibility(eligible 10, rejected 21, hard exclusions subset 9); canonical dedup(non-canonical 0); verification(submitted 0, active 1, closed 0, unresolved 0); final(strong 1, review 0, visible 1, suppressed raw-minus-visible 30)
-- lever/jobgether: successful — collection(raw 4114, exact-ID duplicates 0); eligibility(eligible 236, rejected 3878, hard exclusions subset 117); canonical dedup(non-canonical 3); verification(submitted 0, active 0, closed 0, unresolved 13); final(strong 0, review 13, visible 13, suppressed raw-minus-visible 4101)
+- lever/jobgether: successful — collection(raw 3885, exact-ID duplicates 0); eligibility(eligible 231, rejected 3654, hard exclusions subset 128); canonical dedup(non-canonical 2); verification(submitted 1, active 0, closed 0, unresolved 12); final(strong 0, review 12, visible 12, suppressed raw-minus-visible 3873)
 - ashby/deel: zero_results — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0)
-- remoteok/public: successful — collection(raw 99, exact-ID duplicates 0); eligibility(eligible 38, rejected 61, hard exclusions subset 23); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 99)
+- remoteok/public: successful — collection(raw 99, exact-ID duplicates 0); eligibility(eligible 36, rejected 63, hard exclusions subset 21); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 99)
 - remotive/public: successful — collection(raw 15, exact-ID duplicates 0); eligibility(eligible 1, rejected 14, hard exclusions subset 1); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 15)
-- arbeitnow/public: successful — collection(raw 900, exact-ID duplicates 0); eligibility(eligible 0, rejected 900, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 900)
-- himalayas/public: successful — collection(raw 185, exact-ID duplicates 34); eligibility(eligible 4, rejected 147, hard exclusions subset 2); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 185)
+- arbeitnow/public: successful — collection(raw 900, exact-ID duplicates 3); eligibility(eligible 0, rejected 897, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 900)
+- himalayas/public: successful — collection(raw 127, exact-ID duplicates 40); eligibility(eligible 1, rejected 86, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 127)
 - themuse/public: successful — collection(raw 60, exact-ID duplicates 0); eligibility(eligible 2, rejected 58, hard exclusions subset 2); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 60)
-- adzuna/india: successful — collection(raw 650, exact-ID duplicates 22); eligibility(eligible 520, rejected 108, hard exclusions subset 86); canonical dedup(non-canonical 65); verification(submitted 0, active 0, closed 0, unresolved 178); final(strong 0, review 178, visible 178, suppressed raw-minus-visible 472)
-- jooble/india: successful — collection(raw 573, exact-ID duplicates 319); eligibility(eligible 250, rejected 4, hard exclusions subset 126); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 1); final(strong 0, review 1, visible 1, suppressed raw-minus-visible 572)
+- adzuna/india: successful — collection(raw 650, exact-ID duplicates 22); eligibility(eligible 515, rejected 113, hard exclusions subset 87); canonical dedup(non-canonical 66); verification(submitted 6, active 0, closed 0, unresolved 174); final(strong 0, review 174, visible 174, suppressed raw-minus-visible 476)
+- jooble/india: successful — collection(raw 573, exact-ID duplicates 308); eligibility(eligible 261, rejected 4, hard exclusions subset 126); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 1); final(strong 0, review 1, visible 1, suppressed raw-minus-visible 572)
 
 ## Verification health
 
 - cached_verified_active: 4
-- http_blocked: 169
+- http_blocked: 164
 - verification_not_attempted: 23
 - Verified Active freshness: 0-30: 1, 31-60: 1, 61-90: 2
-- Unverified freshness: 0-30: 99, 31-60: 34, 61-90: 12, 91-365: 24, >365: 23
-- Stale Unverified Aggregator freshness: 0-30: 99, 31-60: 34, 61-90: 12, 91-365: 24, >365: 23
+- Unverified freshness: 0-30: 96, 31-60: 34, 61-90: 12, 91-365: 22, >365: 23
+- Stale Unverified Aggregator freshness: 0-30: 96, 31-60: 34, 61-90: 12, 91-365: 22, >365: 23
 
 ## Production metrics
 
-- Verification: candidates 196, submitted 0, deferred by cap 0, skipped by backoff 169, cached active 4, HTTP requests 0, redirects 0, unsafe destinations rejected 0
-- Deduplication: raw 6680, exact-ID removed 375, canonical removed 68, groups 214
+- Verification: candidates 191, submitted 7, deferred by cap 0, skipped by backoff 157, cached active 4, HTTP requests 8, redirects 0, unsafe destinations rejected 0
+- Deduplication: raw 6393, exact-ID removed 373, canonical removed 68, groups 212
 
 ## Strong shortlist
 
@@ -90,7 +91,7 @@ ATS/Resume Similarity: 13/100
 
 ### [Salesforce Operations Analyst](https://www.adzuna.in/details/5885447038)
 
-acs international india pvt ltd acsii | Source: Adzuna | Pune, Maharashtra | other_india | Screening 53/100 | unverified | recent (28 days old) | Pay not disclosed
+acs international india pvt ltd acsii | Source: Adzuna | Pune, Maharashtra | other_india | Screening 53/100 | unverified | recent (29 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — operations analyst; verified candidate-skill overlap: salesforce, data quality, reporting; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: recent; verification: unverified; screening queue: review_queue
 
@@ -99,7 +100,7 @@ ATS/Resume Similarity: 30/100
 
 ### [Sales Operations Analyst](https://www.adzuna.in/details/5919342796)
 
-Red Hat | Source: Adzuna | Pune, Maharashtra | other_india | Screening 52/100 | unverified | fresh (5 days old) | Pay not disclosed
+Red Hat | Source: Adzuna | Pune, Maharashtra | other_india | Screening 52/100 | unverified | fresh (6 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — sales operations, operations analyst; verified candidate-skill overlap: data quality, reporting; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: fresh; verification: unverified; screening queue: review_queue
 
@@ -108,7 +109,7 @@ ATS/Resume Similarity: 20/100
 
 ### [Associate Data Quality Specialist](https://www.adzuna.in/details/5895470025)
 
-CSC | Source: Adzuna | Chennai, Tamil Nadu | other_india | Screening 52/100 | unverified | recent (20 days old) | Pay not disclosed
+CSC | Source: Adzuna | Chennai, Tamil Nadu | other_india | Screening 52/100 | unverified | recent (21 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — data quality; verified candidate-skill overlap: data quality, quality assurance; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: recent; verification: unverified; screening queue: review_queue
 
@@ -126,7 +127,7 @@ ATS/Resume Similarity: 60/100
 
 ### [ADB with Data Quality](https://www.adzuna.in/details/5859126418)
 
-Alphacom Systems and Solutions Priavte Limited | Source: Adzuna | Gurgaon, Haryana | other_india | Screening 50/100 | unverified | older (47 days old) | Pay not disclosed
+Alphacom Systems and Solutions Priavte Limited | Source: Adzuna | Gurgaon, Haryana | other_india | Screening 50/100 | unverified | older (48 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — data quality; verified candidate-skill overlap: data quality, data validation; supporting candidate-skill overlap: sla; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: older; verification: unverified; screening queue: review_queue
 
@@ -135,7 +136,7 @@ ATS/Resume Similarity: 60/100
 
 ### [Associate - Nuveen Data Quality](https://www.adzuna.in/details/5894123739)
 
-TIAA | Source: Adzuna | Pune, Maharashtra | other_india | Screening 48/100 | unverified | recent (21 days old) | Pay not disclosed
+TIAA | Source: Adzuna | Pune, Maharashtra | other_india | Screening 48/100 | unverified | recent (22 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — data quality; verified candidate-skill overlap: data quality, reporting; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: sufficient; pay not disclosed; no score penalty; eligible location: other_india; freshness: recent; verification: unverified; screening queue: review_queue
 
@@ -144,7 +145,7 @@ ATS/Resume Similarity: 40/100
 
 ### [Market Researcher](https://www.adzuna.in/details/5854877480)
 
-Bahwan CyberTek Private Limited | Source: Adzuna | Coimbatore, Tamil Nadu | other_india | Screening 48/100 | unverified | older (50 days old) | Pay not disclosed | Minimum experience: 2 years
+Bahwan CyberTek Private Limited | Source: Adzuna | Coimbatore, Tamil Nadu | other_india | Screening 48/100 | unverified | older (51 days old) | Pay not disclosed | Minimum experience: 2 years
 
 Why: title/function relevance: primary — market research; verified candidate-skill overlap: market research; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: sufficient; minimum experience: 2 years; pay not disclosed; no score penalty; eligible location: other_india; freshness: older; verification: unverified; screening queue: review_queue
 
@@ -162,7 +163,7 @@ ATS/Resume Similarity: 60/100
 
 ### [Business Operations Analyst](https://www.adzuna.in/details/5905919032)
 
-Accenture | Source: Adzuna | India | other_india | Screening 47/100 | unverified | recent (12 days old) | Pay not disclosed
+Accenture | Source: Adzuna | India | other_india | Screening 47/100 | unverified | recent (13 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — business operations, operations analyst, business operations analyst; verified candidate-skill overlap: reporting; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: sufficient; pay not disclosed; no score penalty; eligible location: other_india; freshness: recent; verification: unverified; screening queue: review_queue
 
@@ -180,7 +181,7 @@ ATS/Resume Similarity: 60/100
 
 ### [Revenue Operations Analyst](https://jobs.lever.co/jobgether/1452a0e6-c539-4171-aced-9e1cab197981)
 
-Undisclosed employer | Source: Jobgether | India | remote_india | Screening 67/100 | unverified | fresh (2 days old) | Pay not disclosed | Minimum experience: 2 years
+Undisclosed employer | Source: Jobgether | India | remote_india | Screening 67/100 | unverified | fresh (3 days old) | Pay not disclosed | Minimum experience: 2 years
 
 Why: title/function relevance: primary — operations analyst; verified candidate-skill overlap: salesforce, data quality, google sheets, reporting; supporting candidate-skill overlap: zoominfo, claude; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: insufficient; minimum experience: 2 years; pay not disclosed; no score penalty; eligible location: remote_india; freshness: fresh; verification: unverified; screening queue: review_queue
 
@@ -189,25 +190,16 @@ ATS/Resume Similarity: 32/100
 
 ### [Marketing Operations & AI Specialist](https://jobs.lever.co/jobgether/4fbe7cba-41a7-41fe-9cce-64ff1e9ccd74)
 
-Undisclosed employer | Source: Jobgether | India | remote_india | Screening 60/100 | unverified | fresh (2 days old) | Pay not disclosed | Minimum experience: 3 years
+Undisclosed employer | Source: Jobgether | India | remote_india | Screening 60/100 | unverified | fresh (3 days old) | Pay not disclosed | Minimum experience: 3 years
 
 Why: description relevance: primary — data quality, data management, sales operations; verified candidate-skill overlap: salesforce, data quality, data validation, reporting; supporting candidate-skill overlap: hubspot, process improvement; learning only: sql, python, ai automation; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: insufficient; minimum experience: 3 years; pay not disclosed; no score penalty; eligible location: remote_india; freshness: fresh; verification: unverified; screening queue: review_queue
 
 Actual Hiring Fit: Not assessed (insufficient reliable job-description evidence; requirement coverage 39%)
 ATS/Resume Similarity: 17/100
 
-### [Senior Functional Leader, Enterprise Data Management](https://jobs.lever.co/jobgether/da493fef-cd37-4791-a178-83e13d7d8bce)
-
-Undisclosed employer | Source: Jobgether | India | remote_india | Screening 49/100 | unverified | fresh (7 days old) | Pay not disclosed
-
-Why: title/function relevance: primary — data management; verified candidate-skill overlap: salesforce, data quality, reporting; domain compatibility: compatible or unknown; seniority: senior; evidence quality: insufficient; pay not disclosed; no score penalty; eligible location: remote_india; freshness: fresh; verification: unverified; screening queue: review_queue
-
-Actual Hiring Fit: Not assessed (insufficient reliable job-description evidence; requirement coverage 0%)
-ATS/Resume Similarity: 30/100
-
 ### [Data Client Support Analyst](https://jobs.lever.co/jobgether/fe235a5e-3062-4ede-9092-ccc94cc15590)
 
-Undisclosed employer | Source: Jobgether | India | remote_india | Screening 48/100 | unverified | fresh (2 days old) | Pay not disclosed | Minimum experience: 3 years
+Undisclosed employer | Source: Jobgether | India | remote_india | Screening 48/100 | unverified | fresh (3 days old) | Pay not disclosed | Minimum experience: 3 years
 
 Why: description relevance: primary — data quality, data management, data verification; verified candidate-skill overlap: salesforce, data quality; supporting candidate-skill overlap: client support, process improvement; learning only: sql; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: insufficient; minimum experience: 3 years; pay not disclosed; no score penalty; eligible location: remote_india; freshness: fresh; verification: unverified; screening queue: review_queue
 
@@ -216,7 +208,7 @@ ATS/Resume Similarity: 22/100
 
 ### [HRIS Specialist](https://jobs.lever.co/jobgether/4b3e909e-1f85-4527-86d1-f638dce0e2f0)
 
-Undisclosed employer | Source: Jobgether | India | remote_india | Screening 48/100 | unverified | fresh (6 days old) | Pay not disclosed | Minimum experience: 1 years
+Undisclosed employer | Source: Jobgether | India | remote_india | Screening 48/100 | unverified | fresh (7 days old) | Pay not disclosed | Minimum experience: 1 years
 
 Why: description relevance: primary — data quality, data integrity, data management; verified candidate-skill overlap: data quality, reporting, process documentation; supporting candidate-skill overlap: outlook, process improvement; experience gaps: business requirements; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: insufficient; minimum experience: 1 years; pay not disclosed; no score penalty; eligible location: remote_india; freshness: fresh; verification: unverified; screening queue: review_queue
 
@@ -225,16 +217,25 @@ ATS/Resume Similarity: 29/100
 
 ### [Associate, Talent Acquisition Operations](https://jobs.lever.co/jobgether/b57c24b8-294d-40f5-9804-1cbe546988aa)
 
-Undisclosed employer | Source: Jobgether | India | remote_india | Screening 47/100 | unverified | fresh (1 days old) | Pay not disclosed | Minimum experience: 2 years
+Undisclosed employer | Source: Jobgether | India | remote_india | Screening 47/100 | unverified | fresh (2 days old) | Pay not disclosed | Minimum experience: 2 years
 
 Why: description relevance: primary — data quality, data integrity, data management; verified candidate-skill overlap: data quality, reporting; supporting candidate-skill overlap: outlook, process improvement; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: insufficient; minimum experience: 2 years; pay not disclosed; no score penalty; eligible location: remote_india; freshness: fresh; verification: unverified; screening queue: review_queue
 
 Actual Hiring Fit: Not assessed (insufficient reliable job-description evidence; requirement coverage 12%)
 ATS/Resume Similarity: 9/100
 
+### NEW - [Primary Market Research Consultant](https://www.adzuna.in/details/5927701101)
+
+IQVIA | Source: Adzuna | India | other_india | Screening 44/100 | unverified | fresh (0 days old) | Pay not disclosed
+
+Why: title/function relevance: primary — market research; verified candidate-skill overlap: market research, desk research; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: fresh; verification: unverified; screening queue: review_queue
+
+Actual Hiring Fit: Not assessed (insufficient reliable job-description evidence; requirement coverage 100%)
+ATS/Resume Similarity: 60/100
+
 ### [Market Research Intern](https://www.adzuna.in/details/5925656791)
 
-The Merc | Source: Adzuna | India | other_india | Screening 44/100 | unverified | fresh (0 days old) | INR 50,000/month (aggregator estimate; excluded from score)
+The Merc | Source: Adzuna | India | other_india | Screening 44/100 | unverified | fresh (1 days old) | INR 50,000/month (aggregator estimate; excluded from score)
 
 Why: title/function relevance: primary — market research; verified candidate-skill overlap: market research, reporting; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; aggregator pay estimate excluded from screening score; eligible location: other_india; freshness: fresh; verification: unverified; screening queue: review_queue
 
@@ -243,7 +244,7 @@ ATS/Resume Similarity: 36/100
 
 ### [Analyst - Data Quality](https://www.adzuna.in/details/5922373436)
 
-AstraZeneca | Source: Adzuna | Chennai, Tamil Nadu | other_india | Screening 44/100 | unverified | fresh (3 days old) | Pay not disclosed
+AstraZeneca | Source: Adzuna | Chennai, Tamil Nadu | other_india | Screening 44/100 | unverified | fresh (4 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — data quality; verified candidate-skill overlap: data quality, reporting; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: fresh; verification: unverified; screening queue: review_queue
 
@@ -252,7 +253,7 @@ ATS/Resume Similarity: 17/100
 
 ### [Business Operations Analyst](https://www.adzuna.in/details/5889409876)
 
-PHONEPE LIMITED | Source: Adzuna | Bangalore, Karnataka | bengaluru | Screening 44/100 | unverified | recent (25 days old) | Pay not disclosed
+PHONEPE LIMITED | Source: Adzuna | Bangalore, Karnataka | bengaluru | Screening 44/100 | unverified | recent (26 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — business operations, operations analyst, business operations analyst; supporting candidate-skill overlap: process improvement; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: bengaluru; freshness: recent; verification: unverified; screening queue: review_queue
 
@@ -261,7 +262,7 @@ ATS/Resume Similarity: 33/100
 
 ### [Bilingual Metadata Specialist](https://jobs.lever.co/jobgether/153ed24f-6cd8-436c-a994-5100b2755ace)
 
-Undisclosed employer | Source: Jobgether | India | remote_india | Screening 43/100 | unverified | fresh (0 days old) | Pay not disclosed
+Undisclosed employer | Source: Jobgether | India | remote_india | Screening 43/100 | unverified | fresh (1 days old) | Pay not disclosed
 
 Why: description relevance: primary — data quality, data management, data validation; verified candidate-skill overlap: data quality, data validation, quality assurance; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: insufficient; pay not disclosed; no score penalty; eligible location: remote_india; freshness: fresh; verification: unverified; screening queue: review_queue
 
@@ -270,11 +271,11 @@ ATS/Resume Similarity: 4/100
 
 ## Verification backlog
 
-- Total: 172
-- NEW: 0
-- Awaiting retry: 149
+- Total: 167
+- NEW: 4
+- Awaiting retry: 138
 - Budget deferred: 0
 - Cold stale aggregator: 23
-- Freshness: 0-30: 84, 31-60: 32, 61-90: 10, 91-365: 23, >365: 23
+- Freshness: 0-30: 81, 31-60: 32, 61-90: 10, 91-365: 21, >365: 23
 
 Full backlog records remain available in JSON and CSV.
