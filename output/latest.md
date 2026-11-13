@@ -1,23 +1,23 @@
 # Latest matching jobs
 
-Generated: 2026-11-13T11:27:56+00:00
+Generated: 2026-11-13T18:41:20+00:00
 Strong shortlist: 1 (0 NEW)
-Review queue: 196
+Review queue: 193
 Human review: 20
-Verification backlog: 155
-Cold verification backlog: 21
-Suppressed: 6714
+Verification backlog: 151
+Cold verification backlog: 22
+Suppressed: 6754
 
 Screening scores are automated prioritization signals. Actual Hiring Fit is a separate evidence-based assessment and is shown only when the job description contains sufficient detail.
 
 ## Source coverage
 
-Adzuna: 175 | Himalayas: 1 | Jobgether: 17 | Jooble: 3 | lever: 1
+Adzuna: 173 | Jobgether: 17 | Jooble: 3 | lever: 1
 
 ## Run notes
 
 - A configured source failed; see the categorized source-health entry.
-- Could not independently verify 196 application page(s); retained only in the review queue.
+- Could not independently verify 193 application page(s); retained only in the review queue.
 
 ## Source health
 
@@ -25,29 +25,29 @@ Adzuna: 175 | Himalayas: 1 | Jobgether: 17 | Jooble: 3 | lever: 1
 - lever/sprinto: successful — collection(raw 29, exact-ID duplicates 0); eligibility(eligible 22, rejected 7, hard exclusions subset 11); canonical dedup(non-canonical 0); verification(submitted 0, active 1, closed 0, unresolved 0); final(strong 1, review 0, visible 1, suppressed raw-minus-visible 28)
 - lever/cprime: successful — collection(raw 5, exact-ID duplicates 0); eligibility(eligible 2, rejected 3, hard exclusions subset 2); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 5)
 - lever/jumpcloud: successful — collection(raw 37, exact-ID duplicates 0); eligibility(eligible 17, rejected 20, hard exclusions subset 16); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 37)
-- lever/jobgether: successful — collection(raw 4598, exact-ID duplicates 0); eligibility(eligible 237, rejected 4361, hard exclusions subset 129); canonical dedup(non-canonical 2); verification(submitted 8, active 0, closed 0, unresolved 17); final(strong 0, review 17, visible 17, suppressed raw-minus-visible 4581)
+- lever/jobgether: successful — collection(raw 4633, exact-ID duplicates 0); eligibility(eligible 242, rejected 4391, hard exclusions subset 132); canonical dedup(non-canonical 2); verification(submitted 4, active 0, closed 0, unresolved 17); final(strong 0, review 17, visible 17, suppressed raw-minus-visible 4616)
 - ashby/deel: zero_results — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0)
-- remoteok/public: successful — collection(raw 98, exact-ID duplicates 0); eligibility(eligible 52, rejected 46, hard exclusions subset 33); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 98)
-- remotive/public: successful — collection(raw 14, exact-ID duplicates 0); eligibility(eligible 1, rejected 13, hard exclusions subset 1); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 14)
-- arbeitnow/public: successful — collection(raw 900, exact-ID duplicates 22); eligibility(eligible 0, rejected 878, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 900)
-- himalayas/public: successful — collection(raw 260, exact-ID duplicates 90); eligibility(eligible 4, rejected 166, hard exclusions subset 3); canonical dedup(non-canonical 0); verification(submitted 1, active 0, closed 0, unresolved 1); final(strong 0, review 1, visible 1, suppressed raw-minus-visible 259)
+- remoteok/public: successful — collection(raw 98, exact-ID duplicates 0); eligibility(eligible 52, rejected 46, hard exclusions subset 34); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 98)
+- remotive/public: successful — collection(raw 16, exact-ID duplicates 0); eligibility(eligible 2, rejected 14, hard exclusions subset 2); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 16)
+- arbeitnow/public: successful — collection(raw 900, exact-ID duplicates 43); eligibility(eligible 0, rejected 857, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 900)
+- himalayas/public: successful — collection(raw 260, exact-ID duplicates 96); eligibility(eligible 4, rejected 160, hard exclusions subset 2); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 260)
 - themuse/public: http_failure — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0) (HTTP 404)
-- adzuna/india: successful — collection(raw 650, exact-ID duplicates 28); eligibility(eligible 503, rejected 119, hard exclusions subset 89); canonical dedup(non-canonical 48); verification(submitted 33, active 0, closed 0, unresolved 175); final(strong 0, review 175, visible 175, suppressed raw-minus-visible 475)
-- jooble/india: successful — collection(raw 320, exact-ID duplicates 249); eligibility(eligible 68, rejected 3, hard exclusions subset 19); canonical dedup(non-canonical 0); verification(submitted 1, active 0, closed 0, unresolved 3); final(strong 0, review 3, visible 3, suppressed raw-minus-visible 317)
+- adzuna/india: successful — collection(raw 650, exact-ID duplicates 25); eligibility(eligible 499, rejected 126, hard exclusions subset 85); canonical dedup(non-canonical 50); verification(submitted 3, active 0, closed 0, unresolved 173); final(strong 0, review 173, visible 173, suppressed raw-minus-visible 477)
+- jooble/india: successful — collection(raw 320, exact-ID duplicates 255); eligibility(eligible 63, rejected 2, hard exclusions subset 21); canonical dedup(non-canonical 0); verification(submitted 1, active 0, closed 0, unresolved 3); final(strong 0, review 3, visible 3, suppressed raw-minus-visible 317)
 
 ## Verification health
 
 - cached_verified_active: 1
-- http_blocked: 175
-- verification_not_attempted: 21
+- http_blocked: 171
+- verification_not_attempted: 22
 - Verified Active freshness: 31-60: 1
-- Unverified freshness: 0-30: 99, 31-60: 32, 61-90: 16, 91-365: 28, >365: 21
-- Stale Unverified Aggregator freshness: 0-30: 98, 31-60: 32, 61-90: 16, 91-365: 28, >365: 21
+- Unverified freshness: 0-30: 97, 31-60: 32, 61-90: 15, 91-365: 27, >365: 22
+- Stale Unverified Aggregator freshness: 0-30: 97, 31-60: 32, 61-90: 15, 91-365: 27, >365: 22
 
 ## Production metrics
 
-- Verification: candidates 197, submitted 43, deferred by cap 0, skipped by backoff 132, cached active 1, HTTP requests 51, redirects 0, unsafe destinations rejected 0
-- Deduplication: raw 6911, exact-ID removed 389, canonical removed 50, groups 179
+- Verification: candidates 194, submitted 8, deferred by cap 0, skipped by backoff 163, cached active 1, HTTP requests 12, redirects 0, unsafe destinations rejected 0
+- Deduplication: raw 6948, exact-ID removed 419, canonical removed 52, groups 196
 
 ## Strong shortlist
 
@@ -127,9 +127,9 @@ ATS/Resume Similarity: 60/100
 
 ### [Business Operations Associate](https://www.adzuna.in/details/5953933716)
 
-Arrow Electronics | Source: Adzuna | India | other_india | Screening 47/100 | unverified | fresh (7 days old) | Pay not disclosed
+Arrow Electronics | Source: Adzuna | India | other_india | Screening 47/100 | unverified | recent (8 days old) | Pay not disclosed
 
-Why: title/function relevance: primary — business operations, operations associate, business operations associate; verified candidate-skill overlap: reporting; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: fresh; verification: unverified; screening queue: review_queue
+Why: title/function relevance: primary — business operations, operations associate, business operations associate; verified candidate-skill overlap: reporting; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: recent; verification: unverified; screening queue: review_queue
 
 Actual Hiring Fit: Not assessed (insufficient reliable job-description evidence; requirement coverage 0%)
 ATS/Resume Similarity: 15/100
@@ -143,18 +143,9 @@ Why: title/function relevance: primary — business operations, operations assoc
 Actual Hiring Fit: Not assessed (insufficient reliable job-description evidence; requirement coverage 0%)
 ATS/Resume Similarity: 15/100
 
-### [Marketing Data Operations Analyst](https://www.adzuna.in/details/5917353703)
-
-Zoom | Source: Adzuna | India | other_india | Screening 47/100 | unverified | older (36 days old) | Pay not disclosed
-
-Why: title/function relevance: primary — data operations, operations analyst; verified candidate-skill overlap: data quality; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: older; verification: unverified; screening queue: review_queue
-
-Actual Hiring Fit: Not assessed (insufficient reliable job-description evidence; requirement coverage 9%)
-ATS/Resume Similarity: 5/100
-
 ### [Business Process Operations Analyst](https://www.adzuna.in/details/5808916972)
 
-ITC WORLDWIDE | Source: Adzuna | Pune, Maharashtra | other_india | Screening 45/100 | unverified | older (114 days old) | Pay not disclosed
+ITC WORLDWIDE | Source: Adzuna | Pune, Maharashtra | other_india | Screening 45/100 | unverified | older (115 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — operations analyst; verified candidate-skill overlap: reporting; supporting candidate-skill overlap: process improvement; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: older; verification: unverified; screening queue: review_queue
 
@@ -242,13 +233,22 @@ Why: description relevance: primary — data management, crm operations, data va
 Actual Hiring Fit: Not assessed (insufficient reliable job-description evidence; requirement coverage 60%)
 ATS/Resume Similarity: 31/100
 
+### [Business Operations Associate](https://jobs.lever.co/jobgether/c0d62791-6b69-4d63-b006-332666bb2ae8)
+
+Undisclosed employer | Source: Jobgether | India | remote_india | Screening 44/100 | unverified | fresh (7 days old) | Pay not disclosed
+
+Why: title/function relevance: primary — business operations, operations associate, business operations associate; supporting candidate-skill overlap: process improvement; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: insufficient; pay not disclosed; no score penalty; eligible location: remote_india; freshness: fresh; verification: unverified; screening queue: review_queue
+
+Actual Hiring Fit: Not assessed (insufficient reliable job-description evidence; requirement coverage 6%)
+ATS/Resume Similarity: 4/100
+
 ## Verification backlog
 
-- Total: 176
-- NEW: 6
-- Awaiting retry: 119
+- Total: 173
+- NEW: 2
+- Awaiting retry: 145
 - Budget deferred: 0
-- Cold stale aggregator: 21
-- Freshness: 0-30: 86, 31-60: 29, 61-90: 15, 91-365: 25, >365: 21
+- Cold stale aggregator: 22
+- Freshness: 0-30: 83, 31-60: 30, 61-90: 14, 91-365: 24, >365: 22
 
 Full backlog records remain available in JSON and CSV.
