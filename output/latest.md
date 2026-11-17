@@ -1,12 +1,12 @@
 # Latest matching jobs
 
-Generated: 2026-11-17T12:21:40+00:00
+Generated: 2026-11-17T19:59:19+00:00
 Strong shortlist: 1 (0 NEW)
 Review queue: 187
 Human review: 20
 Verification backlog: 145
 Cold verification backlog: 22
-Suppressed: 6572
+Suppressed: 6729
 
 Screening scores are automated prioritization signals. Actual Hiring Fit is a separate evidence-based assessment and is shown only when the job description contains sufficient detail.
 
@@ -22,33 +22,32 @@ Adzuna: 169 | Himalayas: 1 | Jobgether: 13 | Jooble: 3 | lever: 2
 ## Source health
 
 - greenhouse/remote: zero_results — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0)
-- lever/sprinto: successful — collection(raw 29, exact-ID duplicates 0); eligibility(eligible 23, rejected 6, hard exclusions subset 11); canonical dedup(non-canonical 0); verification(submitted 1, active 2, closed 0, unresolved 0); final(strong 1, review 1, visible 2, suppressed raw-minus-visible 27)
+- lever/sprinto: successful — collection(raw 28, exact-ID duplicates 0); eligibility(eligible 23, rejected 5, hard exclusions subset 11); canonical dedup(non-canonical 0); verification(submitted 0, active 2, closed 0, unresolved 0); final(strong 1, review 1, visible 2, suppressed raw-minus-visible 26)
 - lever/cprime: successful — collection(raw 5, exact-ID duplicates 0); eligibility(eligible 2, rejected 3, hard exclusions subset 2); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 5)
-- lever/jumpcloud: successful — collection(raw 33, exact-ID duplicates 0); eligibility(eligible 15, rejected 18, hard exclusions subset 14); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 33)
-- lever/jobgether: successful — collection(raw 4424, exact-ID duplicates 0); eligibility(eligible 276, rejected 4148, hard exclusions subset 149); canonical dedup(non-canonical 3); verification(submitted 2, active 0, closed 0, unresolved 13); final(strong 0, review 13, visible 13, suppressed raw-minus-visible 4411)
+- lever/jumpcloud: successful — collection(raw 32, exact-ID duplicates 0); eligibility(eligible 14, rejected 18, hard exclusions subset 13); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 32)
+- lever/jobgether: successful — collection(raw 4567, exact-ID duplicates 0); eligibility(eligible 279, rejected 4288, hard exclusions subset 149); canonical dedup(non-canonical 3); verification(submitted 0, active 0, closed 0, unresolved 13); final(strong 0, review 13, visible 13, suppressed raw-minus-visible 4554)
 - ashby/deel: zero_results — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0)
 - remoteok/public: successful — collection(raw 97, exact-ID duplicates 0); eligibility(eligible 49, rejected 48, hard exclusions subset 32); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 97)
-- remotive/public: successful — collection(raw 17, exact-ID duplicates 0); eligibility(eligible 2, rejected 15, hard exclusions subset 2); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 17)
-- arbeitnow/public: successful — collection(raw 900, exact-ID duplicates 33); eligibility(eligible 0, rejected 867, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 900)
-- himalayas/public: successful — collection(raw 260, exact-ID duplicates 83); eligibility(eligible 6, rejected 171, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 1, active 0, closed 0, unresolved 1); final(strong 0, review 1, visible 1, suppressed raw-minus-visible 259)
+- remotive/public: successful — collection(raw 16, exact-ID duplicates 0); eligibility(eligible 2, rejected 14, hard exclusions subset 2); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 16)
+- arbeitnow/public: successful — collection(raw 900, exact-ID duplicates 0); eligibility(eligible 1, rejected 899, hard exclusions subset 1); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 900)
+- himalayas/public: successful — collection(raw 260, exact-ID duplicates 77); eligibility(eligible 6, rejected 177, hard exclusions subset 1); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 1); final(strong 0, review 1, visible 1, suppressed raw-minus-visible 259)
 - themuse/public: http_failure — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0) (HTTP 404)
-- adzuna/india: successful — collection(raw 650, exact-ID duplicates 27); eligibility(eligible 496, rejected 127, hard exclusions subset 88); canonical dedup(non-canonical 52); verification(submitted 11, active 0, closed 0, unresolved 169); final(strong 0, review 169, visible 169, suppressed raw-minus-visible 481)
-- jooble/india: successful — collection(raw 345, exact-ID duplicates 260); eligibility(eligible 81, rejected 4, hard exclusions subset 21); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 3); final(strong 0, review 3, visible 3, suppressed raw-minus-visible 342)
+- adzuna/india: successful — collection(raw 650, exact-ID duplicates 28); eligibility(eligible 498, rejected 124, hard exclusions subset 90); canonical dedup(non-canonical 48); verification(submitted 5, active 0, closed 0, unresolved 169); final(strong 0, review 169, visible 169, suppressed raw-minus-visible 481)
+- jooble/india: successful — collection(raw 362, exact-ID duplicates 280); eligibility(eligible 79, rejected 3, hard exclusions subset 21); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 3); final(strong 0, review 3, visible 3, suppressed raw-minus-visible 359)
 
 ## Verification health
 
-- cached_verified_active: 1
+- cached_verified_active: 2
 - http_blocked: 164
 - verification_not_attempted: 22
-- verified_active: 1
 - Verified Active freshness: 0-30: 1, 61-90: 1
-- Unverified freshness: 0-30: 90, 31-60: 23, 61-90: 24, 91-365: 27, >365: 22
-- Stale Unverified Aggregator freshness: 0-30: 89, 31-60: 23, 61-90: 24, 91-365: 27, >365: 22
+- Unverified freshness: 0-30: 90, 31-60: 22, 61-90: 24, 91-365: 28, >365: 22
+- Stale Unverified Aggregator freshness: 0-30: 89, 31-60: 22, 61-90: 24, 91-365: 28, >365: 22
 
 ## Production metrics
 
-- Verification: candidates 188, submitted 15, deferred by cap 0, skipped by backoff 150, cached active 1, HTTP requests 17, redirects 0, unsafe destinations rejected 0
-- Deduplication: raw 6760, exact-ID removed 403, canonical removed 55, groups 208
+- Verification: candidates 188, submitted 5, deferred by cap 0, skipped by backoff 159, cached active 2, HTTP requests 5, redirects 0, unsafe destinations rejected 0
+- Deduplication: raw 6917, exact-ID removed 385, canonical removed 51, groups 175
 
 ## Strong shortlist
 
@@ -128,7 +127,7 @@ ATS/Resume Similarity: 60/100
 
 ### [Business Operations Associate](https://www.adzuna.in/details/5953933716)
 
-Arrow Electronics | Source: Adzuna | India | other_india | Screening 47/100 | unverified | recent (11 days old) | Pay not disclosed
+Arrow Electronics | Source: Adzuna | India | other_india | Screening 47/100 | unverified | recent (12 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — business operations, operations associate, business operations associate; verified candidate-skill overlap: reporting; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: other_india; freshness: recent; verification: unverified; screening queue: review_queue
 
@@ -218,7 +217,7 @@ ATS/Resume Similarity: 30/100
 
 ### [Market Research Intern](https://www.adzuna.in/details/5925656791)
 
-The Merc | Source: Adzuna | India | other_india | Screening 44/100 | unverified | older (34 days old) | INR 50,000/month (aggregator estimate; excluded from score)
+The Merc | Source: Adzuna | India | other_india | Screening 44/100 | unverified | older (35 days old) | INR 50,000/month (aggregator estimate; excluded from score)
 
 Why: title/function relevance: primary — market research; verified candidate-skill overlap: market research, reporting; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; aggregator pay estimate excluded from screening score; eligible location: other_india; freshness: older; verification: unverified; screening queue: review_queue
 
@@ -246,10 +245,10 @@ ATS/Resume Similarity: 25/100
 ## Verification backlog
 
 - Total: 167
-- NEW: 3
-- Awaiting retry: 133
+- NEW: 1
+- Awaiting retry: 140
 - Budget deferred: 0
 - Cold stale aggregator: 22
-- Freshness: 0-30: 78, 31-60: 21, 61-90: 22, 91-365: 24, >365: 22
+- Freshness: 0-30: 78, 31-60: 20, 61-90: 22, 91-365: 25, >365: 22
 
 Full backlog records remain available in JSON and CSV.
