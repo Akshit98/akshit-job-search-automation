@@ -229,7 +229,10 @@ def _ats_from_requirements(requirements: list[Requirement], evidence: dict[str, 
         weight = 3.0
         weighted_total += weight
         candidate_years = float(evidence.get("overall_experience_years_date_calculated", 0))
-        weighted_match += weight * min(1.0, candidate_years / minimum_years)
+        if minimum_years <= 0:
+            weighted_match += weight
+        else:
+            weighted_match += weight * min(1.0, candidate_years / minimum_years)
     return round(100 * weighted_match / weighted_total) if weighted_total else 0
 
 
