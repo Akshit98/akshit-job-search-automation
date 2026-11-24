@@ -1,53 +1,53 @@
 # Latest matching jobs
 
-Generated: 2026-11-24T17:44:03+00:00
+Generated: 2026-11-24T21:28:25+00:00
 Strong shortlist: 1 (0 NEW)
-Review queue: 174
+Review queue: 173
 Human review: 20
-Verification backlog: 131
+Verification backlog: 130
 Cold verification backlog: 23
-Suppressed: 6452
+Suppressed: 5514
 
 Screening scores are automated prioritization signals. Actual Hiring Fit is a separate evidence-based assessment and is shown only when the job description contains sufficient detail.
 
 ## Source coverage
 
-Adzuna: 160 | Jobgether: 11 | Jooble: 2 | lever: 2
+Adzuna: 161 | Jobgether: 9 | Jooble: 2 | lever: 2
 
 ## Run notes
 
 - A configured source failed; see the categorized source-health entry.
-- Could not independently verify 173 application page(s); retained only in the review queue.
+- Could not independently verify 172 application page(s); retained only in the review queue.
 
 ## Source health
 
 - greenhouse/remote: zero_results — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0)
-- lever/sprinto: successful — collection(raw 29, exact-ID duplicates 0); eligibility(eligible 23, rejected 6, hard exclusions subset 12); canonical dedup(non-canonical 0); verification(submitted 2, active 2, closed 0, unresolved 0); final(strong 1, review 1, visible 2, suppressed raw-minus-visible 27)
+- lever/sprinto: successful — collection(raw 29, exact-ID duplicates 0); eligibility(eligible 23, rejected 6, hard exclusions subset 12); canonical dedup(non-canonical 0); verification(submitted 0, active 2, closed 0, unresolved 0); final(strong 1, review 1, visible 2, suppressed raw-minus-visible 27)
 - lever/cprime: successful — collection(raw 6, exact-ID duplicates 0); eligibility(eligible 3, rejected 3, hard exclusions subset 2); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 6)
 - lever/jumpcloud: successful — collection(raw 36, exact-ID duplicates 0); eligibility(eligible 16, rejected 20, hard exclusions subset 13); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 36)
-- lever/jobgether: successful — collection(raw 4261, exact-ID duplicates 0); eligibility(eligible 228, rejected 4033, hard exclusions subset 124); canonical dedup(non-canonical 3); verification(submitted 11, active 0, closed 0, unresolved 11); final(strong 0, review 11, visible 11, suppressed raw-minus-visible 4250)
+- lever/jobgether: successful — collection(raw 3323, exact-ID duplicates 0); eligibility(eligible 180, rejected 3143, hard exclusions subset 103); canonical dedup(non-canonical 1); verification(submitted 0, active 0, closed 0, unresolved 9); final(strong 0, review 9, visible 9, suppressed raw-minus-visible 3314)
 - ashby/deel: zero_results — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0)
 - remoteok/public: successful — collection(raw 100, exact-ID duplicates 0); eligibility(eligible 7, rejected 93, hard exclusions subset 3); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 100)
 - remotive/public: successful — collection(raw 15, exact-ID duplicates 0); eligibility(eligible 1, rejected 14, hard exclusions subset 1); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 15)
-- arbeitnow/public: successful — collection(raw 900, exact-ID duplicates 6); eligibility(eligible 0, rejected 894, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 900)
-- himalayas/public: successful — collection(raw 260, exact-ID duplicates 75); eligibility(eligible 8, rejected 177, hard exclusions subset 4); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 260)
+- arbeitnow/public: successful — collection(raw 900, exact-ID duplicates 0); eligibility(eligible 0, rejected 900, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 900)
+- himalayas/public: successful — collection(raw 260, exact-ID duplicates 78); eligibility(eligible 8, rejected 174, hard exclusions subset 4); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 260)
 - themuse/public: http_failure — collection(raw 0, exact-ID duplicates 0); eligibility(eligible 0, rejected 0, hard exclusions subset 0); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 0); final(strong 0, review 0, visible 0, suppressed raw-minus-visible 0) (HTTP 404)
-- adzuna/india: successful — collection(raw 650, exact-ID duplicates 27); eligibility(eligible 495, rejected 128, hard exclusions subset 87); canonical dedup(non-canonical 62); verification(submitted 63, active 0, closed 0, unresolved 160); final(strong 0, review 160, visible 160, suppressed raw-minus-visible 490)
-- jooble/india: successful — collection(raw 370, exact-ID duplicates 274); eligibility(eligible 88, rejected 8, hard exclusions subset 17); canonical dedup(non-canonical 0); verification(submitted 2, active 0, closed 0, unresolved 2); final(strong 0, review 2, visible 2, suppressed raw-minus-visible 368)
+- adzuna/india: successful — collection(raw 650, exact-ID duplicates 27); eligibility(eligible 496, rejected 127, hard exclusions subset 87); canonical dedup(non-canonical 62); verification(submitted 1, active 0, closed 0, unresolved 161); final(strong 0, review 161, visible 161, suppressed raw-minus-visible 489)
+- jooble/india: successful — collection(raw 369, exact-ID duplicates 273); eligibility(eligible 88, rejected 8, hard exclusions subset 17); canonical dedup(non-canonical 0); verification(submitted 0, active 0, closed 0, unresolved 2); final(strong 0, review 2, visible 2, suppressed raw-minus-visible 367)
 
 ## Verification health
 
-- http_blocked: 151
+- cached_verified_active: 2
+- http_blocked: 150
 - verification_not_attempted: 22
-- verified_active: 2
 - Verified Active freshness: 0-30: 1, 61-90: 1
-- Unverified freshness: 0-30: 82, 31-60: 22, 61-90: 21, 91-365: 25, >365: 23
-- Stale Unverified Aggregator freshness: 0-30: 82, 31-60: 22, 61-90: 21, 91-365: 25, >365: 23
+- Unverified freshness: 0-30: 80, 31-60: 22, 61-90: 21, 91-365: 26, >365: 23
+- Stale Unverified Aggregator freshness: 0-30: 80, 31-60: 22, 61-90: 21, 91-365: 26, >365: 23
 
 ## Production metrics
 
-- Verification: candidates 175, submitted 78, deferred by cap 0, skipped by backoff 74, cached active 0, HTTP requests 89, redirects 0, unsafe destinations rejected 0
-- Deduplication: raw 6627, exact-ID removed 382, canonical removed 65, groups 176
+- Verification: candidates 174, submitted 1, deferred by cap 0, skipped by backoff 148, cached active 2, HTTP requests 1, redirects 0, unsafe destinations rejected 0
+- Deduplication: raw 5688, exact-ID removed 378, canonical removed 63, groups 171
 
 ## Strong shortlist
 
@@ -202,7 +202,7 @@ ATS/Resume Similarity: 60/100
 
 ### [Customer Operations Analyst II](https://www.adzuna.in/details/5939415306)
 
-Trintech Solutions | Source: Adzuna | Bangalore, Karnataka | bengaluru | Screening 43/100 | unverified | older (31 days old) | Pay not disclosed
+Trintech Solutions | Source: Adzuna | Bangalore, Karnataka | bengaluru | Screening 43/100 | unverified | older (32 days old) | Pay not disclosed
 
 Why: title/function relevance: primary — operations analyst, customer operations; verified candidate-skill overlap: salesforce; domain compatibility: compatible or unknown; seniority: individual_contributor_or_unknown; evidence quality: partial; pay not disclosed; no score penalty; eligible location: bengaluru; freshness: older; verification: unverified; screening queue: review_queue
 
@@ -247,11 +247,11 @@ ATS/Resume Similarity: 25/100
 
 ## Verification backlog
 
-- Total: 154
-- NEW: 11
-- Awaiting retry: 64
+- Total: 153
+- NEW: 0
+- Awaiting retry: 129
 - Budget deferred: 0
 - Cold stale aggregator: 23
-- Freshness: 0-30: 74, 31-60: 17, 61-90: 18, 91-365: 22, >365: 23
+- Freshness: 0-30: 72, 31-60: 17, 61-90: 18, 91-365: 23, >365: 23
 
 Full backlog records remain available in JSON and CSV.
